@@ -3,8 +3,7 @@
   using the I2S interface to an I2S Amp Breakout board.
   It's been tested with the UDA1334A and the MAX98357 amps.
 
-  A pushbutton is connected to pin D7 and to ground.
-  Pressing it toggled play/pause
+  A potentiometer connected to pin A0 adjusts the volume
 
   The wav file must be stereo signed 16 bit 44100Hz.
 
@@ -34,17 +33,12 @@ const char filename[] = "SOUND001.WAV";
 
 // variable representing the Wave File
 SDWaveFile waveFile;
-// previous state of the pushbutton:
-int lastButtonState = HIGH;
 
 void setup() {
-  // Open serial communications:
+  // Open serial communications and wait for port to open:
   Serial.begin(9600);
-  // make the button pin an input, with internal pullup:
-  pinMode(7, INPUT_PULLUP);
-
-  // setup the SD card.
-  // depending on your shield of breakout board
+ 
+  // setup the SD card, depending on your shield of breakout board
   // you may need to pass a pin number in begin for SS
   Serial.print("Initializing SD card...");
   if (!SD.begin()) {
@@ -73,35 +67,18 @@ void setup() {
     while (1); // do nothing
   }
 
-  // set the playback volume:
-  AudioOutI2S.volume(20);
   // start playback
   Serial.println("looping file");
   AudioOutI2S.loop(waveFile);
-
 }
 
 void loop() {
-  // read button state:
-  int buttonState = digitalRead(7);
-  // if it's changed:
-  if (buttonState != lastButtonState ) {
-    delay(8);     // debounce delay
-    // if it's pressed
-    if (buttonState == LOW) {
-      // check whether audio is paused:
-      if (AudioOutI2S.isPaused()) {
-        // if it's paused, resume:
-        AudioOutI2S.resume();
-      } else {
-        // if it's playing, pause it:
-        AudioOutI2S.pause();
-      }
-      // print pause state:
-      Serial.print("Audio paused: ");
-      Serial.println(AudioOutI2S.isPaused());
-    }
-    // save button state for next comparison:
-    lastButtonState = buttonState;
-  }
+  // read analog in
+  int sensorReading = analogRead(A0);
+  // map to a 0-100 range:
+  int loudness = map(sensorReading, 0, 1023, 0, 100);
+  // set the volume:
+  AudioOutI2S.volume(loudness);
+  Serial.print("loudness: ");
+  Serial.println(loudness);
 }
