@@ -37,8 +37,7 @@ void loop() {
   // all the notes in this are sixteenth notes, 
   // which is 1/4 of a beat, so:
   int noteDuration = beatDuration / 4;
-  // I like when the note is on 60% of the note time:
-  delay(noteDuration);
+    // keep it on for the appropriate duration:  delay(noteDuration);
   // turn the note off:
   midiCommand(0x80, melody[thisNote], 127);
   // increment the note number for next time through the loop:
