@@ -34,7 +34,7 @@ The MKR Zero and MKR WiFi 1010 both have the same layout of input and output pin
 <table>
 <tr>
 <th>Left side pins</th>
-<td rowspan=15> <img src="img/MKRZero.png" alt="Figure 3. The MKR pin layout, with the USB connector facing up">
+<th rowspan=15> <img src="img/MKRZero.png" alt="Figure 3. The MKR pin layout, with the USB connector facing up">
 <em>Figure 3. MKR Zero</em>
 </td>
 <th>Right side pins</th>
