@@ -16,6 +16,8 @@ Next, Click on the Sketch Menu, choose Include Library... then Manage Libraries.
 
 When you write your first Arduino program (called a **sketch**), the IDE will save it, and all your other sketches, in a folder called Arduino in your Documents folder, unless you specify otherwise. 
 
+Here's an [overview of programming terms and environments](https://itp.nyu.edu/physcomp/lessons/programming/programming-terms-and-programming-environments/) that will familiarize you with the IDE and the terms you'll encounter a bit more. 
+
 That's enough to get your IDE set up. Now let's move on to the solderless breadboard.
 
 
@@ -124,4 +126,6 @@ done in 0.010 seconds
 CPU reset.
 ````
 
-If you've made it this far, then you're all ready to try the rest of the examples here. Enjoy! Next, move on to the [sound basics page](sound-basics.md) for some background on how sound is produced.
+If you've made it this far, then you're all ready to try the rest of the examples here. You might want to read a little about [variables in programming languages](https://itp.nyu.edu/physcomp/lessons/programming/variables/), since you'll be using them a lot. 
+
+Next, move on to the [sound basics page](sound-basics.md) for some background on how sound is produced.
