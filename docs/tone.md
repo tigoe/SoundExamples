@@ -130,3 +130,5 @@ Next, use the note number and the reference frequency and reference note number 
 ````
 
 Upload this sketch to your MKR board. When you turn the potentiometer, slowly, you should hear discrete pitches, the same pitches you'd hear if you play the notes on a piano in sequence. Now you've got a method for converting from note number to pitch. That will be handy when you want to compose music in code. 
+
+*For more on MIDI note to pitch mapping, see [Note names, MIDI numbers and frequencies](https://newt.phys.unsw.edu.au/jw/notes.html) from the University of New South Wales*
