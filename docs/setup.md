@@ -76,50 +76,6 @@ D6 and built-in LED<br /></td>
 <td>A1</td>
 <td>Vcc - 3.3V</td>
 </tr>
-<tr>
-<td>A2</td>
-<td>Ground</td>
-</tr>
-<tr>
-<td>A3</td>
-<td>reset</td>
-</tr>
-<tr>
-<td>A4</td>
-<td>D14 and Serial1 TX</td>
-</tr>
-<tr>
-<td>A5</td>
-<td>D13 and Serial1 RX</td>
-</tr>
-<tr>
-<td>A6</td>
-<td>D12 and I2C SCL</td>
-</tr>
-<tr>
-<td>D0</td>
-<td>D11 and I2C SDA</td>
-</tr>
-<tr>
-<td>D1</td>
-<td>D10 and SPI MISO</td>
-</tr>
-<tr>
-<td>D2 (PWM)</td>
-<td>D9 and SPI SCK</td>
-</tr>
-<tr>
-<td>D3 (PWM)</td>
-<td>D8 and SPI MOSI</td>
-</tr>
-<tr>
-<td>D4 (PWM)</td>
-<td>D7</td>
-</tr>
-<tr>
-<td>D5 (PWM)</td>
-<td>D6 and built-in LED</td>
-</tr>
 </table>
 
 
