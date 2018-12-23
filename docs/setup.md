@@ -30,8 +30,8 @@ Figures 1 and 2 below show what's underneath the holes,and how they are connecte
 
 The MKR Zero and MKR WiFi 1010 both have the same layout of input and output pins and power and ground pins, so you can use the same basic wiring for both. The USB connector is at the top of the board. The voltage and ground pins are on the right hand side. The analog input pins are on the left hand side towards the top, and the digital input and output pins are on the bottom left and along the right hand side. Figure 3 below shows the MKR pin layout, and the tables on either side of it list the pin functions, top to bottom on each side. 
 
+### MKR Pin Layout
 <table>
-<th colspan=3>MKR Pin Layout</th>
 <tr>
 <th>Left side pins</th>
 <td rowspan=15> <img src="img/MKRZero.png" alt="Figure 3. The MKR pin layout, with the USB connector facing up">
