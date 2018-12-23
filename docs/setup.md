@@ -68,14 +68,6 @@ D8 and SPI MOSI<br />
 D7<br />
 D6 and built-in LED<br /></td>
 </tr>
-<tr>
-<td>A0/DAC0</td>
-<td>Vin - voltage in, 5V max.</td>
-</tr>
-<tr>
-<td>A1</td>
-<td>Vcc - 3.3V</td>
-</tr>
 </table>
 
 
