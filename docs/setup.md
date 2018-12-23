@@ -38,7 +38,7 @@ The MKR Zero and MKR WiFi 1010 both have the same layout of input and output pin
 <th>Right side pins</th>
 </tr>
 <tr>
-<td valign="top">A0/DAC0<br />
+<td>A0/DAC0<br />
 A1<br />
 A2<br />
 A3<br />
@@ -51,10 +51,10 @@ D2 (PWM)<br />
 D3 (PWM)<br />
 D4 (PWM)<br />
 D5 (PWM)<br /></td>
-<td valign="bottom"><img src="img/MKRZero.png" alt="Figure 3. The MKR pin layout, with the USB connector facing up"><br />
+<td><img src="img/MKRZero.png" alt="Figure 3. The MKR pin layout, with the USB connector facing up"><br />
 <em>Figure 3. MKR Zero</em>
 </td>
-<td valign="top">Vcc - 3.3V<br />
+<td>Vcc - 3.3V<br />
 Vin - voltage in, 5V max.<br />
 Ground<br />
 reset<br />
