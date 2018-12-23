@@ -16,3 +16,5 @@ Attach one end of a 220-ohm resistor to pin 5 of the MKR Zero. Attach the other 
 ![Figure 1. Speaker attached to pin 5 of a MKR Zero](img/speaker-circuit.jpg)
 
 Figure 1. Speaker attached to pin 5 of a MKR Zero
+
+You can also use headphones if you like.s
