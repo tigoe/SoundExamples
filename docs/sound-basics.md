@@ -1,8 +1,6 @@
 
 # The Basics of Making Sounds
 
-*Note: The [Tone examples](https://github.com/tigoe/SoundExamples/tree/master/Tone_examples) mentioned here will play simple tones on any Arduino board. You can't play multiple tones at the same time, however. These examples are included mainly to show how to convert between frequency values, note names, and MIDI note values.*
-
 In order to use these examples, there are a few things you need to know. 
 
 Sound is created by vibrations in air. When those vibrations get fast enough, above about 20 times a second, you hear them as a pitch. The number of vibrations per second is called the **frequency** and frequency is measured in Hertz (Hz). So 20 times a second is 20Hz. Humans can hear pitches from about 20Hz to about 20,000Hz, or 20 kiloHertz (kHz).
