@@ -1,1 +1,1 @@
-# The Inter-IC Sound (I2S) Protocol
+# The Inter-IC Sound (I2S) Protocol 

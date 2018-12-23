@@ -9,7 +9,7 @@ The projects here are divided up as follows:
 * [Introduction](sound-basics.md) - The basics of making sound
 * [Tone](tone.md) - Arduino's tone() command
 * [MIDI](midi.md) - an introduction to MIDI, the Musical Instrument Digital Interface protocol
-* [Playing .wav files with I2S] - the I2S protocol for playing digital sound files
+* [Playing .wav files with I2S](i2s.md) - the I2S protocol for playing digital sound files
 
 
 The WAV file playback examples for the MKR Zero and other MKR boards use the ArduinoSound library. This library uses the I2S protocol to communicate with different I2S-compatible amplifiers and microphones.
