@@ -18,6 +18,9 @@ When you write your first Arduino program (called a **sketch**), the IDE will sa
 
 Here's an [overview of programming terms and environments](https://itp.nyu.edu/physcomp/lessons/programming/programming-terms-and-programming-environments/) that will familiarize you with the IDE and the terms you'll encounter a bit more. 
 
+The collection of functions of any programming environment are called the **Application Programming Interface (API)**. The [Arduino API reference pages](https://www.arduino.cc/reference/en/) can be found online, and can also be accessed from the IDE's Help menu. There are lots of built-in programming examples in the File menu as well.
+
+
 That's enough to get your IDE set up. Now let's move on to the solderless breadboard.
 
 

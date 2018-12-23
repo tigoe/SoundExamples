@@ -1,12 +1,13 @@
 /*
-  Plays a half-second note 
-  and a half-second rest on a speaker at middle A (440Hz)
+  Plays a tone in response to a potentiometer
 
   circuit:
-      8-ohm speaker and 100-ohm resistor
+     * 8-ohm speaker and 100-ohm resistor
      in series on pin 5
+     * Potentiometer connected to pin A0
 
    created 18 Dec 2018
+   modified 22 Dec 2018
    by Tom Igoe
 */
 
@@ -18,12 +19,12 @@ void setup() {
 }
 
 void loop() {
-  // set the frequency in Hz:
-  float frequency = 440;
+  // read the potentiometer:
+  int sensorValue = analogRead(A0);
+  // map the potentiometer to a range
+  // from A0 to C8 (27.5 Hz to 4186):
+  float frequency = map(sensorValue, 0, 1023, 27.5, 4186);
   // turn the speaker on:
   tone(speakerPin, frequency);
-  delay(500);
-  // turn the speaker off:
-  noTone(speakerPin);
-  delay(500);
+  delay(30);
 }
