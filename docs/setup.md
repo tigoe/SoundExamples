@@ -77,3 +77,46 @@ Plug your MKR into your breadboard with the top pins in the top row of the board
 ![Figure 4. MKR Zero on a breadoard with Vcc and GND connected to the voltage and ground bus rows. The bus rows are also wired to their counterparts on the opposite side](img/mkrzero-breadboard_bb.png)
 
 *Figure 4. MKR Zero on a breadoard with Vcc and GND connected to the voltage and ground bus rows. The bus rows are also wired to their counterparts on the opposite side*
+
+## Upload an Arduino Program
+
+The first Arduino Arduino program, or sketch, that most people write is called Blink. It blinks an LED on the board. There's a built-in LED on the MKR boards attached to pin 6. But since these are sound examples, let's start with an example that makes noise. Attach one end of a 220-ohm resistor to the same row as pin 5 of the MKR board, and the other end to one of the other short rows of the breadboard. Then attach an 8-ohm speaker to that same row, as shown in Figure 5. 
+
+![Figure 5. Speaker attached to pin 5 of a MKR Zero](img/speaker-circuit_bb.png)
+
+*Figure 5. Speaker attached to pin 5 of a MKR Zero. The resistor limits the current to the speaker to protect it.*
+
+Now, type the following code into the Arduino IDE.Save this sketch with the name ``ToneSimple``:
+
+````
+void setup() {
+  // make the speaker pin an output:
+  pinMode(5, OUTPUT);
+}
+
+void loop() {
+  // turn the speaker on at 440Hz:
+  tone(5, 440);
+  delay(500);
+  // turn the speaker off:
+  noTone(5);
+  delay(500);
+}
+````
+
+Now plug your board into a USB port of your personal computer. Next, click on the Tools menu, then choose Board, then Arduino MKRZERO.  Click the Tools menu again, choose Port, then look for a port with the subtitle ``(Arduino MKRZERO)``. On Windows, it will be called ``COM3`` or a higher number. On MacOS, it may be called ``/cu/usbmodem1411`` or another number. Finally, compile upload the sketch to your board by clicking the Sketch menu and choosing Upload. You can also do this by typing ctrl-U (command-U on MacOS), or clicking the Upload button on the editor window toolbar. Figure 6 shows the toolbar, with the upload button highlighted.
+
+![Figure 6. Arduino IDE toolbar with the upload button highlighted, second from left](img/arduino-toolbar.png)
+
+*Figure 6. The Upload button is the second from left on the toolbar*
+
+Once you upload the sketch, your speaker should start playing a note at middle A (440 Hertz) every half second. Now you know everything is working properly. You should also see the following text in the error console at the bottom of the editor window:
+
+````
+Verify 10952 bytes of flash with checksum.
+Verify successful
+done in 0.010 seconds
+CPU reset.
+````
+
+If you've made it this far, then you're all ready to try the rest of the examples here. Enjoy!
