@@ -6,6 +6,7 @@ These examples were written using the MKR Zero and other MKR boards, though many
 
 The projects here are divided up as follows:
 
+* [Setup](setup.md) - setting up the software and hardware for these examples.
 * [Introduction](sound-basics.md) - The basics of making sound
 * [Tone](tone.md) - Arduino's tone() command
 * [MIDI](midi.md) - an introduction to MIDI, the Musical Instrument Digital Interface protocol
