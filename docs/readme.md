@@ -2,9 +2,15 @@
 
 A collection of sound examples for Arduino. There are MIDI examples, tone examples, and examples for sound playback components.
 
-[Introduction](sound-basics.md)
-
 These examples were written using the MKR Zero and other MKR boards, though many of the of them will work on other boards as well. Each example notes any restrictions on which boards are required. 
+
+The projects here are divided up as follows:
+
+* [Introduction](sound-basics.md) - The basics of making sound
+* [Tone](tone.md) - Arduino's tone() command
+* [MIDI](midi.md) - an introduction to MIDI, the Musical Instrument Digital Interface protocol
+* [Playing .wav files with I2S] - the I2S protocol for playing digital sound files
+
 
 The WAV file playback examples for the MKR Zero and other MKR boards use the ArduinoSound library. This library uses the I2S protocol to communicate with different I2S-compatible amplifiers and microphones.
 
