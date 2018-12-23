@@ -2,4 +2,4 @@
 
 A collection of sound examples for Arduino. There are MIDI examples, tone examples, and examples for sound playback components.
 
-[Introduction](docs/sound-basics.md)
+[Introduction](sound-basics.md)
