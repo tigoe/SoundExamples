@@ -4,15 +4,20 @@ All of the projects in these examples will need a similar setup.
 
 ## Install the Arduino IDE, Board Definitions, and Libraries
 
-First you'll need the Arduino programming application (called an Integraded Development Environment, or IDE) [Download the Arduino IDE](https://www.arduino.cc/en/Main/Software) for your personal computer and install it. AS of this writing, the current version is 1.8.8. You can use either the downloaded IDE or the web editor but the instructions here will all be for the downloaded version. Once you've downloaded it, check out the [Getting Started Guide for Arduino](https://www.arduino.cc/en/Guide/HomePage) and the [guide for the MKRZero](https://www.arduino.cc/en/Guide/ArduinoMKRZero) or the [guide for the MKR Wifi 1010](https://www.arduino.cc/en/Guide/MKRWiFi1010). 
+First you'll need the Arduino programming application (called an Integraded Development Environment, or IDE) [Download the Arduino IDE](https://www.arduino.cc/en/Main/Software) for your personal computer and install it. AS of this writing, the current version is 1.8.8. You can use either the downloaded IDE or the web editor but the instructions here will all be for the downloaded version. 
+
+If you're brand new to Arduino, you may want to read through a longer guide like [*Getting Started with Arduino*, 3rd edtion](https://www.makershed.com/products/make-getting-started-with-arduino-3rd-edition) by Massimo Banzi and Michael Shiloh.
+
+Once you've downloaded the IDE, check out the [Getting Started Guide for Arduino](https://www.arduino.cc/en/Guide/HomePage) and the [guide for the MKRZero](https://www.arduino.cc/en/Guide/ArduinoMKRZero) or the [guide for the MKR Wifi 1010](https://www.arduino.cc/en/Guide/MKRWiFi1010). 
 
 For both boards, you'll need to open the Tools menu, then Boards Manager, then filter your search for MKR. You'll see a package called Arduino SAMD Boards (32-bits ARM Cortex-M0+) by Arduino. Click Install. When it's installed you can close the Boards Manager.
 
-Next, Click on the Sketch Menu, choose Include Library... then Manage Libraries. filter your search for ArduinoSound and install it. Then filter your search for MIDIUSB and install it.
+Next, Click on the Sketch Menu, choose Include Library... then Manage Libraries. filter your search for ArduinoSound and install it. Then filter your search for MIDIUSB and install it. You'll use these libraries in many of these examples.
 
-That's enough to get you started with the IDE. Now let's move on to the solderless breadboard.
+When you write your first Arduino program (called a **sketch**), the IDE will save it, and all your other sketches, in a folder called Arduino in your Documents folder, unless you specify otherwise. 
 
-When you write your first Arduino program (called a sketch), the IDE will save it, and all your other sketches, in a folder called Arduino in your Documents folder, unless you specify otherwise. 
+That's enough to get your IDE set up. Now let's move on to the solderless breadboard.
+
 
 ## Set Up the Breadboard
 
@@ -119,4 +124,4 @@ done in 0.010 seconds
 CPU reset.
 ````
 
-If you've made it this far, then you're all ready to try the rest of the examples here. Enjoy!
+If you've made it this far, then you're all ready to try the rest of the examples here. Enjoy! Next, move on to the [sound basics page](sound-basics.md) for some background on how sound is produced.
