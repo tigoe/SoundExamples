@@ -51,7 +51,7 @@ D2 (PWM)<br />
 D3 (PWM)<br />
 D4 (PWM)<br />
 D5 (PWM)<br /></td>
-<td style="vertical-align: bottom;"><img src="img/MKRZero.png" alt="Figure 3. The MKR pin layout, with the USB connector facing up"><br />
+<td style="vertical-align: top;"><img src="img/MKRZero.png" alt="Figure 3. The MKR pin layout, with the USB connector facing up"><br />
 <em>Figure 3. MKR Zero</em>
 </td>
 <td style="vertical-align: top;">Vcc - 3.3V<br />
