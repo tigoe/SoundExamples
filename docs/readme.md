@@ -2,7 +2,7 @@
 
 A collection of sound examples for Arduino. There are MIDI examples, tone examples, and examples for sound playback components.
 
-[Introduction](sound-basics.html)
+[Introduction](sound-basics.md)
 
 These examples were written using the MKR Zero and other MKR boards, though many of the of them will work on other boards as well. Each example notes any restrictions on which boards are required. 
 
