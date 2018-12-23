@@ -33,3 +33,7 @@
 
 # apple filesystem files
 .DS_Store
+
+# Fritzing files
+*.fzz
+**/fritzing_files
