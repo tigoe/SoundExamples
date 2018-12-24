@@ -30,7 +30,7 @@ You can also use headphones if you like. To do this, connect one end of a 10-kil
 
 ## Making Sound With Electricity
 
-An Arduino sketch changes the voltage of the output pins using a command called ``digitalWrite()``. If you set the voltage of the speaker pin alternately high and low, the speaker will vibrate. You can control the timing of these on and off pulses using the ``delay()`` and ``delayMicroseconds()`` commands. ``delay(1)`` stops your program for one thousanth of a second, or one millisecond. ``delayMicroseconds(1)`` stops it for one millionth of a second, or one microsecond. By controlling the timing on your pulses, you can make the speaker vibrate at a particular frequency. 
+An Arduino sketch changes the voltage of the output pins using the [``digitalWrite()`` command](https://www.arduino.cc/reference/en/language/functions/digital-io/digitalwrite/). If you set the voltage of the speaker pin alternately high and low, the speaker will vibrate. You can control the timing of these on and off pulses using the ``delay()`` and [``delayMicroseconds()`` commands](https://www.arduino.cc/reference/en/language/functions/time/delaymicroseconds/). The [``delay(1)`` command](https://www.arduino.cc/reference/en/language/functions/time/delay/) stops your program for one thousanth of a second, or one millisecond. ``delayMicroseconds(1)`` stops it for one millionth of a second, or one microsecond. By controlling the timing on your pulses, you can make the speaker vibrate at a particular frequency. 
 
 Make a new Arduino sketch by clicking the File menu and choosing New (ctrl-N or command-N (MacOS)). Save it with the name ``Beep``. First, make an integer constant to give pin 5 a name, speakerPin, like so:
 
@@ -63,7 +63,7 @@ void loop() {
   int period = (1 / frequency) * 1000000;
 ````
 
-Next, turn the speaker on using the [``digitalWrite()``](https://www.arduino.cc/reference/en/language/functions/digital-io/digitalwrite/) command. When you've set the voltage high, delay for half the period. Then turn it off using ``digitalWrite()`` again, then delay for the second half of the period. That's the end of your loop:
+Next, turn the speaker on using ``digitalWrite()``. When you've set the voltage high, delay for half the period. Then turn it off using ``digitalWrite()`` again, then delay for the second half of the period. That's the end of your loop:
 
 ````
  // turn the speaker on:
@@ -117,7 +117,7 @@ void setup() {
 }
 ````
 
-In the loop, start by making a variable called sensorValue to save the value from the potentiometer that's attached to pin A0, and read that value using the ``analogRead()`` command like so:
+In the loop, start by making a variable called sensorValue to save the value from the potentiometer that's attached to pin A0, and read that value using ``analogRead()`` like so:
 
 ````
 void loop() {
@@ -125,7 +125,7 @@ void loop() {
   int sensorValue = analogRead(A0);
 ````
 
-Next, use the [``map()``](https://www.arduino.cc/reference/en/language/functions/math/map/) command to map the sensors 0-1023 range to a range of frequencies. Use the range of a piano keyboard. The lowest note on a keyboard, A0 is 27.5 Hz, and the highest, C8, is 4186 Hz. You'll need a floating point integer variable to store the result from the ``map()`` command. Once you've got the frequency, get the period like you did before. Here are your next few lines:
+Next, use the [``map()`` command](https://www.arduino.cc/reference/en/language/functions/math/map/) to map the sensors 0-1023 range to a range of frequencies. Use the range of a piano keyboard. The lowest note on a keyboard, A0 is 27.5 Hz, and the highest, C8, is 4186 Hz. You'll need a floating point integer variable to store the result from the ``map()`` command. Once you've got the frequency, get the period like you did before. Here are your next few lines:
 
 ````
   // map the potentiometer to a range
