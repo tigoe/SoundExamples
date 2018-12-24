@@ -38,7 +38,7 @@ Make a new Arduino sketch by clicking the File menu and choosing New (ctrl-N or 
 const int speakerPin = 5;  // the pin number for the speaker
 ````
 
-<u style="color; blue;">Syntax note:</u> A **const** is a type of variable that doesn't change. You can use it to give names to numbers. An ``int`` is an integer variable type. So a ``const int`` is an integer that doesn't change
+<u style="color: blue;">Syntax note:</u> A **const** is a type of variable that doesn't change. You can use it to give names to numbers. An ``int`` is an integer variable type. So a ``const int`` is an integer that doesn't change
 
 In the ``setup()`` function, set the speakerPin to be an output pin like so:
 
