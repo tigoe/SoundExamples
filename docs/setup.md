@@ -16,11 +16,6 @@ Next, Click on the Sketch Menu, choose Include Library... then Manage Libraries.
 
 When you write your first Arduino program (called a **sketch**), the IDE will save it, and all your other sketches, in a folder called Arduino in your Documents folder, unless you specify otherwise. 
 
-Here's an [overview of programming terms and environments](https://itp.nyu.edu/physcomp/lessons/programming/programming-terms-and-programming-environments/) that will familiarize you with the IDE and the terms you'll encounter a bit more. 
-
-The collection of functions of any programming environment are called the **Application Programming Interface (API)**. The [Arduino API reference pages](https://www.arduino.cc/reference/en/) can be found online, and can also be accessed from the IDE's Help menu. There are lots of built-in programming examples in the File menu as well.
-
-
 That's enough to get your IDE set up. Now let's move on to the solderless breadboard.
 
 
@@ -128,6 +123,22 @@ Verify successful
 done in 0.010 seconds
 CPU reset.
 ````
+
+## Programming Syntax: Parts of an Arduino Sketch
+
+Now that you've got your sketch wotking, it's worth reviewing some of the elements of it for future use.
+
+The Arduino programming environment uses the C programming language and the grammatical style, or **syntax**, comes from C. Every line in a C program ends with a semicolon. Double slashes (//) indicate that the rest of the line should be ignored, so you can use them to make comments for yourself in your code. YOu can make multi-line comments in between /* and */ markers. 
+
+Every programming language needs places in memory to store information. These are called variables, and though you didn't use any here, you'll see them a lot in the future. C requires that you initialize every variable with a variable type, such as an integer (type ``int``) or a floating-point decimal number (type ``float``). Even nothing is a type, called ``void``.
+
+There are two **functions** in the sketch, called ``setup()`` and ``loop()``. Functions are sets of instructions. Sometimes they return a value when they complete. The setup function runs once when the Arduino is reset. The loop runs continuously. When it finishes running, it starts again. It runs as long as the Arduino is powered.  You'll write other functions later, and you'll use them by putting their names in your program. 
+
+Functions have a value type that they return. Both of these functions return nothing, so their type is ``void``. Later you might see functions that return integer numbers. Their type would be ``int``. Functions also have ``parameters``. Parameters are what you fill in in the parentheses. If the function name is a verb, then the parameters are the direct objects, adjectives, and adverbs of a function. For example, ``tone()`` is a function, and it has two parameters: the pin number that you want to write to, and the frequency that you want to give the pin. So ``tone(5, 440);`` sets pin 5 changing 440 times a second. The delay() function stops the program for an amount of time, and its parameter is the number of milliseconds that you want to stop for. So ``delay(500);`` stops program for 500/1000 of a second, or half a second. 
+
+Here's an [overview of programming terms and environments](https://itp.nyu.edu/physcomp/lessons/programming/programming-terms-and-programming-environments/) that will familiarize you with the IDE and the terms you'll encounter a bit more. 
+
+The collection of functions of any programming environment are called the **Application Programming Interface (API)**. The [Arduino API reference pages](https://www.arduino.cc/reference/en/) can be found online, and can also be accessed from the IDE's Help menu. There are lots of built-in programming examples in the File menu as well.
 
 If you've made it this far, then you're all ready to try the rest of the examples here. You might want to read a little about [variables in programming languages](https://itp.nyu.edu/physcomp/lessons/programming/variables/), since you'll be using them a lot. 
 
