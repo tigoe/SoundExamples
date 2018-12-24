@@ -234,4 +234,3 @@ Try changing the tonic, the playing it again. Notice how the tune is still recog
 Here is [the complete ToneFrereJacques sketch](https://github.com/tigoe/SoundExamples/blob/master/Tone_examples/ToneFrereJacques/ToneFrereJacques.ino).
 
 Of course, if you know this song, you know it's normally sung in a round, so you're probably eager to reprogram it to do so. Remember, you can't play more than one tone at a time on the Arduino using the ``tone()`` command, so you'll need to know a bit more first. If you're really eager, pick up a second Arduino and a second speaker and get them singing together!
-

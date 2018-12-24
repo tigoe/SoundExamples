@@ -74,7 +74,7 @@ If the note value you want is called ``noteValue``, and reference freqency is ca
 
 frequency = refFreq * 2<sup>((noteValue - refNote) / 12.0))</su>;
 
-The Arduino API includes a function called ``pow()`` that raises a number to a power. The reference frequency and reference note number can be set as constants, or as #define statements, which are like aliases for the IDE. So that formula, expressed as a line of Arduino programming code, would look like this:
+The Arduino API includes a function called the [``pow()`` function](https://www.arduino.cc/reference/en/language/functions/math/pow/) that raises a number to a power. The reference frequency and reference note number can be set as constants, or as #define statements, which are like aliases for the IDE. So that formula, expressed as a line of Arduino programming code, would look like this:
 
 ````
   float frequency =  FREQ_A4 * pow(2, ((noteValue - NOTE_A4) / 12.0));
