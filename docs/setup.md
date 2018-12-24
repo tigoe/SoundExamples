@@ -136,6 +136,14 @@ There are two **functions** in the sketch, called ``setup()`` and ``loop()``. Fu
 
 Functions have a value type that they return. Both of these functions return nothing, so their type is ``void``. Later you might see functions that return integer numbers. Their type would be ``int``. Functions also have ``parameters``. Parameters are what you fill in in the parentheses. If the function name is a verb, then the parameters are the direct objects, adjectives, and adverbs of a function. For example, ``tone()`` is a function, and it has two parameters: the pin number that you want to write to, and the frequency that you want to give the pin. So ``tone(5, 440);`` sets pin 5 changing 440 times a second. The delay() function stops the program for an amount of time, and its parameter is the number of milliseconds that you want to stop for. So ``delay(500);`` stops program for 500/1000 of a second, or half a second. 
 
+Blocks of code that are all dependent on the same conditions are set off by braces like this {}. For example, all the code inside a function is dependent on you calling the function. So the syntax for a function needs a function type a name, parentheses for parameters, and braces to hold the code inside it, like so:
+
+````
+void loop() {
+  
+}
+````
+
 Here's an [overview of programming terms and environments](https://itp.nyu.edu/physcomp/lessons/programming/programming-terms-and-programming-environments/) that will familiarize you with the IDE and the terms you'll encounter a bit more. 
 
 The collection of functions of any programming environment are called the **Application Programming Interface (API)**. The [Arduino API reference pages](https://www.arduino.cc/reference/en/) can be found online, and can also be accessed from the IDE's Help menu. There are lots of built-in programming examples in the File menu as well.
