@@ -38,7 +38,9 @@ Make a new Arduino sketch by clicking the File menu and choosing New (ctrl-N or 
 const int speakerPin = 5;  // the pin number for the speaker
 ````
 
-In the setup() function, set the speakerPin to be an output pin like so:
+<aside>A const is a type of variable that doesn't change. You can use it to give names to numbers.</aside>
+
+In the ``setup()`` function, set the speakerPin to be an output pin like so:
 
 ````
 void setup() {
