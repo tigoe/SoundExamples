@@ -1,6 +1,6 @@
 # Generating a Melody
 
-Once you know how to [calculate the pitch for different notes](tone.md), you might want to play a song melody. This exercise introduces shows one way to do that.
+Once you know how to [calculate the pitch for different notes](tone.md), you might want to play a song melody. This exercise introduces shows one way to do that. Although the tone() command can't play polyphonic melodies (i.e. multiple tones at once), it's useful for learning how to program simple sequences of notes. This same method can be used later when you want to generate more complex melodies on an external synthesizer too.
 
 For all of the code in this exercise, you only need a speaker or headphone jack attached to your board, as shown in Figures 1 and 2:
 
@@ -21,9 +21,11 @@ At its simplest, a melody is a series of pitches played in a sequence over time.
 * the tempo at which to play them
 * the time signature of the melody
 
-The tempo of a melody is generally measured in beats per minute, and the time signature tells you how many beats per measure of music there will be, and what kind of note gets one beat. The most common time signature, 4/4 time (also called common time) has four beats per measure, and a quarter note gets one beat. A melody in common time simplifies things.
+The **tempo** of a melody is generally measured in beats per minute, and the **time signature** tells you how many beats per measure of music there will be, and what kind of note gets one beat. The most common time signature, 4/4 time (also called common time) has four beats per measure, and a quarter note gets one beat. A melody in common time simplifies things. 
 
 Let's with a simple melody. Steve Reich's *[Piano Phase](https://www.scribd.com/doc/90735776/Piano-Phase-Steve-Reich)* is a minimalist duet for two pianos that's twelve notes long, Each note is a sixteenth note. The phrase repeated indefinitely on two pianos, with one shifting its tempo slightly to create phase shifting. It's written to be played at 72 beats per minute in common time. You can store the melody in an integer array.
+
+<u style="color: green;">Syntax note:</u> an [**array**](https://www.arduino.cc/reference/en/language/variables/data-types/array/) is a variable that can hold multiple values of the same types. You use arrays when you need to store similar things, like the values of notes in a melody. 
 
 Start your sketch by setting the refrence frequency and note number for A4 as usual, and a constant for the pin number:
 
@@ -83,7 +85,7 @@ Next you need to calculate how long the note is. In common time, the standard be
   noteCounter++;
   ````
   
-  You want to keep the note counter no larger than the length of the melody, so you can use the modulo operation to do that. The modulo operation returns the remainder of the division of two numbers. So for example, 4 modulo 3 (written 4 % 3) is 1, because 4 divided by three has a remainder of one. The result of a modulo operation is always less than the second operand. So ``noteCounter % 12`` will always be within the count of notes in the melody. Finish the loop by using the modulo to keep the note counter in the range 0-12:
+  You want to keep the note counter no larger than the length of the melody, so you can use the[ **modulo** operator](https://www.arduino.cc/reference/en/language/structure/arithmetic-operators/remainder/) to do that. The modulo operation returns the remainder of the division of two numbers. So for example, 4 modulo 3 (written 4 % 3) is 1, because 4 divided by three has a remainder of one. The result of a modulo operation is always less than the second operand. So ``noteCounter % 12`` will always be within the count of notes in the melody. Finish the loop by using the modulo to keep the note counter in the range 0-12:
 
 ````
     // keep the note in the range from 0 - 12 using modulo:
@@ -99,7 +101,9 @@ Here is [the complete TonePianoPhase sketch](https://github.com/tigoe/SoundExamp
 
 Let's take slightly more complex melody, *Frere Jacques*. This melody has 32 notes, and is in common time at 120 beats per minute. The notes don't all have the same length though. So you could save this melody in two arrays, one for the melody and one for the rhythmic pattern. Each array will have 32 elements, so the sketch can iterate over them both at the same time.
 
-What if you want to change the key signature of the song? To do that, you need to know the relative pitches, rather than the absolute ones. In other words, you need to know how many semitones away from each other each note in the melody is. Then you can pick a starting note (called the **tonic** of the key you're in. Each key is named for its tonic) and move up and down from there with the melody. 
+What if you want to change the key in which you're playing the song? To do that, you need to know the relative pitches, rather than the absolute ones. In other words, you need to know how many semitones away from each other each note in the melody is. Then you can pick a starting note (called the **tonic** of the key you're in. Each key is named for its tonic) and move up and down from there with the melody. 
+
+**[Musictheory.net](https://www.musictheory.net/lessons) has more useful information on [scales](https://www.musictheory.net/lessons/21) and [key signatures](https://www.musictheory.net/lessons/24).**
 
 Figure 3 shows Frere Jacques in standard musical notation, in F.
 
@@ -200,7 +204,7 @@ Next you need to calculate the note duration using the type of note it is. Since
   float noteDuration = beatDuration * (4.0 / rhythm[noteCounter]);
 ````
 
-With this tune, perhaps you want it more staccato than the previous one. This means you need a bit more space between the notes. So play each note for only 85% of the duration, like so:
+With this tune, perhaps you want it more [staccato](https://musicterms.artopium.com/s/Staccato.htm) than the previous one. This means you need a bit more space between the notes. So play each note for only 85% of the duration, like so:
 
 ````
   // turn the note on:
@@ -229,5 +233,5 @@ Try changing the tonic, the playing it again. Notice how the tune is still recog
 
 Here is [the complete ToneFrereJacques sketch](https://github.com/tigoe/SoundExamples/blob/master/Tone_examples/ToneFrereJacques/ToneFrereJacques.ino).
 
-Of course, if you know this song, you know it's normally sung in a round, so you're probably eager to reprogram it to do so. You'll need to know a bit more first. If you're really eager, pick up a second Arduino and a second speaker and get them singing together!
+Of course, if you know this song, you know it's normally sung in a round, so you're probably eager to reprogram it to do so. Remember, you can't play more than one tone at a time on the Arduino using the ``tone()`` command, so you'll need to know a bit more first. If you're really eager, pick up a second Arduino and a second speaker and get them singing together!
 

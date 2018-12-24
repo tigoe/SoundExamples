@@ -2,7 +2,7 @@
 
 You can generate a sound on an Arduino microcontroller using just the ``digitalWrite()`` command and the ``delayMicroSeconds()`` command, but there is a simpler way. The [``tone()`` command](https://www.arduino.cc/reference/en/language/functions/advanced-io/tone/) can play a frequency on a pin for a set period of time, and the [``noTone()`` command](https://www.arduino.cc/reference/en/language/functions/advanced-io/notone/) can turn it off. This command is more effective than the method you learned in the [sound basics introduction](sound-basics.md), because it uses the microcontroller's built-in oscillators to generate a frequency rather than relying on your program. It's a good way to learn more about generating music in an Arduino sketch. 
 
-In this exercise, you'll get to know the tone function, and you'll learn how to convert a piano key's number to its pitch, using the Musical Instrument Digital Interface (MIDI) protocol to give each piano key a unique number. Once you know a little about MIDI, you'll be your your way to controllong synthesizers, samplers, and other electronic musical devices.
+In this exercise, you'll get to know the tone function, and you'll learn how to convert a piano key's number to its pitch, using the **Musical Instrument Digital Interface (MIDI)** protocol to give each piano key a unique number. Once you know a little about MIDI, you'll be your your way to controllong synthesizers, samplers, and other electronic musical devices.
 
 ## The Tone function
 
