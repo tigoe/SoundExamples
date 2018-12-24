@@ -49,9 +49,9 @@ void setup() {
 }
 ````
 
-<u style="color: green;"Syntax note:</u>: The ``pinMode()`` function configures a pin of the Arduino to be a digital input or an output. The parameters are the pin number (an int) and the state (INPUT or OUTPUT).
+<u style="color: green;">Syntax note:</u>: The ``pinMode()`` function configures a pin of the Arduino to be a digital input or an output. The parameters are the pin number (an int) and the state (INPUT or OUTPUT).
 
-<u style="color: green;"Syntax note:</u>: Anything in ALL_CAPS is an alias in the program, usually a number that has been given a name. For example, INPUT is defined in the core of Arduino as 0, and OUTPUT is defined as 1.  You'll define a few of your own aliases in later exercises.
+<u style="color: green;">Syntax note:</u>: Anything in ALL_CAPS is an alias in the program, usually a number that has been given a name. For example, INPUT is defined in the core of Arduino as 0, and OUTPUT is defined as 1.  You'll define a few of your own aliases in later exercises.
 
 In the loop, start with a floating point integer variable (a decimal number) called ``frequency``, and set equal to 440. Then make an integer variable called ``period``, and set it to 1/frequency like so:
 
@@ -76,7 +76,7 @@ Next, turn the speaker on using the ``digitalWrite()`` command. When you've set 
   delayMicroseconds(period / 2);
 }
 ````
-<u style="color: green;"Syntax note:</u>: ``digitalWrite()`` sets the voltage on a digital output pin. The parameters are the pin number (an int) and the pin state (an int, 1 or 0, aka HIGH or LOW).
+<u style="color: green;">Syntax note:</u>: ``digitalWrite()`` sets the voltage on a digital output pin. The parameters are the pin number (an int) and the pin state (an int, 1 or 0, aka HIGH or LOW).
 
 Now you've got a complete sketch. Upload it to your board, and you should hear it beeping at 440 Hz, which is a middle A note. Do a little dance of celebration now.
 
@@ -93,7 +93,7 @@ There are two kinds of inputs for microcontrollers, called digital inputs and an
 
 The volume knob mentioned earlier is actually an electronic component called a **potentiometer**. It can produce a variable resistance between its center pin and the two side pins. The two side pins are the ends of a fixed  resistor, 10-kilohm in this case, and the center pin is called the **wiper**. The wiper moves along the resistor, effectively dividing it in two to form two variable resistors. As one side gains resistance, the other side loses it. If you connect the side pins to voltage and ground, and the center pin to one of the Arduino's analog inputs, you can read the changing position of the knob in 1024 possible steps using the ``analogRead()`` command. 
 
-<u style="color: green;"Syntax note:</u>: the ``analogRead()`` command reads the voltage on an analog input pin and returns it as a integer between 0 and 1023. Its parameter is the pin number you want to read (an int). The analog input pins are defined as A0 through A6 on the MKR boards, and A0 through A5 on the Uno.
+<u style="color: green;">Syntax note:</u>: the ``analogRead()`` command reads the voltage on an analog input pin and returns it as a integer between 0 and 1023. Its parameter is the pin number you want to read (an int). The analog input pins are defined as A0 through A6 on the MKR boards, and A0 through A5 on the Uno.
 
 Connect a potentiometer to your speaker or headphone circuit as shown in Figures 4 and 5.
 
