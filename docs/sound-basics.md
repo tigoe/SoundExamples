@@ -117,7 +117,7 @@ void loop() {
   int sensorValue = analogRead(A0);
 ````
 
-Next, use the ``map()`` command to map the sensors 0-1023 range to a range of frequencies. Use the range of a piano keyboard. The lowest note on a keyboard, A0 is 27.5 Hz, and the highest, C8, is 4186 Hz. You'll need a floating point integer variable to store the result from the ``map()`` command. Once you've got the frequency, get the period like you did before. Here are your next few lines:
+Next, use the ``[map()](https://www.arduino.cc/reference/en/language/functions/math/map/)`` command to map the sensors 0-1023 range to a range of frequencies. Use the range of a piano keyboard. The lowest note on a keyboard, A0 is 27.5 Hz, and the highest, C8, is 4186 Hz. You'll need a floating point integer variable to store the result from the ``map()`` command. Once you've got the frequency, get the period like you did before. Here are your next few lines:
 
 ````
   // map the potentiometer to a range
