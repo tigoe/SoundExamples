@@ -1,6 +1,6 @@
-# Arduino's tone() command
+# Making Tones and Making Music
 
-You can generate a sound on an Arduino microcontroller using just the ``digitalWrite()`` command and the ``delayMicroSeconds()`` command, but there is a simpler way. The ``tone()`` command can play a frequency on a pin for a set period of time, and the ``noTone()`` command can turn it off. This command is more effective than the method you learned in the [sound basics introduction](sound-basics.md), because it uses the microcontroller's built-in oscillators to generate a frequency rather than relying on your program. It's a good way to learn more about generating music in an Arduino sketch. 
+You can generate a sound on an Arduino microcontroller using just the ``digitalWrite()`` command and the ``delayMicroSeconds()`` command, but there is a simpler way. The [``tone()`` command](https://www.arduino.cc/reference/en/language/functions/advanced-io/tone/) can play a frequency on a pin for a set period of time, and the [``noTone()`` command](https://www.arduino.cc/reference/en/language/functions/advanced-io/notone/) can turn it off. This command is more effective than the method you learned in the [sound basics introduction](sound-basics.md), because it uses the microcontroller's built-in oscillators to generate a frequency rather than relying on your program. It's a good way to learn more about generating music in an Arduino sketch. 
 
 In this exercise, you'll get to know the tone function, and you'll learn how to convert a piano key's number to its pitch, using the Musical Instrument Digital Interface (MIDI) protocol to give each piano key a unique number. Once you know a little about MIDI, you'll be your your way to controllong synthesizers, samplers, and other electronic musical devices.
 
@@ -97,6 +97,7 @@ First, define the reference pitch and note number, and set the pin number for th
 
 const int speakerPin = 5;  // the pin number for the speaker
 ````
+<u style="color: green;">Syntax note:</u> The [``#define`` keyword](https://www.arduino.cc/reference/en/language/structure/further-syntax/define/) is the C programming syntax for giving a label, or alias, to a value. When you #define something, the compiler replaces all of the #define labels with their values before the program is compiled. It's a bit like how you used const int to give the speaker pin a name. #defines are trickier than consts, though, because there are many #defines in the core of the Arduino API, and you might overwrite one if you don't choose your names carefully. 
 
 In the setup function, configure the speaker pin as an output as you've done before:
 
@@ -131,6 +132,12 @@ Next, use the note number and the reference frequency and reference note number 
 Upload this sketch to your MKR board. When you turn the potentiometer, slowly, you should hear discrete pitches, the same pitches you'd hear if you play the notes on a piano in sequence. Now you've got a method for converting from note number to pitch. That will be handy when you want to compose music in code. 
 
 Here is [the complete ToneSimple sketch](https://github.com/tigoe/SoundExamples/blob/master/Tone_examples/ToneSimple/ToneSimple.ino).
+
+## Conclusion
+
+The key elements to this exercise are the ``tone()`` command, which lets you play frequencies on a pin, and the note number to pitch formula that lets you set a range of equal-tempered pitches from a range of note values, like the values on a piano. Along the way, you learned how to use the ``map()`` function as well. 
+
+You can't play two tones at the same time on an Arduino, however, so ``tone()`` has its limits. You'll use it in the next exercise to learn how to generate melodies, but to play polyphonic sounds, you'll need an external synthesizer. That's coming soon.
 
 Now that you've got an idea of how to caculate pitch values for notes in a tuning system, the next exercise explains [how to generate a melody](melody.md). 
 
