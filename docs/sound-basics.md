@@ -38,7 +38,7 @@ Make a new Arduino sketch by clicking the File menu and choosing New (ctrl-N or 
 const int speakerPin = 5;  // the pin number for the speaker
 ````
 
-<u>Syntax note:</u> A **const** is a type of variable that doesn't change. You can use it to give names to numbers.
+<blockquote><u>Syntax note:</u> A **const** is a type of variable that doesn't change. You can use it to give names to numbers.</blockquote>
 
 In the ``setup()`` function, set the speakerPin to be an output pin like so:
 
@@ -48,6 +48,8 @@ void setup() {
   pinMode(speakerPin, OUTPUT);
 }
 ````
+
+<u>Syntax note:</u>: The ``pinMode()`` function configures a pin of the Arduino to be a digital input or an output. The parameters are the pin number (an int) and the state (INPUT or OUTPUT).
 
 In the loop, start with a floating point integer variable (a decimal number) called ``frequency``, and set equal to 440. Then make an integer variable called ``period``, and set it to 1/frequency like so:
 
