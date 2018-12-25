@@ -150,4 +150,54 @@ The collection of functions of any programming environment are called the **Appl
 
 If you've made it this far, then you're all ready to try the rest of the examples here. You might want to read a little about [variables in programming languages](https://itp.nyu.edu/physcomp/lessons/programming/variables/), since you'll be using them a lot. 
 
+## Serial Communication
+
+Arduino microcontrollers communicate with your personal computer using **asynchronous serial communication**. The Arduino processors contain specialized circuits for this, called **Universal Asynhronous, Receiver-Transmitters, or UARTs**. Bits of data are sent one after another over a wire. Your computer and the Arduino need to agree on a common rate at which to exchange those bits. Once they understand each other, you can send data back and forth. 
+
+You can use serial communication tell the personal computer what your Arduino program is doing using the Arduino IDE's built-in Serial Monitor. Here's a simple sketch that illustrates serial communication:
+
+````
+void setup() {
+  // initialize serial communication at 9600 bits per second:
+  Serial.begin(9600);
+}
+
+void loop() {
+  // read the voltage on analog pin 0 (range 0-1023):
+  int sensorValue = analogRead(A0);
+  // print out the value that you read:
+  Serial.print("reading on A0: ");
+  Serial.println(sensorValue);
+  delay(1);        // delay in between reads for stability
+}
+````
+Upload this to your Arduino and then open the Serial Monitor by typing ctrl-shift-m (command-shift-m on macOS). The Serial Monitor window will open, and when your program starts, you'll see a column of msaaages scrolling down the screen like so:
+
+````
+reading on A0: 511
+reading on A0: 512
+reading on A0: 513
+reading on A0: 510
+reading on A0: 509
+reading on A0: 511
+reading on A0: 514
+
+````
+The Arduino is reading the voltage on pin A0. Attach a wire between A0 and ground, and you'll see the reading change to this:
+
+````
+reading on A0: 0
+reading on A0: 0
+reading on A0: 0
+````
+
+Then move the connection from the ground bus to the voltage bus and you'll see this:
+
+````
+reading on A0: 1023
+reading on A0: 1023
+reading on A0: 1023
+````
+You'll learn how to use these inputs in later exercises, and you'll see the Serial commands used frequently to get information from a sketch. 
+
 Next, move on to the [sound basics page](sound-basics.md) for some background on how sound is produced.
