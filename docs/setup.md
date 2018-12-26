@@ -2,13 +2,15 @@
 
 All of the projects in these examples will need a similar setup. 
 
-## Install the Arduino IDE, Board Definitions, and Libraries
+## Install the Arduino IDE
 
 First you'll need the Arduino programming application (called an Integraded Development Environment, or IDE) [Download the Arduino IDE](https://www.arduino.cc/en/Main/Software) for your personal computer and install it. AS of this writing, the current version is 1.8.8. You can use either the downloaded IDE or the web editor but the instructions here will all be for the downloaded version. 
 
 If you're brand new to Arduino, you may want to read through a longer guide like [*Getting Started with Arduino*, 3rd edtion](https://www.makershed.com/products/make-getting-started-with-arduino-3rd-edition) by Massimo Banzi and Michael Shiloh.
 
 Once you've downloaded the IDE, check out the [Getting Started Guide for Arduino](https://www.arduino.cc/en/Guide/HomePage) and the [guide for the MKRZero](https://www.arduino.cc/en/Guide/ArduinoMKRZero) or the [guide for the MKR Wifi 1010](https://www.arduino.cc/en/Guide/MKRWiFi1010). 
+
+## Install the Board Definitions and Libraries
 
 For both boards, you'll need to open the Tools menu, then Boards Manager, then filter your search for MKR. You'll see a package called Arduino SAMD Boards (32-bits ARM Cortex-M0+) by Arduino. Click Install. When it's installed you can close the Boards Manager.
 
