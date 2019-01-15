@@ -119,4 +119,4 @@ void loop() {
   }
   ````
 
-  Start up your MIDI synth application, and press the button. You should hear middle A playing whenever you press the button.  Here is [the complete sketch](MIDI_examples/MIDIUSB_oneKeyPiano/MIDIUSB_oneKeyPiano.ino).
+  Start up your MIDI synth application, and press the button. You should hear middle A playing whenever you press the button.  Here is [the complete sketch](MIDI_examples/tree/master/MIDIUSB_oneKeyPiano/MIDIUSB_oneKeyPiano.ino).
