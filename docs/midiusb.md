@@ -85,7 +85,7 @@ That strange operator, `>>` is called the [bit shift-right](https://www.arduino.
 
 Even though your device is sending out MIDI, no one's listening. If you have a Digital Audio Workstation like Ableton or GarageBand, then you can open it, configure the MIDI input to look for your Arduino, and the notes will play. For more on that, see this [MIDI to DAW tutorial](https://itp.nyu.edu/physcomp/labs/labs-serial-communication/lab-arduino-to-daw/). If you're not using a DAW, download a free MIDI synth player like [Sforzando](https://www.plogue.com/products/sforzando.html). You might want the [Sforzando users guide](https://s3.amazonaws.com/sforzando/sforzando_guide.pdf) as well. Then download an instrument file. This [Yamaha Disklavier grand piano](http://freepats.zenvoid.org/Piano/acoustic-grand-piano.html) is pretty good, as are some of the other SoundFonts on that page. 
 
-Launch Sforzando. The first time you launch it, it should prompt you to set your MIDI input preferences. Choose your Arduino as a MIDI input. Unzip the sound files, then click Import in Sforzando to open the SoundFont files.  Then you should hear the melody playing. Congratulations, you've got MIDI!
+Launch Sforzando. The first time you launch it, it should prompt you to set your MIDI input preferences. Choose your Arduino as a MIDI input. Unzip the sound files, then click Import in Sforzando to open the SoundFont files.  Then you should hear the melody playing. Congratulations, you've got MIDI! Here is [the complete sketch](MIDI_examples/MIDIUSB_simple/MIDIUSB_simple.ino).
 
 Now you're ready to go on to [making a MIDI instrument](midi-instrument.md).
 
