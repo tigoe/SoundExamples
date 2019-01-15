@@ -68,9 +68,9 @@ Browse the reference links below, then try either the [MIDI USB](midiusb.md), [M
 
 ## MIDI References
 
-The full MIDI protocol is detailed on the [MIDI Manufacturers' Association page](www.midi.org).
+The full MIDI protocol is detailed on the [MIDI Manufacturers' Association page](https://www.midi.org).
 
-The [General MIDI instrument specification](www.midi.org/techspecs/gm1sound.php) lists all the instruments that should be available on a general MIDI synth. 
+The [General MIDI instrument specification](https://www.midi.org/techspecs/gm1sound.php) lists all the instruments that should be available on a general MIDI synth. 
 
 ## MIDI Exercises
 
