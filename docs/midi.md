@@ -70,7 +70,8 @@ Browse the reference links below, then try either the [MIDI USB](midiusb.md), [M
 
 The full MIDI protocol is detailed on the [MIDI Manufacturers' Association page](https://www.midi.org).
 
-The [General MIDI instrument specification](https://www.midi.org/techspecs/gm1sound.php) lists all the instruments that should be available on a general MIDI synth. 
+The [General MIDI specification](https://www.midi.org/specifications-old/item/general-midi) lists all a general synth should be able to do. 
+The [General MIDI instrument specification](https://www.midi.org/specifications-old/item/gm-level-1-sound-set) lists all the instruments that should be available on a general MIDI synth. 
 
 ## MIDI Exercises
 

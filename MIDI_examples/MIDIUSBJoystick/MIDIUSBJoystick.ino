@@ -1,12 +1,19 @@
-
 /*
   MIDI joystick controller
 
   Reads a joystick and when it has, sends
-  MIDI noteon or noteoff messages. 
+  MIDI noteon or noteoff  and pitch bend messages.
 
-  Uses MIDIUSB for MIDI, so no hardware needed to talk MIDI over USB
-  created 19 Feb 2018
+ 
+  Uses MIDIUSB for MIDI, so will work on any
+  32U4-based board (e.g. Uno, Leonardo, Micro, Yún)
+
+  Circuit:
+    * Joystick pushbutton connected to pin 5
+    * Joystick X axis connected to pin A0 
+
+    created 19 Feb 2018
+  modified 14 Jan 2019
   by Tom Igoe
 */
 
@@ -33,9 +40,8 @@ void loop() {
   // and subtract 1 to get -1 to 1, with
   // 0 at rest:
   x = map(xSensor, 0, 1023, 0, 3) - 1;
-  y = map(ySensor, 0, 1023, 0, 3) - 1;
-  
-// x is the pitch bend axis:
+
+  // x is the pitch bend axis:
   if (x != 0) {
     int pitchBendSensor = xSensor << 5;          // shift so top bit is bit 14
     byte msb = highByte(pitchBendSensor);        // get the high bits
@@ -43,19 +49,15 @@ void loop() {
     bitWrite(lsb, 7, 0);                         // clear the top bit of the low byte
     midiCommand(0xE0, lsb, msb);                 // send the pitch bend message
   }
-  // y is the note change axis:
-  if (y != 0) {
-    note += y;
-  }
-// button plays the note or stops it:
+
+  // button plays the note or stops it:
   if (buttonState != lastButtonState) {
     delay(5);     // debounce delay
     if (button == HIGH) {
-      midiCommand(0x80, note, 127);
-    } else {
       midiCommand(0x90, note, 127);
+    } else {
+      midiCommand(0x80, note, 0);
     }
-
   }
   lastButtonState = buttonState;
 
@@ -66,8 +68,8 @@ void loop() {
   Serial.print("\t");
   Serial.println(button);
   // when all else fails, turn everything off:
-   midiCommand(0xB0, 0x7B, 0x00);
-   MidiUSB.flush();
+  midiCommand(0xB0, 0x7B, 0x00);
+  MidiUSB.flush();
   // Serial.println("all notes off");
 }
 
@@ -76,7 +78,7 @@ void midiCommand(byte cmd, byte data1, byte  data2) {
   // Second parameter is command byte combined with the channel.
   // Third parameter is the first data byte
   // Fourth parameter second data byte
-  
+
   midiEventPacket_t midiMsg = {cmd >> 4, cmd, data1, data2};
   MidiUSB.sendMIDI(midiMsg);
 }
