@@ -232,7 +232,11 @@ Finally, add the `midiCommand()` function from above. Then upload the sketch and
 
 ## Other Instruments
 
-You can build many other instruments by combining analog and digital inputs and changes in programming like this. 
+You can build many other instruments by combining analog and digital inputs and changes in programming like this.  The principle behind them all is the same:
+
+1. read sensors
+2. determine when something important has happened (like a state change, or an analog sensor crossing a threshold)
+3. Generate a MIDI message from the sensor event
 
 Here's an example that uses [eight pushbuttons to generate a piano](https://github.com/tigoe/SoundExamples/blob/master/MIDI_examples/MIDIUSBJoystick/MIDIUSBJoystick.ino). The eight pushbuttons are attached to pins 0 though 7 just as the one shown above. The pushbutton is connected to +Vcc on one side, and to the pin on the other, with a 10-kilohm pulldown resistor from the pin to ground on each one. 
 
@@ -240,7 +244,7 @@ Here's an example that uses [eight pushbuttons to generate a piano](https://gith
 
 *Figure 2. Eight pushbuttons attached to pins 0-7 of a MKR Zero. This uses the same digital input configuration as Figure 1 above.*
 
-Here's another example that uses a joystick to generate a note. A joystick has a built-in pushbutton and two potentiometers. This example uses the pushbutton to start or stop a note, and the joystick to generate a pitch bend on the note. Pitch bend is a controller type in MIDI that lets you bend a note up or down from its original pitch. The joystick's X axis pin is attached to pin A0 and the pushbutton pin, marked SEL, is attached to pin 5.  Note that the pushbutton does not have a pulldown resistor because it is using the Arduino's internal pullup resistor. In this case, the pinMode is `INPUT_PULLUP`, and pressed is LOW and unpressed is HIGH. 
+Here's another [example that uses a joystick to generate and bend the pitch of a note](https://github.com/tigoe/SoundExamples/blob/master/MIDI_examples/MIDIUSBJoystick/MIDIUSBJoystick.ino). A joystick has a built-in pushbutton and two potentiometers. This example uses the pushbutton to start or stop a note, and the joystick to generate a pitch bend on the note. Pitch bend is a controller type in MIDI that lets you bend a note up or down from its original pitch. The joystick's X axis pin is attached to pin A0 and the pushbutton pin, marked SEL, is attached to pin 5.  Note that the pushbutton does not have a pulldown resistor because it is using the Arduino's internal pullup resistor. In this case, the pinMode is `INPUT_PULLUP`, and pressed is LOW and unpressed is HIGH. 
 
 
 ![Figure 3. Joystick attached to pins 5 and A0 of a MKR Zero](img/joystick-input_bb.png)
