@@ -72,6 +72,11 @@ The full MIDI protocol is detailed on the [MIDI Manufacturers' Association page]
 
 The [General MIDI instrument specification](www.midi.org/techspecs/gm1sound.php) lists all the instruments that should be available on a general MIDI synth. 
 
+## MIDI Exercises
+
+* [MIDI USB Intro](midiusb.md)
+* [Making A MIDI Instrument](midi-instrument.md)
+
 ## MIDI Software Links
 
 SoundFont players:

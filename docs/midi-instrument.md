@@ -37,7 +37,7 @@ Upload this sketch, then open the Serial Monitor (the magnifying glass in  the t
 
 ## Digital Input State Change
 
-What you really need to know in order to send MIDI note on and note off messages is not just what the state of the pushbutton is, but when it changes from off to on. This is called *state change detection* and to do it, you need to know the current state of the input, then compare it to the previous state. You'll need a global variable for the previous button state:
+What you really need to know in order to send MIDI note on and note off messages is not just what the state of the pushbutton is, but when it changes from off to on. This is called *state change detection*. To do it, you need to know the current state of the input, then compare it to the previous state. You'll need a global variable for the previous button state:
 
 ````
 int lastButtonState = 0;
