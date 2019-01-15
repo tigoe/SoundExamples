@@ -1,4 +1,4 @@
-/*
+  /*
   Simple Tone player
 
   Generates a series of tones from MIDI note values.

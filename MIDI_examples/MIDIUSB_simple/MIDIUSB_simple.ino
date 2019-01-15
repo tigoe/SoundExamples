@@ -1,15 +1,15 @@
 /*
-  Simple MIDI player for SoftwareSerial
+  Simple MIDI player for MIDUSB
 
   Generates a series of MIDI notes.
    The melody is Steve Reich's "Piano phase"
 
-  Uses SoftwareSerial for MIDI, so will work on any
-  328 or 32U4-based board (e.g. Uno, Leonardo, Micro, Yún)
+  Uses MIDIUSB for MIDI, so will work on any
+  32U4-based board (e.g. Uno, Leonardo, Micro, Yún)
 
   Circuit:
-    connect TX of SoftwareSerial (pin 3) to TX pin of MIDI jack
-
+    none
+    
   created 13 Feb 2017
   modified 13 Dec 2018
   by Tom Igoe

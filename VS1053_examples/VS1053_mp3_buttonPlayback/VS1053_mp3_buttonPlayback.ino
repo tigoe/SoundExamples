@@ -10,7 +10,7 @@
   circuit:
   * VS1053 module attached to the pins described below
   * Potentiometer attached to pin A0
-  * Pushbutton on pin 5, connected to ground
+  * Pushbutton on pin 1, connected to ground
   
    note: on the MKR Zero, use the SD card on the MKR rather than 
    one on the sound player module. To do this, set CARDCS to SDCARD_SS_PIN

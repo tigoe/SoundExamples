@@ -53,6 +53,7 @@ int tonic = 65; // the tonic sets the key you're in
 void setup() {
   delay(1000);
   Scheduler.startLoop(playSong);
+  
   Serial.begin(9600);
 }
 

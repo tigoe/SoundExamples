@@ -37,3 +37,8 @@
 # Fritzing files
 *.fzz
 **/fritzing_files
+
+# VS Code files
+*/.vscode*
+*.vscode*
+

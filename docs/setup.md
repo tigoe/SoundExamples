@@ -20,7 +20,6 @@ When you write your first Arduino program (called a **sketch**), the IDE will sa
 
 That's enough to get your IDE set up. Now let's move on to the solderless breadboard.
 
-
 ## Set Up the Breadboard
 
 The solderless breadboard holds your microcontroller and other components, and lets you connect them together using jumper wires. The two long rows of holes down either side of the board are connected vertically. They're called **buses**, and usually the red one is called the **voltage bus** or **power bus**, and the blue or black one is called the **ground bus**. You need connections to voltage and ground for every circuit you build, and the buses make it easy to set those up. The short rows of holes in the center of board are connected horizontally to each other with a break in the middle. These are where you connect components. 
