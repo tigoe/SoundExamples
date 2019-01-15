@@ -120,3 +120,129 @@ void loop() {
   ````
 
   Start up your MIDI synth application, and press the button. You should hear middle A playing whenever you press the button.  Here is [the complete sketch](https://github.com/tigoe/SoundExamples/blob/master/MIDI_examples/MIDIUSB_oneKeyPiano/MIDIUSB_oneKeyPiano.ino).
+
+  ## Improvise in a Particular Scale
+
+  Playing the same note is not so exciting, but even with one button, you can make an instrument that can improvise, by randomizing the note value. Try adding a global variable called noteValue before the setup:
+
+````
+int noteValue = 0;
+````
+
+Then in the loop, add in the following line right before you send the note on message, and change the value of the note in the note on and note off `midiCommand()` calls:
+
+````
+void loop() {
+  int buttonState = digitalRead(5);
+  if (buttonState != lastButtonState) {
+      if (buttonState == HIGH) {
+        noteValue = random(88) + 14;
+        midiCommand(0x90, noteValue, 0x7F);
+      } else {
+      if (buttonState == HIGH) {
+          // turn off the note:
+          midiCommand(0x80, noteValue, 0);
+      }
+    // save the current state as the previous state 
+    // for the next comparison:
+    lastButtonState = buttonState; 
+  }
+  ````
+
+  Upload the sketch and press the button a few times. It sounds atonal, but you are playing random notes when you press, and turning then off. 
+
+  If you want to constrain the improv to a given scale, you need to generate a scale. How about a major scale?  [The pattern of notes in any major scale](https://www.musictheory.net/lessons/21) is:
+
+  whole whole half whole whole whole half
+
+  Armed with that, you can write a scale randomizer. Start a whole new sketch, as follows:
+
+  ````
+#include <MIDIUSB.h>
+#include <pitchToNote.h>
+
+// the intervals in a major and natural minor scale:
+int major[] = {2, 2, 1, 2, 2, 2, 1};
+
+// an array to hold the final notes of the scale:
+int scale[8];
+
+// start with middle C:
+int tonic = pitchC4;
+// note to play:
+int noteValue = tonic;
+
+// previous state of the button:
+int lastButtonState = LOW;
+
+  ````
+
+  Then in the setup(), you need to take the formula for a major scale and the tonic note you want, and generate a scale by adding the whole or half steps in sequence:
+
+  ````
+  void setup() {
+    pinMode(5, INPUT);
+    // fill the scale array with the scale you want:
+    // start with the initial note:
+    scale[0] = tonic;
+    int note = scale[0];
+    // iterate over the intervals, adding each to the next note
+    // in the scale:
+    for (int n = 0; n < 7; n++) {
+        note = note + major[n];
+        scale[n+1] = note;
+    }
+}
+  ````
+
+  Now you've got a major scale. If you want to change from C major to another major scale, just change the tonic to another value, Try `pitchE4b` for E-flat. If you want a [natural minor scale](https://www.musictheory.net/lessons/22), try the following instead of the `major[]` array:
+
+  ````
+  int naturalMinor[] = {2, 1, 2, 2, 1, 2, 2};
+  ````
+
+Now copy the state change detector on the pushbutton, but add in the randomizer to pick from the `scale[]` array like so:
+
+````
+
+void loop() {
+  // read the pushbutton:
+  int buttonState = digitalRead(5);
+  // compare its state to the previous state:
+  if (buttonState != lastButtonState) {
+    // debounce delay:
+    delay(5);
+    // if the button's changed and it's pressed:
+    if (buttonState == HIGH) {
+      // pick a random note in the scale:
+      noteValue = scale[random(8)];
+      // play it:
+      midiCommand(0x90, noteValue, 0x7F);
+    } else  {
+      // turn the note off:
+      midiCommand(0x80, noteValue, 0);
+    }
+    // save the button state for comparison next time through:
+    lastButtonState = buttonState;
+  }
+}
+````
+
+Finally, add the `midiCommand()` function from above. Then upload the sketch and press the button. You should hear random notes, all in the same scale. You're improvising a solo now! [ Here's the complete sketch](https://github.com/tigoe/SoundExamples/blob/master/MIDI_examples/MIDIUSB_oneKey_improviser/MIDIUSB_oneKey_improviser.ino).
+
+## Other Instruments
+
+You can build many other instruments by combining analog and digital inputs and changes in programming like this. 
+
+Here's an example that uses [eight pushbuttons to generate a piano](https://github.com/tigoe/SoundExamples/blob/master/MIDI_examples/MIDIUSBJoystick/MIDIUSBJoystick.ino). The eight pushbuttons are attached to pins 0 though 7 just as the one shown above. The pushbutton is connected to +Vcc on one side, and to the pin on the other, with a 10-kilohm pulldown resistor from the pin to ground on each one. 
+
+![Figure 2. Eight pushbuttons attached to pins 0-7 of a MKR Zero](img/pushbuttons-8-input_bb.png)
+
+*Figure 2. Eight pushbuttons attached to pins 0-7 of a MKR Zero. This uses the same digital input configuration as Figure 1 above.*
+
+Here's another example that uses a joystick to generate a note. A joystick has a built-in pushbutton and two potentiometers. This example uses the pushbutton to start or stop a note, and the joystick to generate a pitch bend on the note. Pitch bend is a controller type in MIDI that lets you bend a note up or down from its original pitch. The joystick's X axis pin is attached to pin A0 and the pushbutton pin, marked SEL, is attached to pin 5.  Note that the pushbutton does not have a pulldown resistor because it is using the Arduino's internal pullup resistor. In this case, the pinMode is `INPUT_PULLUP`, and pressed is LOW and unpressed is HIGH. 
+
+
+![Figure 3. Joystick attached to pins 5 and A0 of a MKR Zero](img/joystick-input_bb.png)
+
+*Figure  3. Joystick attached to pins 5 and A0 of a MKR Zero. The pushbutton does not have a pulldown resistor because it is using the Arduino's internal pullup resistor.*
