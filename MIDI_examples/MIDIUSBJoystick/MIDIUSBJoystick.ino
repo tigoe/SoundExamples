@@ -24,7 +24,7 @@ int lastButtonState = LOW;
 
 void setup() {
   Serial.begin(9600);                  // initialize serial
-  pinMode(buttonPin, INPUT);
+  pinMode(buttonPin, INPUT_PULLUP);
 }
 
 void loop() {
@@ -53,7 +53,7 @@ void loop() {
   // button plays the note or stops it:
   if (buttonState != lastButtonState) {
     delay(5);     // debounce delay
-    if (button == HIGH) {
+    if (buttonState == LOW) {
       midiCommand(0x90, note, 127);
     } else {
       midiCommand(0x80, note, 0);
@@ -66,10 +66,11 @@ void loop() {
   Serial.print("\t");
   Serial.print(y);
   Serial.print("\t");
-  Serial.println(button);
+
+  Serial.println(buttonState);
   // when all else fails, turn everything off:
-  midiCommand(0xB0, 0x7B, 0x00);
-  MidiUSB.flush();
+//  midiCommand(0xB0, 0x7B, 0x00);
+//  MidiUSB.flush();
   // Serial.println("all notes off");
 }
 
