@@ -44,7 +44,7 @@ You can use this formula for any number, just plug in your own number. For examp
 0xE0,msb,lsb
 ````
 
-# Mapping 10-bit Values to 2 7-Bit MIDI Values
+# Mapping Ten-bit Values to Two 7-Bit MIDI Values
 
 The formula above converts 8-bit to 7-bit values faithfully, but what if you wanted to map the range of your sensor onto the range of your pitch bend? You could simply insert the `map()` function like so:
 
