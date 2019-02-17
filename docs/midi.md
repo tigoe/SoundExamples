@@ -73,6 +73,8 @@ The full MIDI protocol is detailed on the [MIDI Manufacturers' Association page]
 The [General MIDI specification](https://www.midi.org/specifications-old/item/general-midi) lists all a general synth should be able to do. 
 The [General MIDI instrument specification](https://www.midi.org/specifications-old/item/gm-level-1-sound-set) lists all the instruments that should be available on a general MIDI synth. 
 
+[MIDI Bit Shifting](midi-bit-shifting.md) because you often need to convert 8-bit values to 7-bit bytes in MIDI
+
 ## MIDI Exercises
 
 * [MIDI USB Intro](midiusb.md)
