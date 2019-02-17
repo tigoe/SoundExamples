@@ -89,3 +89,5 @@ Note: If you want to make sure your resulting values are always 7-bit, you can c
 You shouldn't need this though, as the formulas above should always result in legitimate 7-bit values.
 
 If you'd like some code to try this, check out the [BitConverterUnitTest](https://github.com/tigoe/SoundExamples/blob/master/MIDI_examples/BitConverterUnitTest/BitConverterUnitTest.ino) example.
+
+To see this in action, try some [MIDI pitch bending](midi-pitch-bend.md).
