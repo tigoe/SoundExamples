@@ -1,7 +1,7 @@
 /*
   Bluetooth LE MIDI example for the MKR1010
 
-  Uses ArduinBLE library
+  Uses ArduinoBLE library
 
   created 22 Feb 2019
   by Tom Igoe
