@@ -10,10 +10,14 @@ The circuit you'll use for this approach is shown in Figure 1 below.The MIDI jac
 
 *Figure 1. MIDI serial output connection to a 5-pin MIDI connector*
 
+Example: [Serial1_MIDI_simple](https://github.com/tigoe/SoundExamples/blob/master/MIDI_examples/Serial1_MIDI_simple/Serial1_MIDI_simple.ino)
+
+Example: [Serial1_MIDI_oneKey_improviser](https://github.com/tigoe/SoundExamples/blob/master/MIDI_examples/Serial1_MIDI_oneKey_improviser/Serial1_MIDI_oneKey_improviser.ino)
+
+
 ## For the Uno: MIDI SoftwareSerial
 
-The Uno does not have a second UART serial port, so you'll need to use the SoftwareSerial library to send MIDI from it. Connect the MIDI jack as described in Figure 1, but connect the serial pin (**second pin from the left on the MIDI jack CHECK THIS**) to pin 3 on the Uno.
-
+The Uno does not have a second UART serial port, so you'll need to use the SoftwareSerial library to send MIDI from it. Connect the MIDI jack as described in Figure 1, but connect the serial pin to pin 3 on the Uno.
 
 ## Serial Input
 
@@ -36,3 +40,7 @@ In Figure 2, the optoisolator straddles the center of the breadboard a few rows 
 ![Figure 2a. MIDI serial input schematic.](img/midi_serial_in_schem.png)
 
 *Figure 2a. MIDI serial input schematic.*
+
+Example: [Serial1_MidiRead_Raw](https://github.com/tigoe/SoundExamples/blob/master/MIDI_examples/Serial1_MidiRead_Raw/Serial1_MidiRead_Raw.ino)
+
+Example: [MIDILibrary_MIDI_In](https://github.com/tigoe/SoundExamples/blob/master/MIDI_examples/MIDILibrary_MIDI_In/MIDILibrary_MIDI_In.ino) (Note: this requires the [MIDI library from FortySevenEffects](https://github.com/FortySevenEffects/arduino_midi_library). Follow their steps for installation)
