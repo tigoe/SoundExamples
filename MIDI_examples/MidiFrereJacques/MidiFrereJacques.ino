@@ -16,8 +16,6 @@
 #define NOTE_A4 69         // MIDI note value for middle A
 #define FREQ_A4 440        // frequency for middle A
 
-const int speakerPin = 5;  // the pin number for the speaker
-
 // the melody sequence:
 int melody[] = {1, 3, 5, 1,
                 1, 3, 5, 1,
