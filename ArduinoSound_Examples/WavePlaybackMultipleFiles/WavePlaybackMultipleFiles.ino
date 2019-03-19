@@ -1,16 +1,18 @@
 /*
   This reads a wave file from an SD card and plays it using the I2S interface to
   a MAX08357 I2S Amp Breakout board.
+
+  A pushbutton with pulldown resistor is connected
+  to pin D7. Pressing it toggled play/pause
+  An encoder is attached to pins 4 and 5. The encoder controls
+  the volume of the sound.
+
   The wav file must be stereo signed 16 bit 44100Hz.
 
   Circuit:
-     Arduino/Genuino Zero, MKRZero or MKR1000 board
-     SD breakout or shield connected
-     .wav file on card called SOUND.WAV
-     A pushbutton  is connected to pin D7. Pressing it toggles play/pause
-     An encoder is attached to pins 4 and 5. The encoder controls
-  the volume of the sound.
-   * MAX08357:
+   Arduino/Genuino Zero, MKRZero or MKR1000 board
+   SD breakout or shield connected
+   MAX08357:
      GND connected GND
      VIN connected 5V
      LRC connected to pin 0 (Zero) or pin 3 (MKR1000, MKRZero)
@@ -29,7 +31,7 @@
 Encoder volumeKnob(4, 5);
 
 // filename of wave file to play
-const char filename[] = "SOUND.WAV";
+const char currentFile[] = "BOB.WAV";
 
 // variable representing the Wave File
 SDWaveFile waveFile;
@@ -37,6 +39,8 @@ SDWaveFile waveFile;
 int lastButtonState = LOW;
 int lastPosition = 0;
 int loudness = 0;
+int fileNumPlaying = 0;
+
 void setup() {
   // Open serial communications:
   Serial.begin(9600);
@@ -55,9 +59,10 @@ void setup() {
     return;
   }
   Serial.println("SD card is valid.");
+  getFileList();
 
   // create a SDWaveFile
-  waveFile = SDWaveFile(filename);
+  waveFile = SDWaveFile(currentFile);
 
   // check if the WaveFile is valid
   if (!waveFile) {
@@ -104,19 +109,32 @@ void loop() {
     delay(8);     // debounce delay
     // if it's pressed
     if (buttonState == LOW) {
-      // check whether audio is paused:
-      if (AudioOutI2S.isPaused()) {
-        // if it's paused, resume:
-        AudioOutI2S.resume();
-      } else {
-        // if it's playing, pause it:
-        AudioOutI2S.pause();
-      }
-      // print pause state:
-      Serial.print("Audio paused: ");
-      Serial.println(AudioOutI2S.isPaused());
+      fileNumPLaying++;
+      getFileList();
     }
     // save button state for next comparison:
     lastButtonState = buttonState;
   }
+}
+
+void getFileList() {
+  File  root = SD.open("/");
+  File entry;
+  int wavFileCount = 0;
+  do {
+    entry = root.openNextFile();
+    if (!entry) break;
+    Serial.println(entry.name());
+    if (!entry.isDirectory()) {
+      String fileName = String(entry.name());
+String fileNumber = String(fileNumPlaying);
+if (fileNumPlaying < 10) fileNumber = "0" + fileNumber;
+      if (fileName.endsWith(".WAV")) {
+    
+
+      }
+    }
+    entry.close();
+
+  } while ( true);
 }

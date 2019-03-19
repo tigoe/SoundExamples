@@ -3,16 +3,16 @@
   using the I2S interface to an I2S Amp Breakout board.
   It's been tested with the UDA1334A and the MAX98357 amps.
 
-  A pushbutton is connected to pin D7 and to ground.
-  Pressing it toggled play/pause
-
   The wav file must be stereo signed 16 bit 44100Hz.
 
   Circuit:
-   Arduino/Genuino Zero or MKR series board
-   SD breakout or shield connected. If using the MKRZero,
+   * Arduino/Genuino Zero or MKR series board
+   * SD breakout or shield connected. If using the MKRZero,
    the on-board SD card will work.
-   Amp wiring:
+   * .wav file called SOUND.WAV on the card
+   * pushbutton on the board connected to ground and pin 7. 
+     Pressing it toggled play/pause
+   * Amp wiring:
      GND connected GND
      VIN connected Vdd
      LRCLK (aka WSEL) connected to pin 3 (MKR1000, MKRZero) or pin 0 (Zero)
@@ -30,7 +30,7 @@
 
 // filename of wave file to play
 // file name must be 8chars . 3 chars
-const char filename[] = "SOUND001.WAV";
+const char filename[] = "SOUND.WAV";
 
 // variable representing the Wave File
 SDWaveFile waveFile;
@@ -40,6 +40,7 @@ int lastButtonState = HIGH;
 void setup() {
   // Open serial communications:
   Serial.begin(9600);
+  while (!Serial);
   // make the button pin an input, with internal pullup:
   pinMode(7, INPUT_PULLUP);
 
@@ -69,7 +70,7 @@ void setup() {
 
   // check if the I2S output can play the wave file
   if (!AudioOutI2S.canPlay(waveFile)) {
-    Serial.println("unable to play wave file using I2S!");
+    Serial.println("unable to play wave file using I2S");
     while (1); // do nothing
   }
 

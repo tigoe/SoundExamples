@@ -3,15 +3,14 @@
   using the I2S interface to an I2S Amp Breakout board.
   It's been tested with the UDA1334A and the MAX98357 amps.
 
-  A potentiometer connected to pin A0 adjusts the volume
-
   The wav file must be stereo signed 16 bit 44100Hz.
 
   Circuit:
-   Arduino/Genuino Zero or MKR series board
-   SD breakout or shield connected. If using the MKRZero,
+   * Arduino/Genuino Zero or MKR series board
+   * SD breakout or shield connected. If using the MKRZero,
    the on-board SD card will work.
-   Amp wiring:
+   * A potentiometer connected to pin A0 adjusts the volume
+   * Amp wiring:
      GND connected GND
      VIN connected Vdd
      LRCLK (aka WSEL) connected to pin 3 (MKR1000, MKRZero) or pin 0 (Zero)
@@ -29,7 +28,7 @@
 
 // filename of wave file to play
 // file name must be 8chars . 3 chars
-const char filename[] = "SOUND001.WAV";
+const char filename[] = "SOUND.WAV";
 
 // variable representing the Wave File
 SDWaveFile waveFile;
