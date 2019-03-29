@@ -4,7 +4,7 @@
   Written to use with pitch detectors, etc.
 
   Uses the pitchToFrequency table from the MIDUSB library:
-  https://github.com/arduino-libraries/MIDIUSB/blob/master/src/pitchToFrequency.h  
+  https://github.com/arduino-libraries/MIDIUSB/blob/master/src/pitchToFrequency.h
 
   created 29 Mar 2019
   by Tom Igoe
@@ -14,14 +14,18 @@
 #include <pitchToFrequency.h>
 
 void setup() {
-  // put your setup code here, to run once:
+  // initialize serial:
   Serial.begin(9600);
+  // wait for Serial Monitor to open:
   while (!Serial);
 }
 
 void loop() {
+  // pick a random pitch from 0 - 13000 Hz (above that is out of MIDI note range:
   int pitch = random (13000);
+  // find the closest MIDI note corresponding to that pitch:
   int midiNote = findMidiNoteFromPitch(pitch);
+  // print the results nicely:
   Serial.print(pitch);
   Serial.print( " is closest to MIDI note: ");
   Serial.print(midiNote);
