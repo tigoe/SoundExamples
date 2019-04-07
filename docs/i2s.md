@@ -42,11 +42,13 @@ The first two modules take an I2S signal as input and output analog audio. The m
 
 ## Examples
 
-* WAV file playback with volume control
-* WAV file playback with pause/play control
-* Playback of multiple WAV files
-* Sampler-style playback of multiple files
+* [WAV file playback with volume control](https://github.com/tigoe/SoundExamples/tree/master/ArduinoSound_Examples/WaveVolumeControl)
+* [WAV file playback with pause/play control](https://github.com/tigoe/SoundExamples/tree/master/ArduinoSound_Examples/WavePlayPause)
+* [Playback of multiple WAV files](https://github.com/tigoe/SoundExamples/tree/master/ArduinoSound_Examples/WavePlaybackMultipleFiles)
+* [Sampler-style playback of multiple files](https://github.com/tigoe/SoundExamples/tree/master/ArduinoSound_Examples/WaveSamplePlayer)
 * Audio tone generator using I2S
-* Microphone input with pitch detection
+* [Microphone input with pitch detection](https://github.com/tigoe/SoundExamples/tree/master/ArduinoSound_Examples/PitchDetector)
+* [Pitch-to-MIDI detector](https://github.com/tigoe/SoundExamples/tree/master/ArduinoSound_Examples/PitchToMidi)
+
 * Microphone input with amplitude detection
 
