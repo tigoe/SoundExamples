@@ -1,53 +1,54 @@
 /*
-  This reads a wave file from an SD card and plays it using the I2S interface to
-  a MAX08357 I2S Amp Breakout board.
+  This reads a list of  .wav files from an SD card
+  and plays the first one it using the I2S interface
+  to an I2S Amp Breakout board.
 
-  A pushbutton with pulldown resistor is connected
-  to pin D7. Pressing it toggled play/pause
-  An encoder is attached to pins 4 and 5. The encoder controls
+  A pushbutton is connected to pin D7. The other side is connected to ground.
+  Pressing it starts the next .wav file on the SD card.
+  A potentiometer is attached to pins A0. It controls
   the volume of the sound.
 
-  The wav file must be stereo signed 16 bit 44100Hz.
+  The .wav file must be stereo signed 16 bit 44100Hz.
 
   Circuit:
    Arduino/Genuino Zero, MKRZero or MKR1000 board
    SD breakout or shield connected
-   MAX08357:
+   I2S amp:
      GND connected GND
-     VIN connected 5V
+     VIN connected Vcc
      LRC connected to pin 0 (Zero) or pin 3 (MKR1000, MKRZero)
      BCLK connected to pin 1 (Zero) or pin 2 (MKR1000, MKRZero)
      DIN connected to pin 9 (Zero) or pin A6 (MKR1000, MKRZero)
+   potentiometer:
+     wiper to pin A0
+     ends to Vcc and GND
+   pushbutton:
+     one side connected to pin 7
+     the other connected to GND
 
-  created 15 November 2016
-  by Sandeep Mistry
-  modified 29 Oct 2018
+  created 31 Mar 2019
   by Tom Igoe
 */
 
 #include <SD.h>
 #include <ArduinoSound.h>
-#include <Encoder.h>
-Encoder volumeKnob(4, 5);
 
 // filename of wave file to play
-const char currentFile[] = "BOB.WAV";
+//String fileName;
 
 // variable representing the Wave File
 SDWaveFile waveFile;
+
 // previous state of the pushbutton:
 int lastButtonState = LOW;
-int lastPosition = 0;
-int loudness = 0;
-int fileNumPlaying = 0;
+int currentFile = 1;
 
 void setup() {
   // Open serial communications:
   Serial.begin(9600);
   // make the button pin an input:
   pinMode(7, INPUT_PULLUP);
-  // wait until serial monitor is open. This is
-  // for debugging only. Remove when writing your own code:
+  // wait until serial monitor is open:
   while (!Serial);
 
   // setup the SD card.
@@ -59,82 +60,107 @@ void setup() {
     return;
   }
   Serial.println("SD card is valid.");
-  getFileList();
-
-  // create a SDWaveFile
-  waveFile = SDWaveFile(currentFile);
-
-  // check if the WaveFile is valid
-  if (!waveFile) {
-    Serial.println("wave file is invalid!");
-    while (1); // do nothing
+  String fileName = getFileList(currentFile);
+  // start a new WAV file:
+  if (startNewFile(fileName)) {
+    // start with a low volume:
+    AudioOutI2S.volume(100);
   }
-  // print the file's duration:
-  long duration = waveFile.duration();
-  Serial.print("Duration = ");
-  Serial.print(duration);
-  Serial.println(" seconds");
-
-  // check if the I2S output can play the wave file
-  if (!AudioOutI2S.canPlay(waveFile)) {
-    Serial.println("unable to play wave file using I2S!");
-    while (1); // do nothing
-  }
-
-  // set the playback volume:
-  AudioOutI2S.volume(20);
-  // start playback
-  Serial.println("looping file");
-  AudioOutI2S.loop(waveFile);
-
 }
 
 void loop() {
+  // read loudness knob:
+  int knobReading = analogRead(A0);
+  // map reading to get loudness:
+  float loudness  = map(knobReading, 0, 1023, 0, 100);
+   AudioOutI2S.volume(loudness);
+
   // read button state:
   int buttonState = digitalRead(7);
-  // read the encoder knob position:
-  int knobPosition = volumeKnob.read() ;
-  // add the difference in position to loudness:
-  loudness = loudness + (knobPosition - lastPosition);
-  // constrain loudness to 0-100:
-  loudness = constrain(loudness, 0, 100);
-  if (lastPosition != knobPosition) {
-    AudioOutI2S.volume(loudness);
-  }
-  // save current knob position for next comparison:
-  lastPosition = knobPosition;
+  // read the potentiometer knob position:
 
   // if it's changed:
   if (buttonState != lastButtonState ) {
     delay(8);     // debounce delay
     // if it's pressed
     if (buttonState == LOW) {
-      fileNumPLaying++;
-      getFileList();
+      currentFile++;
+       // stop the previous file if playing
+       // you must do this before you get the file list
+       // from the card again:
+         if (AudioOutI2S.isPlaying()) AudioOutI2S.stop();
+      String fileName = getFileList(currentFile);
+      if (fileName != "") {
+       
+        //start a new WAV file:
+        if (!startNewFile(fileName)) {
+          Serial.println("No available WAV files to play");
+        }
+      } else { // you're at the end of the file list, reset:
+        currentFile = 0;
+      }
     }
     // save button state for next comparison:
     lastButtonState = buttonState;
   }
 }
 
-void getFileList() {
-  File  root = SD.open("/");
-  File entry;
-  int wavFileCount = 0;
-  do {
-    entry = root.openNextFile();
-    if (!entry) break;
-    Serial.println(entry.name());
-    if (!entry.isDirectory()) {
-      String fileName = String(entry.name());
-String fileNumber = String(fileNumPlaying);
-if (fileNumPlaying < 10) fileNumber = "0" + fileNumber;
-      if (fileName.endsWith(".WAV")) {
-    
+String getFileList(int currentFile) {
+  int waveFileCount = 0;
+  String result;
 
+  File root = SD.open("/");
+  File entry;
+  while (waveFileCount < currentFile) {
+    entry = root.openNextFile();
+    if (!entry) {
+      result = "";
+      break;
+    }
+    if (!entry.isDirectory()) {
+      result = String(entry.name());
+      if (result.endsWith(".WAV")) {
+        waveFileCount++;
       }
     }
     entry.close();
+  }
+  // now the fileName is the current file,
+  // or it's empty
+  return result;
+}
+int startNewFile(String thisFile) {
+  /* result:
+        -1: invalid file
+        0: file can't play
+        1: file is valid and can play
+  */
+  int result = -1;
+  // create a SDWaveFile
+  waveFile = SDWaveFile(thisFile);
 
-  } while ( true);
+  // check if the WaveFile is valid
+  if (!waveFile) {
+    Serial.println("wave file is invalid!");
+    return result; // result = -1
+  }
+  result++;
+  // print the file's name and duration:
+  Serial.println("File name: " + thisFile);
+  long duration = waveFile.duration();
+  Serial.print("   duration = ");
+  Serial.print(duration);
+  Serial.println(" seconds");
+
+  // check if the I2S output can play the wave file
+  if (!AudioOutI2S.canPlay(waveFile)) {
+    Serial.println("unable to play wave file using I2S!");
+    return result; // result = 0
+  }
+  result++;
+
+  // start playback
+  Serial.println("playing file");
+  AudioOutI2S.play(waveFile);
+  return result;  // result = 1;
 }
