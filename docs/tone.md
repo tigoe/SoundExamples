@@ -20,7 +20,7 @@ tone(5, 440, 1000);
 
 *Note: These [Tone examples](https://github.com/tigoe/SoundExamples/tree/master/Tone_examples) will play simple tones on any Arduino board. You can't play multiple tones at the same time, however. These examples are included mainly to show how to convert between frequency values, note names, and MIDI note values, and to play a simple melody.*
 
-To try this command out, wire your board as shown in the [sound basics introduction](sound-basics.md), Connect a speaker or headphone jack to pin 5 in series with the appropriate resistor (220 ohm for the speaker, 10-kilohm for the headphone jack), and connect the ends of the potentiometer to voltage and ground, and the middle wiper pin to analog input 0 (A0) of your microcontroller. Figures 1 and 2 show the wiring for a speaker and headphone jack, respectively.
+To try this command out, wire your board as shown in the [sound basics introduction](sound-basics.md). Connect a speaker or headphone jack to pin 5 in series with the appropriate resistor (220 ohm for the speaker, 10-kilohm for the headphone jack). Then connect the ends of a potentiometer to voltage and ground, and the middle wiper pin to analog input 0 (A0) of your microcontroller. Figures 1 and 2 show the wiring for a potentiometer combined with speaker and headphone jack, respectively.
 
 ![Figure 1. speaker attached to pin 5 and potentiometer attached to pin A0 of a MKR Zero](img/speaker_circuit_potentiometer_bb.png)
 
@@ -33,7 +33,6 @@ To try this command out, wire your board as shown in the [sound basics introduct
 To start, open [the  BeepChange sketch](https://github.com/tigoe/SoundExamples/blob/master/Tone_examples/BeepChange/BeepChange.ino) from the [sound basics introduction](sound-basics.md) page and make some modifications to it. Everything will stay the same up until you calculate the frequency:
 
 ````
-
 const int speakerPin = 5;  // the pin number for the speaker
 
 void setup() {
@@ -74,18 +73,18 @@ If the note value you want is called ``noteValue``, and reference freqency is ca
 
 frequency = refFreq * 2<sup>((noteValue - refNote) / 12.0))</su>;
 
-The Arduino API includes a function called the [``pow()`` function](https://www.arduino.cc/reference/en/language/functions/math/pow/) that raises a number to a power. The reference frequency and reference note number can be set as constants, or as #define statements, which are like aliases for the IDE. So that formula, expressed as a line of Arduino programming code, would look like this:
+The Arduino API includes a function called the [``pow()`` function](https://www.arduino.cc/reference/en/language/functions/math/pow/) that raises a number to a power. The reference frequency and reference note number can be set as constants, or as #``define`` statements, which are like aliases for the IDE. So that formula, expressed as a line of Arduino programming code, would look like this:
 
 ````
   float frequency =  FREQ_A4 * pow(2, ((noteValue - NOTE_A4) / 12.0));
 ````
 ## MIDI Note Number to Pitch Conversion
 
-Let's write a sketch that reads the potentiometer and breaks its reading into 88 steps, playing a range of pitches from the lowest note on the piano to the highest.
+Now that you've got a formula for calculating a note's pitch, Let's write a sketch that reads the potentiometer and breaks its reading into 88 steps, playing a range of pitches from the lowest note on the piano to the highest.
 
 You know that the reference frequency of middle A, or A4, is 440 Hz. You need to decide what note value to give it. A piano has 88 notes, and middle A is somewhere in the middle. Should the lowest note be note number 0 and the highest number 87?  
 
-Synthesizers and other electronic musical instruments use a communications protocol called the **Musical Instrument Digital Interface**, or  **MIDI**. MIDI can play a range of 128 pitches, and it puts the range of piano pitches in the middle, from 21 to 108. Since MIDI is very popular, let's do the same. Your piano keyboard would run from A0 at note number 21 to C8 at note number 108. With that range, A4 gets the note number 69. With that information, you can start the sketch. 
+Synthesizers and other electronic musical instruments use a communications protocol called the **Musical Instrument Digital Interface**, or  **MIDI**. MIDI can play a range of 128 pitches, and it puts the range of piano pitches in the middle, from 21 to 108. Since MIDI is very popular, let's use its note values. In the MIDI protocol,  A4 gets the note number 69, somewhere in the middle of the 0-127 range. The whole piano keyboard runs from A0 (note number 21) to C8 (note number 108). With that information, you can start the sketch. 
 
 First, define the reference pitch and note number, and set the pin number for the speaker as a constant:
 
@@ -97,7 +96,7 @@ First, define the reference pitch and note number, and set the pin number for th
 
 const int speakerPin = 5;  // the pin number for the speaker
 ````
-<u style="color: green;">Syntax note:</u> The [``#define`` keyword](https://www.arduino.cc/reference/en/language/structure/further-syntax/define/) is the C programming syntax for giving a label, or alias, to a value. When you #define something, the compiler replaces all of the #define labels with their values before the program is compiled. It's a bit like how you used const int to give the speaker pin a name. #defines are trickier than consts, though, because there are many #defines in the core of the Arduino API, and you might overwrite one if you don't choose your names carefully. 
+<u style="color: green;">Syntax note:</u> The [``#define`` keyword](https://www.arduino.cc/reference/en/language/structure/further-syntax/define/) is the C programming syntax for giving a label, or alias, to a value. When you #define something, the compiler replaces all of the #``define`` labels with their values before the program is compiled. It's a bit like how you used ``const int`` to give the speaker pin a name. #``defines`` are trickier than consts, though, because there are many #``defines`` in the core of the Arduino API, and you might overwrite one if you don't choose your names carefully. If you start your #``define`` names with something unique related to your application, like ``NOTE_``, you're usually safe.  
 
 In the setup function, configure the speaker pin as an output as you've done before:
 
@@ -141,4 +140,4 @@ You can't play two tones at the same time on an Arduino, however, so ``tone()`` 
 
 Now that you've got an idea of how to caculate pitch values for notes in a tuning system, the next exercise explains [how to generate a melody](melody.md). 
 
-*For more on MIDI note to pitch mapping, see [Note names, MIDI numbers and frequencies](https://newt.phys.unsw.edu.au/jw/notes.html) from the University of New South Wales*
+*For more on MIDI note to pitch mapping, see [Note names, MIDI numbers and frequencies](https://newt.phys.unsw.edu.au/jw/notes.html) from the University of New South Wales*.
