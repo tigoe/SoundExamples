@@ -2,7 +2,7 @@
 
 In order to use these examples, there are a few things you need to know. 
 
-Sound is created by vibrations in air. When those vibrations get fast enough, above about 20 times a second, you hear them as a pitch. The number of vibrations per second is called the **frequency** and frequency is measured in Hertz (Hz). So 20 times a second is 20Hz. Humans can hear pitches from about 20Hz to about 20,000Hz, or 20 kiloHertz (kHz).
+Sound is created by vibrations in air. When those vibrations get fast enough, above about 20 times a second, you hear them as a pitch. The number of vibrations per second is called the **frequency** and frequency is measured in **Hertz (Hz)**. So 20 times a second is 20Hz. Humans can hear pitches from about 20Hz to about 20,000Hz, or 20 kiloHertz (kHz).
 
 What vibrations are we talking about? A speaker can vibrate. The paper cone of the speaker moves forward, then backward, than back to its resting place many times a second. The length of time it takes to move from its resting place to one extreme, then to the other, then to its resting place again, is called the **wavelength** of the vibration. Sometimes it's also called the **period**. For example, if a speaker is vibrating at 20Hz, then it moves forward, backward, and back to rest in 1/20 of a second, or 0.05 seconds. 0.05 seconds is the period, or the wavelength, of the sound you're hearing. Figure 1 shows the speaker vibrating, and a graph of the speaker's movement. This graph is a **sine wave**. 
 
@@ -12,11 +12,11 @@ What vibrations are we talking about? A speaker can vibrate. The paper cone of t
 
 A computer makes sound by sending pulses of electrical energy through a wire that's connected to the paper cone of a speaker. That wire is wrapped in a coil, and mounted inside a magnet. The electrical energy generates a magnetic field, and that field is either attracted to the magnet or repelled by it, depending on which direction the electrical energy is flowing. The magnetic energy moves the coil, and since the coil is attached to the cone, the speaker moves.
 
-Arduino modules are simple computers called **microcontrollers**. They have input and output pins, and you can use one of those pins to vibrate a speaker.  To get started doing that, connect a speaker to your Arduino MKR Zero (or any of the MKR boards) as shown below
+Arduino modules are simple computers called **microcontrollers**. They have input and output pins, and you can use one of those pins to vibrate a speaker.  To get started doing that, connect a speaker to your Arduino MKR Zero (or any of the MKR boards) as shown below.
 
 ## Connecting A Speaker or Headphone Jack to the Arduino
 
-Attach one end of a 220-ohm resistor to pin 5 of the MKR Zero. Attach the other end of the resistor to one of the empty rows on your breadboard. Next attach one wire of the speaker in that same row. Then attach the other wire of the speaker to the MKR Zero's ground (GND) pin. Figure 2 below shows what that would look like on a [solderless breadboard](https://itp.nyu.edu/physcomp/labs/labs-electronics/breadboard/)
+Mount the MKR Zero on a breadboard as shown in the [setup page](setup.md). Attach one end of a 220-ohm resistor to pin 5 of the MKR Zero. Attach the other end of the resistor to one of the empty rows on your breadboard. Next attach one wire of the speaker in that same row. Then attach the other wire of the speaker to the MKR Zero's ground (GND) pin. Figure 2 below shows what that would look like on a [solderless breadboard](https://itp.nyu.edu/physcomp/labs/labs-electronics/breadboard/)
 
 ![Figure 2. Speaker attached to pin 5 of a MKR Zero](img/speaker-circuit_bb.png)
 
@@ -53,7 +53,7 @@ void setup() {
 
 <u style="color: green;">Syntax note:</u>: Anything in ALL_CAPS is an alias in the program, usually a number that has been given a name. For example, INPUT is defined in the core of Arduino as 0, and OUTPUT is defined as 1.  You'll define a few of your own aliases in later exercises.
 
-In the loop, start with a floating point integer variable (a decimal number) called ``frequency``, and set equal to 440. Then make an integer variable called ``period``, and set it to 1/frequency like so:
+In the loop, start with a floating point integer variable (a decimal number) called ``frequency``, and set equal to 440. Then make an integer variable called ``period``, and set it to (1/frequency ) * 1 million like so:
 
 ````
 void loop() {
@@ -91,8 +91,6 @@ There are two kinds of inputs for microcontrollers, called digital inputs and an
 [**Analog inputs**](https://itp.nyu.edu/physcomp/lessons/microcontrollers/analog-input/) can have multiple possible states. A volume knob is an example of an analog input. An analog input sensor varies the voltage on its input pin between the highest voltage the microcontroller can handle, and the lowest. A circuit inside the microcontroller called an **analog-to-digital converter (ADC)** converts this changing voltage into a number in the microcontroller's memory. In the Arduino environment, analog inputs convert the voltage into a range of values from 0 to 1023. 
 
 The volume knob mentioned earlier is actually an electronic component called a **potentiometer**. It can produce a variable resistance between its center pin and the two side pins. The two side pins are the ends of a fixed  resistor, 10-kilohm in this case, and the center pin is called the **wiper**. The wiper moves along the resistor, effectively dividing it in two to form two variable resistors. As one side gains resistance, the other side loses it. If you connect the side pins to voltage and ground, and the center pin to one of the Arduino's analog inputs, you can read the changing position of the knob in 1024 possible steps using the [``analogRead()`` command](https://www.arduino.cc/reference/en/language/functions/analog-io/analogread/). 
-
-
 
 Connect a potentiometer to your speaker or headphone circuit as shown in Figures 4 and 5.
 

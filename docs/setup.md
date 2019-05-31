@@ -60,9 +60,11 @@ D5 (PWM)<br /></td>
 <td style="vertical-align: top;"><img src="img/MKRZero.png" alt="Figure 3. The MKR pin layout, with the USB connector facing up"><br />
 <em>Figure 3. MKR Zero</em>
 </td>
-<td style="vertical-align: top;">Vcc - 3.3V<br />
+<td style="vertical-align: top;">
+5V<br />
 Vin - voltage in, 5V max.<br />
-Ground<br />
+Vcc - 3.3V<br />
+GND - ground<br />
 reset<br />
 D14 and Serial1 TX<br />
 D13 and Serial1 RX<br />
@@ -76,7 +78,9 @@ D6 and built-in LED<br /></td>
 </tr>
 </table>
 
-The pins you'll use all the time are the third from the top on the right, Vcc, which outputs 3.3 volts when the board is connected to a USB power source or a battery,and the fourth from top on the right GND, which is the ground pin. Remember, voltage is always a relative measurement between two points. The Vcc pin's voltage is measured relative to ground.
+This physical layout is sometimes referred to as a *DIP*, or *Dual Inline Package*. In a DIP package, physical pins are typically numbered from top left to bottom left, then from bottom right to top right. So physical pin 1 has the function Analog in 0, or A0; physical pin 14 has the function D5, or digital I/O 5; physical pin 15 has the function D6, or digital I/O 6; and pin 28 has the function 5V, or 5 volts supplied from the USB input.
+
+The pins you'll use all the time are the third from the top on the right (physical pin 26), Vcc, which outputs 3.3 volts when the board is connected to a USB power source or a battery, and the fourth from top on the right (physical pin 25), GND, which is the ground pin. Remember, voltage is always a relative measurement between two points. The Vcc pin's voltage is measured relative to ground.
 
 Plug your MKR into your breadboard with the top pins in the top row of the board. Connect the GND pin on the right side to the right side ground bus and the VCC pin to the voltage bus. Then connect the bus rows on the right side to their corresponding buses on the left. Figure 4 shows the board connected this way. The figure is rotated counter-clockwise so that the right hand side bus is on the top. Most of the circuit diagrams in these examples will be shown this way.
 
@@ -135,7 +139,7 @@ Every programming language needs places in memory to store information. These ar
 
 There are two **functions** in the sketch, called ``setup()`` and ``loop()``. Functions are sets of instructions. Sometimes they return a value when they complete. The setup function runs once when the Arduino is reset. The loop runs continuously. When it finishes running, it starts again. It runs as long as the Arduino is powered.  You'll write other functions later, and you'll use them by putting their names in your program. 
 
-Functions have a value type that they return. Both of these functions return nothing, so their type is ``void``. Later you might see functions that return integer numbers. Their type would be ``int``. Functions also have ``parameters``. Parameters are what you fill in in the parentheses. If the function name is a verb, then the parameters are the direct objects, adjectives, and adverbs of a function. For example, [``tone()`` is a function](https://www.arduino.cc/reference/en/language/functions/advanced-io/tone/) (built-in functions are sometimes also called commands), and it has two parameters: the pin number that you want to write to, and the frequency that you want to give the pin. So ``tone(5, 440);`` sets pin 5 changing 440 times a second. The [``delay()`` function](https://www.arduino.cc/reference/en/language/functions/time/delay/) stops the program for an amount of time, and its parameter is the number of milliseconds that you want to stop for. So ``delay(500);`` stops program for 500/1000 of a second, or half a second. 
+Functions have a value type that they return. Both of these functions return nothing, so their type is ``void``. Later you might see functions that return integer numbers. Their type would be ``int``. Functions also have ``parameters``. Parameters are what you fill in in the parentheses. If the function name is a verb, then the parameters are the direct objects, adjectives, and adverbs of a function. For example, [``tone()``](https://www.arduino.cc/reference/en/language/functions/advanced-io/tone/)  is a function (built-in functions are sometimes also called commands), and it has two parameters: the pin number that you want to write to, and the frequency that you want to give the pin. So ``tone(5, 440);`` sets pin 5 changing 440 times a second. The [``delay()`` function](https://www.arduino.cc/reference/en/language/functions/time/delay/) stops the program for an amount of time, and its parameter is the number of milliseconds that you want to stop for. So ``delay(500);`` stops program for 500/1000 of a second, or half a second. 
 
 Blocks of code that are all dependent on the same conditions are set off by braces like this {}. For example, all the code inside a function is dependent on you calling the function. So the syntax for a function needs a function type a name, parentheses for parameters, and braces to hold the code inside it, like so:
 
