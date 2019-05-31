@@ -16,13 +16,13 @@ Arduino modules are simple computers called **microcontrollers**. They have inpu
 
 ## Connecting A Speaker or Headphone Jack to the Arduino
 
-Mount the MKR Zero on a breadboard as shown in the [setup page](setup.md). Attach one end of a 220-ohm resistor to pin 5 of the MKR Zero. Attach the other end of the resistor to one of the empty rows on your breadboard. Next attach one wire of the speaker in that same row. Then attach the other wire of the speaker to the MKR Zero's ground (GND) pin. Figure 2 below shows what that would look like on a [solderless breadboard](https://itp.nyu.edu/physcomp/labs/labs-electronics/breadboard/)
+Mount the MKR Zero on a breadboard as shown in the [setup page](setup.md). Attach one end of a 220-ohm resistor to pin 5 of the MKR Zero. Attach the other end of the resistor to one of the empty rows on your breadboard. Next attach one wire of the speaker in that same row. Then attach the other wire of the speaker to the ground bus. Figure 2 below shows what that would look like on a [solderless breadboard](https://itp.nyu.edu/physcomp/labs/labs-electronics/breadboard/).
 
 ![Figure 2. Speaker attached to pin 5 of a MKR Zero](img/speaker-circuit_bb.png)
 
 *Figure 2. Speaker attached to pin 5 of a MKR Zero. The resistor limits the current to the speaker to protect it.*
 
-You can also use headphones if you like. To do this, connect one end of a 10-kilohm resistor to pin 5 of the MKR Zero. Then connect the other end to one of the empty rows on your breadboard. Next attach the left or right inputs to your audio jack (usually the outside pins) in that same row. Then attach the audio jack's ground pin (usually the middle pin) to the MKR Zero's ground (GND) pin. Figure 3 below shows what that would look like on a solderless breadboard:
+You can also use headphones if you like. To do this, connect one end of a 10-kilohm resistor to pin 5 of the MKR Zero. Then connect the other end to one of the empty rows on your breadboard. Next attach the left or right inputs to your audio jack (usually the outside pins) in that same row. Then attach the audio jack's ground pin (usually the middle pin) to the ground bus. Figure 3 below shows what that would look like on a solderless breadboard:
 
 ![Figure 3. headphone jack attached to pin 5 of a MKR Zero](img/headphone-circuit_bb.png)
 
