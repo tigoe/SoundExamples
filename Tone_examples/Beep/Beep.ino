@@ -2,7 +2,7 @@
   Plays a tone on a speaker at middle A (440Hz)
 
   circuit:
-     * 8-ohm speaker and 100-ohm resistor
+       8-ohm speaker and 100-ohm resistor
      in series on pin 5
 
    created 18 Dec 2018
