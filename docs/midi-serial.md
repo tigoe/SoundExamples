@@ -11,13 +11,20 @@ There are several good guides to buying sound modules. [HearTheMusicPlay.com](ht
 
 <u style="color: green;">Hardware note:</u> These MIDI serial examples will work on any Arduino, with some modification. Boards that have two hardware serial ports, like the MKR boards, Mega, Leonardo, Micro, and Yún, can use Serial1 to send serial data to a MIDI playback device like a synthesizer or sampler. Serial1 is connected to a second asynchronous serial UART on these boards. (see the [setup page](setup.md) for more on asynchronous serial) Boards that don't have two hardware serial ports, like the Uno, can use the SoftwareSerial library to communicate with MIDI playback devices.
 
+### Hardware Serial Output
+
 The circuit you'll use for this approach is shown in Figure 1 below. Follow the [breadboard setup instructions](setup.md#breadboard-setup) in the setup exercise.  Then connect the MIDI jack as shown here. The MIDI jack has 5 connectors arranged in a semi-circle. They are numbered, from left to right, 3,5,2,4,1 (don't ask why). The center pin (pin 3) of the MIDI connector is connected to ground. With the connector facing you the second pin from the left  (pin 5) is connected to the Arduno's serial transmit pin, labeled TX, through a 220-ohm resistor. On the MKR boards, this is the sixth pin from the top on the right side of the board. On a Leonardo or Yún, it's digital pin 1, the second from the bottom on the right. The MIDI jack's fourth pin from the left (pin 4) is connected to voltage through a 220-ohm resistor. The MIDI jack's center pin is connected to ground.
 
 ![Figure 1. MIDI serial output connection to a 5-pin MIDI connector.](img/midi_serial_out_bb.png)
 
 *Figure 1. MIDI serial output connection to a 5-pin MIDI connector*
 
-Once you've connected the MIDI output connector,  use a MIDI connector to connect to the MIDI in connector on your synthesizer.  
+### For the Uno: MIDI SoftwareSerial
+
+The Uno does not have a second UART serial port, so you'll need to use the SoftwareSerial library to send MIDI from it. Connect the MIDI jack as described in Figure 1, but connect the serial pin to pin 3 on the Uno.
+
+
+Once you've connected the MIDI output connector,  use a MIDI connector to connect to the MIDI in connector on your sound module.  
 
 ## Simple MIDI Player
 
@@ -86,10 +93,9 @@ void midiCommand(byte cmd, byte data1, byte  data2) {
 ````
 When you upload this, it will send out MIDI notes over and over. 
 
-## Connecting The Controller to a MIDI Sound module
 When you connect your MIDI output to the MIDI in of a MIDI sound module, and the module's audio out to an amp and speakers, this sketch should play the tune. Congratulations, you've got MIDI! Here is [the complete sketch for Serial1](https://github.com/tigoe/SoundExamples/blob/master/MIDI_examples/Serial1_MIDI_simple/Serial1_MIDI_simple.ino).
 
-And here's the complete sketch for SoftwareSerial. 
+And here's the complete sketch for [SoftwareSerial](https://github.com/tigoe/SoundExamples/blob/master/MIDI_examples/SoftwareSerial_MIDI_simple/SoftwareSerial_MIDI_simple.ino). 
 
 Now you're ready to go on to [making a MIDI instrument](midi-instrument.md).
 
@@ -137,7 +143,6 @@ void midiCommand(byte cmd, byte data1, byte  data2) {
 ````
 And for SoftwareSerial, it will look like this:
 
-
 ````
 // send a 3-byte midi message
 void midiCommand(byte cmd, byte data1, byte  data2) {
@@ -147,25 +152,9 @@ void midiCommand(byte cmd, byte data1, byte  data2) {
 }
 ````
 
-
-
-
-
-
-
-
-Example: [Serial1_MIDI_simple](https://github.com/tigoe/SoundExamples/blob/master/MIDI_examples/Serial1_MIDI_simple/Serial1_MIDI_simple.ino)
-
-Example: [Serial1_MIDI_oneKey_improviser](https://github.com/tigoe/SoundExamples/blob/master/MIDI_examples/Serial1_MIDI_oneKey_improviser/Serial1_MIDI_oneKey_improviser.ino)
-
-
-## For the Uno: MIDI SoftwareSerial
-
-The Uno does not have a second UART serial port, so you'll need to use the SoftwareSerial library to send MIDI from it. Connect the MIDI jack as described in Figure 1, but connect the serial pin to pin 3 on the Uno.
-
 ## Serial Input
 
-Serial input is not as common a project, because the Arduino boards are better as controllers than as synthesizers. But you can read MIDI into an Arduino if you need to. Figure 2 shows the MIDI input circuit. The MIDI jack is connected to the microcontroller through an optoisolator. An *optoisolatator* has an LED on the input side and a phototransistor on the output side, so that the two sides of the circuit are electrically isolated from each other, for extra safety.
+Serial input is not as common a project, because the Arduino boards are better as controllers than as sound modules. But you can read MIDI into an Arduino if you need to. Figure 2 shows the MIDI input circuit. The MIDI jack is connected to the microcontroller through an optoisolator. An **optoisolatator** has an LED on the input side and a phototransistor on the output side, so that the two sides of the circuit are electrically isolated from each other, for extra safety.
 
 The parts for this are:
 * 1 MIDI 5-pin connector
@@ -175,7 +164,7 @@ The parts for this are:
 * 1 220-ohm resistor
 * wires
 
-In Figure 2, the optoisolator straddles the center of the breadboard a few rows below the MKR Zero board. It's an 8-pin component with pins on either side, spaced 0.1 inches apart (this is called a *DIP package*). The pins are numbered in a U-fashion with 1 on the top left, 4 on the bottom left, 5 on the bottom right, and 8 on the top right. The optoisolator's pin 8 (top right) is connected to voltage, and pin 5 (bottom right) is connected to ground. a 270-ohm resistor connects pin 6 to voltage as well. A wire connects the MKR Zero's RX pin (seventh from the top right) to the optoisolator's pin 6 as well. The cathode of a 1N914 diode is connected to the optoisolator's pin 3. The anode of the diode is connected to pin 2. A 220-ohm resistor connects pin 2 to the MIDI connector's fourth pin from the left (pin 4). The MIDI connector's second pin from the left (pin 5) is connected to the optoisolator's pin 3. Figure 2a shows the same connections in a schematic diagram. 
+In Figure 2, the optoisolator straddles the center of the breadboard a few rows below the MKR Zero board. It's an 8-pin component with pins on either side, spaced 0.1 inches apart (this is called a **DIP package**). The pins are numbered in a U-fashion with 1 on the top left, 4 on the bottom left, 5 on the bottom right, and 8 on the top right. The optoisolator's pin 8 (top right) is connected to voltage, and pin 5 (bottom right) is connected to ground. a 270-ohm resistor connects pin 6 to voltage as well. A wire connects the MKR Zero's RX pin (seventh from the top right) to the optoisolator's pin 6 as well. The cathode of a 1N914 diode is connected to the optoisolator's pin 3. The anode of the diode is connected to pin 2. A 220-ohm resistor connects pin 2 to the MIDI connector's fourth pin from the left (pin 4). The MIDI connector's second pin from the left (pin 5) is connected to the optoisolator's pin 3. Figure 2a shows the same connections in a schematic diagram. 
  
 ![Figure 2. MIDI serial input connection to a 5-pin MIDI connector through an optoisolator.](img/midi_serial_in_bb.png)
 

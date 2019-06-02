@@ -2,6 +2,9 @@
 
 Playng pre-recorded MIDI melodies is only so much fun, but making MIDI instruments with sensors as input is a lot more fun. This exercise contains a couple of simple MIDI instruments to get you started.
 
+
+<u style="color: green;">Hardware note:</u> This example is written with MIDI USB as the default approach, but you can also make it work using Serial MIDI with minimal changes. Here's the complete sketch if you're using a Serial MIDI connection instead: [Serial1_MIDI_oneKey_improviser](https://github.com/tigoe/SoundExamples/blob/master/MIDI_examples/Serial1_MIDI_oneKey_improviser/Serial1_MIDI_oneKey_improviser.ino). With the serial version, follow the hardware instructions in the [MIDI Serial exercise](midi-serial.md).
+
 ## The Circuit
 
 This instrument will be the simplest input you can make: a single pushbutton. Follow the [breadboard setup instructions](setup.md#breadboard-setup) in the setup exercise. Then connect a pushbutton to pin 5 of your microcontroller as follows: Connect one side of the pushbutton directly to pin 5. Connect the other side of the pushbutton to the voltage bus of your breadboard. Then connect a 10-kilohm resistor (with the brown, black, orange, and gold bands) from ground to the junction row connecting pin 5 and the pushbutton. Figure 1 below shows how to connect it. 
@@ -229,6 +232,10 @@ void loop() {
 ````
 
 Finally, add the `midiCommand()` function from above. Then upload the sketch and press the button. You should hear random notes, all in the same scale. You're improvising a solo now! [ Here's the complete sketch](https://github.com/tigoe/SoundExamples/blob/master/MIDI_examples/MIDIUSB_oneKey_improviser/MIDIUSB_oneKey_improviser.ino).
+
+### Serial MIDI Example
+
+Here's the complete sketch if you're using a Serial MIDI connection instead: [Serial1_MIDI_oneKey_improviser](https://github.com/tigoe/SoundExamples/blob/master/MIDI_examples/Serial1_MIDI_oneKey_improviser/Serial1_MIDI_oneKey_improviser.ino).
 
 ## Other Instruments
 
