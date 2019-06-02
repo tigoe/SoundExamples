@@ -27,7 +27,7 @@ float beatDuration = 60.0 / bpm * 1000;
 // the melody sequence:
 int melody[] = {64, 66, 71, 73, 74, 66, 64, 73, 71, 66, 74, 73};
 // which note of the melody to play:
-int thisNote = 0;
+int noteCounter = 0;
 
 void setup() {
   // initialize serial:
@@ -44,18 +44,18 @@ void setup() {
 
 void loop() {
   // play a note from the melody:
-  midiCommand(0x90, melody[thisNote], 127);
+  midiCommand(0x90, melody[noteCounter], 127);
   // all the notes in this are sixteenth notes, 
   // which is 1/4 of a beat, so:
   int noteDuration = beatDuration / 4;
   // I like when the note is on 60% of the note time:
   delay(noteDuration);
   // turn the note off:
-  midiCommand(0x80, melody[thisNote], 127);
+  midiCommand(0x80, melody[noteCounter], 127);
   // increment the note number for next time through the loop:
-  thisNote++;
+  noteCounter++;
   // keep the note in the range from 0 - 11 using modulo:
-  thisNote = thisNote % 12;
+  noteCounter = noteCounter % 12;
 }
 
 // send a 3-byte midi message

@@ -81,7 +81,7 @@ When you upload this, it will send out MIDI notes over and over.
 ### What's With The >> ?
 That strange operator, `>>` is called the [bit shift-right](https://www.arduino.cc/reference/en/language/structure/bitwise-operators/bitshiftright/) operator. It shifts all the bits in the number or variable you're shifting to the right. Since each bit position is a power of 2 , bit shifting to the right is the same as dividing by 2. So `cmd >> 4` shifts the number by 2<sup>4</sup>, or 16. Remember how 16 is a special number in MIDI? So if the MIDI command value you sent was 0x90, then when it's shifted by 16, you have 0x9, which is the command value independent of which channel you're playing. The MIDIUSB library needs that number, so that's why you shifted it in the function.
 
-## Connecting The Controller to a MIDI Synth
+## Connecting The Controller to a Software Synth
 
 Even though your device is sending out MIDI, no one's listening. If you have a Digital Audio Workstation like Ableton or GarageBand, then you can open it, configure the MIDI input to look for your Arduino, and the notes will play. For more on that, see this [MIDI to DAW tutorial](https://itp.nyu.edu/physcomp/labs/labs-serial-communication/lab-arduino-to-daw/). If you're not using a DAW, download a free MIDI synth player like [Sforzando](https://www.plogue.com/products/sforzando.html). You might want the [Sforzando users guide](https://s3.amazonaws.com/sforzando/sforzando_guide.pdf) as well. Then download an instrument file. This [Yamaha Disklavier grand piano](http://freepats.zenvoid.org/Piano/acoustic-grand-piano.html) is pretty good, as are some of the other SoundFonts on that page. 
 
@@ -117,7 +117,7 @@ void midiCommand(byte cmd, byte data1, byte  data2) {
   midiEventPacket_t midiMsg = {cmd >> 4, cmd, data1, data2};
   MidiUSB.sendMIDI(midiMsg);
 ````
-### Utility Functions of the MIDIUSB Library
+## Utility Functions of the MIDIUSB Library
 
 It's worth noting that the MIDIUSB library also includes some utility functions in separate files. These can be useful for writing more readable code, by giving note names to MIDI note numbers and to their corresponding frequencies.
 

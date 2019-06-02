@@ -17,7 +17,7 @@ float beatDuration = 60.0 / bpm * 1000;
 // the melody sequence:
 int melody[] = {64, 66, 71, 73, 74, 66, 64, 73, 71, 66, 74, 73};
 // which note of the melody to play:
-int thisNote = 0;
+int noteCounter = 0;
 
 // set up the MIDI service and MIDI message characteristic:
 BLEService midiService("03B80E5A-EDE8-4B33-A751-6CE34EC4C700");
@@ -57,18 +57,18 @@ void loop() {
     // turn on LED to indicate connection:
     digitalWrite(LED_BUILTIN, HIGH);
     // play a note from the melody:
-    midiCommand(0x90, melody[thisNote], 127);
+    midiCommand(0x90, melody[noteCounter], 127);
     // all the notes in this are sixteenth notes,
     // which is 1/4 of a beat, so:
     int noteDuration = beatDuration / 4;
     // keep it on for the appropriate duration:
     delay(noteDuration);
     // turn the note off:
-    midiCommand(0x80, melody[thisNote], 127);
+    midiCommand(0x80, melody[noteCounter], 127);
     // increment the note number for next time through the loop:
-    thisNote++;
+    noteCounter++;
     // keep the note in the range from 0 - 11 using modulo:
-    thisNote = thisNote % 12;
+    noteCounter = noteCounter % 12;
   }
   // when the central disconnects, turn off the LED:
   digitalWrite(LED_BUILTIN, LOW);

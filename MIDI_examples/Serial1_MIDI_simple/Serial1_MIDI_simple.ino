@@ -22,7 +22,7 @@ float beatDuration = 60.0 / bpm * 1000;
 // the melody sequence:
 int melody[] = {64, 66, 71, 73, 74, 66, 64, 73, 71, 66, 74, 73};
 // which note of the melody to play:
-int thisNote = 0;
+int noteCounter = 0;
 
 void setup() {
   // initialize serial:
@@ -33,26 +33,21 @@ void setup() {
 
 void loop() {
   // play a note from the melody:
-  midiCommand(0x90, melody[thisNote], 127);
+  midiCommand(0x90, melody[noteCounter], 127);
   // all the notes in this are sixteenth notes,
   // which is 1/4 of a beat, so:
   int noteDuration = beatDuration / 4;
   // keep it on for the appropriate duration:  delay(noteDuration);
   // turn the note off:
-  midiCommand(0x90, melody[thisNote], 0);
+  midiCommand(0x90, melody[noteCounter], 0);
   // increment the note number for next time through the loop:
-  thisNote++;
+  noteCounter++;
   // keep the note in the range from 0 - 11 using modulo:
-  thisNote = thisNote % 12;
+  noteCounter = noteCounter % 12;
 }
 
 // send a 3-byte midi message
 void midiCommand(byte cmd, byte data1, byte  data2) {
-  Serial.print(cmd, HEX);
-  Serial.print(" ");
-  Serial.print(data1, HEX);
-  Serial.print(" ");
-  Serial.println(data2, HEX);
   Serial1.write(cmd);     // command byte (should be > 127)
   Serial1.write(data1);   // data byte 1 (should be < 128)
   Serial1.write(data2);   // data byte 2 (should be < 128)

@@ -4,7 +4,7 @@ Playng pre-recorded MIDI melodies is only so much fun, but making MIDI instrumen
 
 ## The Circuit
 
-This instrument will be the simplest input you can make: a single pushbutton. Connect a pushbutton to pin 5 of your microcontroller as follows: Connect one side of the pushbutton directly to pin 5. Connect the other side of the pushbutton to the voltage output (Vcc) of your microcontroller. Then connect a 10-kilohm resistor (with the brown, black, orange, and gold bands) from the junction between pin 5 and the pushbutton to ground. Figure 1 below shows how to connect it. 
+This instrument will be the simplest input you can make: a single pushbutton. Follow the [breadboard setup instructions](setup.md#breadboard-setup) in the setup exercise. Then connect a pushbutton to pin 5 of your microcontroller as follows: Connect one side of the pushbutton directly to pin 5. Connect the other side of the pushbutton to the voltage bus of your breadboard. Then connect a 10-kilohm resistor (with the brown, black, orange, and gold bands) from ground to the junction row connecting pin 5 and the pushbutton. Figure 1 below shows how to connect it. 
 
 ![Figure 1. Pushbutton attached to pin 5 of a MKR Zero](img/pushbutton-input_bb.png)
 
@@ -12,9 +12,9 @@ This instrument will be the simplest input you can make: a single pushbutton. Co
 
 ##  A Digital Input Sketch
  
-Now, write a sketch to read the pushbutton. When you press the pushbutton, a high voltage (the level of Vcc, or +3.3V) will be connected to the input. When you release it, the input will be connected to ground through the resistor.  The command to read a digital input is `digitalRead()`. When the input is a high voltage, `digitalRead()` will return a value of 1, and when the input's connected to ground, it will return a value of 0. 
+Now, write a sketch to read the pushbutton. When you press the pushbutton, a high voltage (in this case Vcc, or +3.3V) will be connected to the input. When you release it, the input will be connected to ground through the resistor.  The command to read a digital input is `digitalRead()`. When the input is a high voltage, `digitalRead()` will return a value of 1, and when the input's connected to ground, it will return a value of 0. 
 
-To use a digital I/O pin as an input, you first have to configure it as an input using the pinMode() command. You usually do this in the `setup()` function like so:
+To use a digital I/O pin as an input, you first have to configure it as an input using the ``pinMode()`` command. You usually do this in the `setup()` function like so:
 
 ````
 void setup() {
@@ -24,7 +24,7 @@ void setup() {
 }
 ````
 
-Then in the loop() function, you read the input like so:
+Then in the ``loop()`` function, you read the input like so:
 
 ````
 void loop() {
@@ -37,7 +37,7 @@ Upload this sketch, then open the Serial Monitor (the magnifying glass in  the t
 
 ## Digital Input State Change
 
-What you really need to know in order to send MIDI note on and note off messages is not just what the state of the pushbutton is, but when it changes from off to on. This is called *state change detection*. To do it, you need to know the current state of the input, then compare it to the previous state. You'll need a global variable for the previous button state:
+What you really need to know in order to send MIDI note on and note off messages is not just what the state of the pushbutton is, but when it changes from off to on. This is called **state change detection**. To do it, you need to know the current state of the input, then compare it to the previous state. You'll need a global variable to keep track of the previous button state:
 
 ````
 int lastButtonState = 0;
@@ -49,7 +49,7 @@ void setup() {
 }
 ````
 
-Then in the loop, read the button and compare the two. If they're not equal (that's what `!=` means) then the button has changed. It's either gone from on to off, or off to on (on is also referred to as HIGH because the voltage is high, and off is LOW):
+Then in the loop, read the button into a variable called ``buttonState`` and compare it to ``lastButtonState``. If they're not equal (that's what `!=` means) then the button has changed. It's either gone from on to off, or off to on (on is also referred to as ``HIGH`` because the voltage is high, and off is ``LOW``):
 
 ````
 void loop() {
@@ -67,7 +67,7 @@ void loop() {
   }
 ````
 
-Try this sketch out. You may notice that sometimes you get a false reading. The pushbutton may wiggle a little as you press, changing from off to on rapidly. You can fix this with a little `debounce delay`. Add a `delay(5);` after the comparison like so: 
+Try this sketch out. You may notice that sometimes you get a false reading. The pushbutton may wiggle a little as you press, changing from off to on rapidly. You can fix this with a little **debounce delay**. Add a `delay(5);` after the comparison like so: 
 
 ````
   if (buttonState != lastButtonState) {
@@ -79,7 +79,7 @@ The debounce delay gives the button a few milliseconds to settle into place befo
 
 ## Send MIDI Messages on the State Change
 
-Now you can send some MIDI. After the `loop()` function, add in the `midiCommand()` function that you wrote in the [MIDIUSB](midiusb.md) exercise:
+After the `loop()` function, add in the `midiCommand()` function that you wrote in the [MIDIUSB](midiusb.md) exercise:
 
 ````
 // send a 3-byte midi message
@@ -177,7 +177,7 @@ int lastButtonState = LOW;
 
   ````
 
-  Then in the setup(), you need to take the formula for a major scale and the tonic note you want, and generate a scale by adding the whole or half steps in sequence:
+  Then in the ``setup()``, you need to take the list of intervals for a major scale and the tonic note you want, and generate a scale by adding the whole or half steps in sequence:
 
   ````
   void setup() {
@@ -201,7 +201,7 @@ int lastButtonState = LOW;
   int naturalMinor[] = {2, 1, 2, 2, 1, 2, 2};
   ````
 
-Now copy the state change detector on the pushbutton, but add in the randomizer to pick from the `scale[]` array like so:
+Now copy the state change detector that ou wrote for the pushbutton, but add in the randomizer to pick from the `scale[]` array like so:
 
 ````
 
@@ -238,15 +238,26 @@ You can build many other instruments by combining analog and digital inputs and 
 2. determine when something important has happened (like a state change, or an analog sensor crossing a threshold)
 3. Generate a MIDI message from the sensor event
 
+### Eight-Key Keyboard
 Here's an example that uses [eight pushbuttons to generate a piano](https://github.com/tigoe/SoundExamples/blob/master/MIDI_examples/MIDIUSBJoystick/MIDIUSBJoystick.ino). The eight pushbuttons are attached to pins 0 though 7 just as the one shown above. The pushbutton is connected to +Vcc on one side, and to the pin on the other, with a 10-kilohm pulldown resistor from the pin to ground on each one. 
 
 ![Figure 2. Eight pushbuttons attached to pins 0-7 of a MKR Zero](img/pushbuttons-8-input_bb.png)
 
 *Figure 2. Eight pushbuttons attached to pins 0-7 of a MKR Zero. This uses the same digital input configuration as Figure 1 above.*
 
-Here's another [example that uses a joystick to generate and bend the pitch of a note](https://github.com/tigoe/SoundExamples/blob/master/MIDI_examples/MIDIUSBJoystick/MIDIUSBJoystick.ino). A joystick has a built-in pushbutton and two potentiometers. This example uses the pushbutton to start or stop a note, and the joystick to generate a pitch bend on the note. Pitch bend is a controller type in MIDI that lets you bend a note up or down from its original pitch. The joystick's X axis pin is attached to pin A0 and the pushbutton pin, marked SEL, is attached to pin 5.  Note that the pushbutton does not have a pulldown resistor because it is using the Arduino's internal pullup resistor. In this case, the pinMode is `INPUT_PULLUP`, and pressed is LOW and unpressed is HIGH. 
-
+### Joystick Pitch Bender
+Here's another [example that uses a joystick to generate and bend the pitch of a note](https://github.com/tigoe/SoundExamples/blob/master/MIDI_examples/MIDIUSBJoystick/MIDIUSBJoystick.ino). A joystick has a built-in pushbutton and two potentiometers. This example uses the pushbutton to start or stop a note, and the joystick to generate a pitch bend on the note. ***Pitch bend** is a controller type in MIDI that lets you bend a note up or down from its original pitch. The joystick's X axis pin is attached to pin A0 of the MKR Zero. The pushbutton pin, marked SEL, is attached to pin 5.  Note that the pushbutton does not have a pulldown resistor because it is using the Arduino's internal pullup resistor. In this case, the pinMode is `INPUT_PULLUP`, and pressed is LOW and unpressed is HIGH. 
 
 ![Figure 3. Joystick attached to pins 5 and A0 of a MKR Zero](img/joystick-input_bb.png)
 
 *Figure  3. Joystick attached to pins 5 and A0 of a MKR Zero. The pushbutton does not have a pulldown resistor because it is using the Arduino's internal pullup resistor.*
+
+### Make Your Own Instrument
+You can make all kinds of musical instruments with MIDI by combining pushbuttons and analog sensors like joysticks, potentiometers, and other control sensors. Here's a basic plan:
+
+* First, decide on what physical controls you'll use. 
+* Second, decide what MIDI property each control will control: note on and off? Pitch bend? Instrument selection? Volume?
+* Third, decide what change in the control makes something happen: state change of a button? Analog sensor crossing a threshold? Continuous change?
+* Fourth, write a program that reads that change and prints out a message to the Serial Monitor as a test
+* Finally, replace the Serial messages with a function to generate a MIDI command as you saw above.
+

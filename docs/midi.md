@@ -70,6 +70,10 @@ The MIDI serial examples will work on any Arduino, with some modification.
 
 Browse the reference links below, then try either the [MIDI USB](midiusb.md), [MIDI Bluetooth](midi-ble.md), [MIDI Serial](midi-serial.md), or [MIDI using VS1053](midi-vs1053.md) examples to try it out. 
 
+## Converting from one  MIDI Approach to Another
+
+All of the MIDI examples in this repository are written so that it should be relatively easy to convert from one MIDI form to another. The MIDI command functions are separated from the main loop function that you can swap one approach for another with little code change. 
+
 ## MIDI References
 
 The full MIDI protocol is detailed on the [MIDI Manufacturers' Association page](https://www.midi.org).

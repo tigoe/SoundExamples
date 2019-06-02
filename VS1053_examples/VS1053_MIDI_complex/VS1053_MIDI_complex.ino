@@ -55,14 +55,14 @@ void loop() {
 void piano1() {
   // iterate over the notes of the melody (12 notes):
   
-  for (int thisNote = 0; thisNote < 12; thisNote++) {
+  for (int noteCounter = 0; noteCounter < 12; noteCounter++) {
     // set the tempo (random value):
     int tempo = random(70, 90);
     // play a note from the melody:
-    midiCommand(0x90, melody[thisNote], 127);
+    midiCommand(0x90, melody[noteCounter], 127);
     delay(tempo);
     // turn the note off:
-    midiCommand(0x80, melody[thisNote], 127);
+    midiCommand(0x80, melody[noteCounter], 127);
     // delay for slightly longer than the note length:
     delay(tempo * 1.2);
   }
