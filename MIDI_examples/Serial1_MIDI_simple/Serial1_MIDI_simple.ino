@@ -42,7 +42,7 @@ void loop() {
   midiCommand(0x90, melody[thisNote], 0);
   // increment the note number for next time through the loop:
   thisNote++;
-  // keep the note in the range from 0 - 12 using modulo:
+  // keep the note in the range from 0 - 11 using modulo:
   thisNote = thisNote % 12;
 }
 

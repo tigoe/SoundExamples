@@ -95,7 +95,7 @@ Next you need to calculate how long the note is. In common time, the standard be
   You want to keep the note counter no larger than the length of the melody, so you can use the[ **modulo** operator](https://www.arduino.cc/reference/en/language/structure/arithmetic-operators/remainder/) to do that. The modulo operation returns the remainder of the division of two numbers. So for example, 4 modulo 3 (written 4 % 3) is 1, because 4 divided by three has a remainder of one. The result of a modulo operation is always one less than the second operand. So ``noteCounter % 12`` will always be within the range 0-11. That's helpful, since your note values in the array are numbered from 0 to 11. Finish the loop by using the modulo to keep the note counter in the range 0-11:
 
 ````
-    // keep the note in the range from 0 - 12 using modulo:
+    // keep the note in the range from 0 - 11 using modulo:
   noteCounter = noteCounter % 12;
 }
 ````

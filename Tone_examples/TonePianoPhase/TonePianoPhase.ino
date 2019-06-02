@@ -49,6 +49,6 @@ void loop() {
 
   // increment the note number for next time through the loop:
   noteCounter++;
-  // keep the note in the range from 0 - 12 using modulo:
+  // keep the note in the range from 0 - 11 using modulo:
   noteCounter = noteCounter % 12;
 }

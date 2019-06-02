@@ -1,8 +1,8 @@
 # MIDI USB
 
-These examples make your microcontroller show up to your personal computer as a MIDI controller. Thy will work on any of the USB-native Arduino boards, like the  MKR boards, Leonardo, Micro, and Yún. There's no special circuit for these examples. You just plug your board into your personal computer, upload a MIDI USB example, and it will appear to your computer as a MIDI controller.
+These examples make your microcontroller show up to your personal computer as a MIDI controller. Thy will work on any of the USB-native Arduino boards, like the  MKR boards, Leonardo, Micro, Yún, and Nano 33 IoT. There's no special circuit for these examples. You just plug your board into your personal computer, upload a MIDI USB example, and it will appear to your computer as a MIDI controller.
 
-In order to use these examples on a MKR Zero, MKR 1000, MKR 1010 or other board, you'll need to install the MIDIUSB library. In the Arduino IDE, click on the Sketch Menu, then choose Include Library... then Manage Libraries. This will open the Library Manager. Filter for MIDIUSB, and you should see a library called MIDIUSB by Gary Grewal, Arduino. Install it. Then you're ready to start.
+In order to use these examples on a MKR Zero, MKR 1000, MKR 1010 or other board, you'll need to install the MIDIUSB library. In the Arduino IDE, click on the Sketch Menu, then choose Include Library... then Manage Libraries. This will open the Library Manager. Filter for MIDIUSB, and you should see a library called "MIDIUSB by Gary Grewal, Arduino". Install it. Then you're ready to start.
 
 ## Simple MIDI Player
 
@@ -33,7 +33,7 @@ void setup() {
 }
 ````
 
-In the `loop()` function, you'll send a MIDI command to play a note on channel 1 (that's MIDI command 0x90) at full volume (that's 127, or 0x7F in hexadecimal). You'll write the function later, but with that information, you can write the call to the function:
+In the `loop()` function, you'll send a MIDI command to play a note on channel 0 (that's MIDI command 0x90) at full volume (that's 127, or 0x7F in hexadecimal). You'll write the function later, but with that information, you can write the call to the function:
 
 ````
 void loop() {
@@ -57,7 +57,7 @@ All the notes in this melody are sixteenth notes, which is 1/4 of a beat, so del
   ````
     // increment the note number for next time through the loop:
   noteCounter++;
-  // keep the note in the range from 0 - 12 using modulo:
+  // keep the note in the range from 0 - 11 using modulo:
   noteCounter = noteCounter % 12;
 }
 ````
