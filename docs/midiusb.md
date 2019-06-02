@@ -117,9 +117,50 @@ void midiCommand(byte cmd, byte data1, byte  data2) {
   midiEventPacket_t midiMsg = {cmd >> 4, cmd, data1, data2};
   MidiUSB.sendMIDI(midiMsg);
 ````
+### Utility Functions of the MIDIUSB Library
 
-It's worth noting that the MIDIUSB library also includes a file that gives you note names for the MIDI values. So if you want to write, for example, `pitchA4` instead of `69`, then include this file at the top of your sketch after the MIDIUSB library like so:
+It's worth noting that the MIDIUSB library also includes some utility functions in separate files. These can be useful for writing more readable code, by giving note names to MIDI note numbers and to their corresponding frequencies.
+
+#### pitchToNote.h
+
+The ``pitchToNote.h`` file  gives you note names for the MIDI values. So if you want to write, for example, `pitchA4` instead of `69`, then include this file at the top of your sketch after the MIDIUSB library like so:
 
 ````
 #include <pitchToNote.h>
 ````
+Once you've included this file, you can refer to note numbers by their pitch names, from ``pitchA0`` (note value 0) to pitchC8 (note value 127). This file does not give names to sharps, only flats. So, for example D-sharp is the same as E-flat in this file, so you'd call ``pitchE8b`` for both D-sharp 7 and E-flat 8.
+
+#### pitchToFrequency.h
+
+The ``pitchToFrequency.h`` file gives you an array of floating point values called ``pitchFrequency`` corresponding to the frequencies of each MIDI note. If you add it to your sketch at the top like so:
+
+````
+#include <pitchToFrequency.h>
+````
+then you can access the frequencies array  like using the midi note number so:
+
+````
+int midiNoteNumber = 69; // middle A
+float noteFrequency = pitchFrequency[midiNoteNumber];
+````
+You could combine these two utility files to get the frequenices by note name:
+
+````
+float noteFrequency = pitchFrequency[pitchA4];
+````
+
+#### frequencyToNote.h
+
+This file gives names to all the note frequencies. When you include it at the top of your sketch like so:
+````
+#include <frequencyToNote.h>
+````
+you can then refer to frequency values using names. For example:
+````
+float f = freqA4;
+````
+would set f to 440.000, and 
+````
+float f = freqG4;
+````
+would set f to 391.995. These are the frequencies corresponding to A4 and G4, respectively.
