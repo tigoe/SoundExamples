@@ -12,25 +12,27 @@ Synthesizers used to come exclusively encased in keyboards or rack-mounted boxes
 
 There are many parts to the MIDI protocol, but here are some basics to get you started.
 
-A MIDI message is a series of bytes sent from a controller to a playback device using [asyncnronous serial communication](setup.md#Serial-Communication). Each byte of a MIDI message is either a **command byte** or  **status byte**. Every MIDI message starts with a command byte that's like the verb of a sentence (or a programming function), followed by followed by status bytes, which are the modifiers of the command. MIDI command bytes always have values are between 128 and 255, and status bytes always have values  between 0 and 127. MIDI message bytes are usually written in **hexadecimal notation** Hexadecimal means base 16, which means you have 16 digits: 0 through 9, then A through F (A = 10 in base 10, B = 11, C = 11, and so forth until F = 15).
+A MIDI message is a series of bytes sent from a controller to a playback device using [asyncnronous serial communication](setup.md#serial-communication). Each byte of a MIDI message is either a **command byte** or  **status byte**. Every MIDI message starts with a command byte that's like the verb of a sentence (or a programming function), followed by followed by status bytes, which are the modifiers of the command (or the function parameters). MIDI command bytes always have values are between 128 and 255, and status bytes always have values  between 0 and 127. 
 
-MIDI sounds are organized in **channels**, with each channel being a different instrument. Channels can be organized into **banks** of instrument styles. MIDI is often organized in groups of 16: groups of instruments are generally groups of no more than 16 (for example, the [General MIDI Sound Set](https://www.midi.org/specifications-old/item/gm-level-1-sound-set)), and so forth. This makes hexadecimal notation handy. 
+<u style="color: green;">Syntax note:</u>  MIDI message bytes are usually written in **hexadecimal notation** Hexadecimal means base 16, which means you have 16 digits: 0 through 9, then A through F (A = 10 in base 10, B = 11, C = 11, and so forth until F = 15). Each place is a power of 16, just as each place in base 10 is a power of ten. In hexadecimal notation, the number 127 is written 0x7F (16 * 7 + 15). 128 is 0x80, or 8 * 16. 
 
-For example, to play a note on a piano, which is usually channel 1 you send a note on command byte followed by a pitch status byte and a velocity, or volume, status byte. So note on, middle A would be:
+MIDI sounds are organized in **channels**, with each channel being a different instrument. Channels can be organized into **banks** of instrument styles. MIDI is often organized in groups of 16: groups of instruments are generally groups of no more than 16 (for example, the [General MIDI Sound Set](https://www.midi.org/specifications-old/item/gm-level-1-sound-set)). This makes hexadecimal notation handy. 
 
-* 0x90 (note on, channel 1)
+For example, to play a note on a piano, which is usually the first channel (or channel 0) you send a note-on command byte followed by a pitch status byte and a velocity, or volume, status byte. So note on, middle A, medium loud would be:
+
+* 0x90 (note on, channel 0)
 * 0x45 (69 in base 10, or middle A, 440Hz)
 * 0x40 (64 in base 10, or medium loud)
 
 Note off for the same note on the same channel would be:
 
-* 0x80 (note off, channel 1)
+* 0x80 (note off, channel 0)
 * 0x45 (69 in base 10, or middle A, 440Hz)
 * 0x00 (0 no sound)
 
 You could also send a second note on message, at velocity 0.
 
-To change the instrument, you change the channel in the note on message. The channel is the lower digit of the message, so note on, channel 2, middle A would be:
+To change the instrument, you change the channel in the note on message. The channel is the lower digit of the message, so note on, channel 1, middle A would be:
 
 ````
 0x91 0x45 0x40
@@ -42,15 +44,19 @@ You'll see some other MIDI messages in the exercises that follow, but the noteon
 
 There are lots of options for MIDI input personal computers, from freeware **software synths** like [SimpleSynth](http://notahat.com/simplesynth/) (MacOS) for MacOS, or the cross-platform [Sforzando](https://www.plogue.com/downloads.html#sforzando) for Windows, MacOS and Linux. There are also fully-featured multi-track **digital audio workstation** applications that can take MIDI data and play software synths and record analog or digital audio input at the same time, and output multi-track recordings. Pro Tools, Ableton Live and GarageBand for MacOS, are examples of DAW software. There are  also programming environments that can take MIDI input via USB or network. Max/MSP and Pure Data (Max' open source cousin) are examples of these. You can get started at any level you want, but if you're new to MIDI, than the simplest and least expensive way is probably to download a free software synth.
 
-Synthesizers, both the sofware kind and the hardware kind, take MIDI input and synthesize different instrument sounds using the data. Software synths are just applications running on a personal computer, and can be expanded to play new sounds using a file format called [SoundFonts](http://www.sfzformat.com/). These expand what a software synth app can do similarly to how text fonts expand what a word processor can do. A sountFont might give your software synth app a new piano or guitar sound, for example.
+Synthesizers, both the sofware kind and the hardware kind, take MIDI input and synthesize different instrument sounds using the data. Software synths are just applications running on a personal computer, and can be expanded to play new sounds using a file format called [SoundFonts](http://www.sfzformat.com/). These expand what a software synth app can do similarly to how text fonts expand what a word processor can do. A soundFont might give your software synth app a new piano or guitar sound, for example.
 
-## Three Approaches to MIDI Controllers
+## Approaches to MIDI Controllers
 
 There are three approaches to building MIDI controllers using Arduino covered here, depending on what kind of playback device you plan to use. 
 
 ### MIDI USB 
 
-If you're communicating with a software synthesizer or digital audio workstation, you'll want the [**MIDI USB examples**](midiusb.md). These examples make your microcontroller appear to your personal computer as a MIDI controller. The MIDI USB examples will work on any of the USB-native Arduino boards, like the  MKR boards, Leonardo, Micro, and Yún. There's no special circuit for these examples. You just plug your board into your personal computer, upload a MIDI USB example, and it will appear to your computer as a MIDI controller. 
+If you're communicating with a software synthesizer or digital audio workstation, you'll want the [**MIDI USB examples**](midiusb.md). These examples make your microcontroller appear to your personal computer as a MIDI controller. The MIDI USB examples will work on any of the USB-native Arduino boards, like the  MKR boards, Leonardo, Micro, and Yún. They'll work on the Nano 33 IoT as well. There's no special circuit for these examples. You just plug your board into your personal computer, upload a MIDI USB example, and it will appear to your computer as a MIDI controller.
+
+### MIDI Bluetooth
+
+The [MIDI Bluetooth examples](midi-ble.md) will work on a Bluetooth-enabled Arduino like the MKR 1010 or the Nano 33 IoT. They communicate with your computer using Bluetooth LE. They've only been tested on MacOS.
 
 ### MIDI Serial
 
@@ -58,11 +64,11 @@ If you're communicating with a piece of MIDI equipment like a synthesizer or a s
 
 The MIDI serial examples will work on any Arduino, with some modification. 
 
-### MIDI serial to a VS1053 Synth Module
+### MIDI Serial to a VS1053 Synth Module
 
  [VSLI's VS1053 MP3 decoder and MIDI synthesizer](http://www.vlsi.fi/en/products/vs1053.html) is a synthesizer module that can be mounted on a breadboard, or connected directly to a microcontroller. It can also play MP3 sound files. Sparkfun and Adafruit both make breakout boards or Arduino shields for this component. The [MIDI VS1053 page](midi-vs1053.md) covers this approach. 
 
-Browse the reference links below, then try either the [MIDI USB](midiusb.md), [MIDI Serial](midi-serial.md), or [MIDI using VS1053](midi-vs1053.md) examples to try it out. 
+Browse the reference links below, then try either the [MIDI USB](midiusb.md), [MIDI Bluetooth](midi-ble.md), [MIDI Serial](midi-serial.md), or [MIDI using VS1053](midi-vs1053.md) examples to try it out. 
 
 ## MIDI References
 
