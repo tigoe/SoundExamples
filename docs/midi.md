@@ -12,9 +12,7 @@ Synthesizers used to come exclusively encased in keyboards or rack-mounted boxes
 
 There are many parts to the MIDI protocol, but here are some basics to get you started.
 
-MIDI is made up of sent from a controller to a playback device using asyncnronous serial communication.
-
-Each byte of a MIDI message is either a **command byte** or  **status byte**. Every MIDI message starts with a command byte that's like the verb of a sentence (or a programming function), followed by followed by status bytes, which are the modifiers of the command. MIDI command bytes always have values are between 128 and 255, and status bytes always have values  between 0 and 127. MIDI message bytes are usually written in **hexadecimal notation** Hexadecimal means base 16, which means you have 16 digits: 0 through 9, then A through F (A = 10 in base 10, B = 11, C = 11, and so forth until F = 15).
+A MIDI message is a series of bytes sent from a controller to a playback device using [asyncnronous serial communication](setup.md#Serial-Communication). Each byte of a MIDI message is either a **command byte** or  **status byte**. Every MIDI message starts with a command byte that's like the verb of a sentence (or a programming function), followed by followed by status bytes, which are the modifiers of the command. MIDI command bytes always have values are between 128 and 255, and status bytes always have values  between 0 and 127. MIDI message bytes are usually written in **hexadecimal notation** Hexadecimal means base 16, which means you have 16 digits: 0 through 9, then A through F (A = 10 in base 10, B = 11, C = 11, and so forth until F = 15).
 
 MIDI sounds are organized in **channels**, with each channel being a different instrument. Channels can be organized into **banks** of instrument styles. MIDI is often organized in groups of 16: groups of instruments are generally groups of no more than 16 (for example, the [General MIDI Sound Set](https://www.midi.org/specifications-old/item/gm-level-1-sound-set)), and so forth. This makes hexadecimal notation handy. 
 

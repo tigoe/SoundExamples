@@ -1,14 +1,14 @@
 # Generating a Melody
 
-Once you know how to [calculate the pitch for different notes](tone.md), you might want to play a song melody. This exercise introduces shows one way to do that. Although the tone() command can't play polyphonic melodies (i.e. multiple tones at once), it's useful for learning how to program simple sequences of notes. This same method can be used later when you want to generate more complex melodies on an external synthesizer too.
+Once you know how to [calculate the pitch for different notes](tone.md), you might want to play a song melody. This exercise introduces shows one way to do that. Although the ``tone()`` command can't play polyphonic melodies (i.e. multiple tones at once), it's useful for learning how to program simple sequences of notes. This same method can be used later when you want to generate more complex melodies on an external synthesizer too.
 
-For all of the code in this exercise, you only need a speaker or headphone jack attached to your board, as shown in Figures 1 and 2:
+For all of the code in this exercise, you only need a speaker or headphone jack attached to your board, as shown in Figures 1 and 2. This is the same wiring as you used in the [basic setup exercise](setup.md):
 
-![Figure 1. Speaker attached to pin 5 of a MKR Zero](img/speaker-circuit_bb.png)
+![Figure 1. Speaker attached to pin 5 of a MKR Zero. All the components are mounted on a solderless breadboard.](img/speaker-circuit_bb.png)
 
 *Figure 1. Speaker attached to pin 5 of a MKR Zero.*
 
-![Figure 2. headphone jack attached to pin 5 of a MKR Zero](img/headphone-circuit_bb.png)
+![Figure 2. headphone jack attached to pin 5 of a MKR Zero. All the components are mounted on a solderless breadboard.](img/headphone-circuit_bb.png)
 
 *Figure 2. Headphone jack attached to pin 5 of a MKR Zero.*
 
@@ -17,15 +17,13 @@ For all of the code in this exercise, you only need a speaker or headphone jack 
 At its simplest, a melody is a series of pitches played in a sequence over time. In order to play a melody, you need to know a few things:
 
 * the sequence of pitches to be played
-* the durations for each note
-* the tempo at which to play them
-* the time signature of the melody
+* the duration for each pitch
+* the **tempo** at which to play them. Tempo is generally measured in beats per minute.
+* the **time signature** of the melody. The time signature tells you how many beats per measure of music there will be, and what kind of note gets one beat. The most common time signature, 4/4 time (also called common time) has four beats per measure, and a quarter note gets one beat. A melody in common time simplifies things. 
 
-The **tempo** of a melody is generally measured in beats per minute, and the **time signature** tells you how many beats per measure of music there will be, and what kind of note gets one beat. The most common time signature, 4/4 time (also called common time) has four beats per measure, and a quarter note gets one beat. A melody in common time simplifies things. 
+Let's with a simple melody. Steve Reich's *[Piano Phase](https://www.scribd.com/doc/90735776/Piano-Phase-Steve-Reich)* is a minimalist duet for two pianos. The melody is twelve notes long. Each note is a sixteenth note. The twelve-note phrase is repeated indefinitely on two pianos, with each piano shifting its tempo slightly to create phase shifting. It's written to be played at 72 beats per minute in common time. You can store the melody in a list called an integer array.
 
-Let's with a simple melody. Steve Reich's *[Piano Phase](https://www.scribd.com/doc/90735776/Piano-Phase-Steve-Reich)* is a minimalist duet for two pianos that's twelve notes long, Each note is a sixteenth note. The phrase repeated indefinitely on two pianos, with one shifting its tempo slightly to create phase shifting. It's written to be played at 72 beats per minute in common time. You can store the melody in an integer array.
-
-<u style="color: green;">Syntax note:</u> an [**array**](https://www.arduino.cc/reference/en/language/variables/data-types/array/) is a variable that can hold multiple values of the same types. You use arrays when you need to store similar things, like the values of notes in a melody. 
+<u style="color: green;">Syntax note:</u> an [**array**](https://www.arduino.cc/reference/en/language/variables/data-types/array/) is a variable that can hold multiple values of the same types. You use arrays when you need to store similar things, like the values of notes in a melody. All arrays are declared by the type of variable they hold. For example integer array is basically a list of integers. 
 
 Start your sketch by setting the refrence frequency and note number for A4 as usual, and a constant for the pin number:
 
@@ -36,7 +34,9 @@ Start your sketch by setting the refrence frequency and note number for A4 as us
 const int speakerPin = 5;  // the pin number for the speaker
 ````
 
-Next, make an array of integers to store the note numbers of the melody, and a single integer variable to keep track of which note you are on:
+Next, make an array of integers to store the note numbers of the melody, and an integer variable called ``noteCounter`` to keep track of which note you are on. These note numbers are derived using the formula you learned in the [tone exercise](tone.md):
+
+<u style="color: green;">Syntax note:</u> Elements in an array are counted from 0, not 1. So the first element is element 0. 
 
 ````
 // the melody sequence:
@@ -45,20 +45,27 @@ int melody[] = {64, 66, 71, 73, 74, 66, 64, 73, 71, 66, 74, 73};
 int noteCounter = 0;
 ````
 
-Next you need to calculate the duration of each beat based on the tempo:
+Next you need to calculate the duration of each beat based on the tempo. Calculate it in milliseconds so you can use the calculation with the ``delay()`` command:
 
 ````
 int bpm = 72;  // beats per minute
 // duration of a beat in ms
 float beatDuration = 60.0 / bpm * 1000;
 ````
-
-In the loop, start by getting copying current note from the array. Then calculate the pitch using the same formula you used in the [pitch calculation exercise](tone.md):
+In your setup function, make the speakerPin an output:
+````
+void setup() {
+  // make the speaker pin an output:
+  pinMode(speakerPin, OUTPUT);
+}
+````
+In your loop function, start by copying a note from the array into a variable called ``currentNote``. Then calculate the pitch using the same formula you used in the [pitch calculation exercise](tone.md):
 
 ````
 void loop() {
   // current note is an element of the array:
   int currentNote = melody[noteCounter];
+
   // play a note from the melody:
   // convert MIDI note number to frequency:
   float frequency =  FREQ_A4 * pow(2, ((currentNote - NOTE_A4) / 12.0));
@@ -78,14 +85,14 @@ Next you need to calculate how long the note is. In common time, the standard be
   noTone(speakerPins);
   ````
 
-  Finally, add one to the note counter:
+  Finally, add one to the note counter so that the next time through the loop, you're playing the next note:
 
   ````
     // increment the note number for next time through the loop:
   noteCounter++;
   ````
   
-  You want to keep the note counter no larger than the length of the melody, so you can use the[ **modulo** operator](https://www.arduino.cc/reference/en/language/structure/arithmetic-operators/remainder/) to do that. The modulo operation returns the remainder of the division of two numbers. So for example, 4 modulo 3 (written 4 % 3) is 1, because 4 divided by three has a remainder of one. The result of a modulo operation is always less than the second operand. So ``noteCounter % 12`` will always be within the count of notes in the melody. Finish the loop by using the modulo to keep the note counter in the range 0-12:
+  You want to keep the note counter no larger than the length of the melody, so you can use the[ **modulo** operator](https://www.arduino.cc/reference/en/language/structure/arithmetic-operators/remainder/) to do that. The modulo operation returns the remainder of the division of two numbers. So for example, 4 modulo 3 (written 4 % 3) is 1, because 4 divided by three has a remainder of one. The result of a modulo operation is always one less than the second operand. So ``noteCounter % 12`` will always be within the range 0-11. That's helpful, since your note values in the array are numbered from 0 to 11. Finish the loop by using the modulo to keep the note counter in the range 0-11:
 
 ````
     // keep the note in the range from 0 - 12 using modulo:
@@ -99,7 +106,7 @@ Here is [the complete TonePianoPhase sketch](https://github.com/tigoe/SoundExamp
 
 ## A More Complex Melody: Calculating Note Lengths and Relative Pitches
 
-Let's take slightly more complex melody, *Frere Jacques*. This melody has 32 notes, and is in common time at 120 beats per minute. The notes don't all have the same length though. So you could save this melody in two arrays, one for the melody and one for the rhythmic pattern. Each array will have 32 elements, so the sketch can iterate over them both at the same time.
+Let's take slightly more complex melody, *Frere Jacques*. This melody has 32 notes, and is in common time at 120 beats per minute. The notes don't all have the same length though. So you could save this melody in two arrays, one for the pitches and one for the rhythms. Each array will have 32 elements, so the sketch can iterate over them both at the same time.
 
 What if you want to change the key in which you're playing the song? To do that, you need to know the relative pitches, rather than the absolute ones. In other words, you need to know how many semitones away from each other each note in the melody is. Then you can pick a starting note (called the **tonic** of the key you're in. Each key is named for its tonic) and move up and down from there with the melody. 
 
@@ -111,7 +118,7 @@ Figure 3 shows Frere Jacques in standard musical notation, in F.
 
 *Figure 3.* Frere Jacques *in musical notation. credit: Wikipedia author Mysid - Own work; self-made in MuseScore.* 
 
-Here's what the melody of Frere Jacques looks like in relative semitones. Each measure is given its own line to make it easier to read. The second array is the rhythms, where 1 = whole notes, 2 = half notes, and so forth:
+Here's what the melody of Frere Jacques looks like in relative semitones. Each measure is given its own line to make it easier to read. The second array is the rhythms, where 1 = whole notes, 2 = half notes, 4 = quarter notes, and so forth:
 
 ````
 // the melody sequence:
@@ -134,7 +141,7 @@ int rhythm[] = {4, 4, 4, 4,
                 4, 4, 2
                };
 ````
-*Note: if you're confused because you've seen this song written out before as "1,2,3,1,1,2,3,1,3,4,5... " etc, it's because those pitches are whole tones, not semitones.*
+*Note: if you're confused because you might have seen this song written out before as "1,2,3,1,1,2,3,1,3,4,5... " etc, In that notation, those pitches are whole tones, not semitones.*
 
 With that information, you're ready to write the sketch to play it. Start, as usual, by setting the refrence frequency and note number for A4 as usual, and a constant for the pin number. Then add the score, both melody and rhythm, and the noteCounter. Add a variable for the melody length too. Then calculate the beats per minute from the tempo:
 
@@ -186,7 +193,7 @@ void setup() {
 }
 ````
 
-The beginning of the loop is a bit more complext this time. After you get the note value from the melody array, you have to add the tonic to it before you calculate the pitch:
+The beginning of the loop is a bit more complex this time. After you get the note value from the melody array, you have to add the tonic to it before you calculate the pitch, because the melody array gives relative note values this time:
 
 ````
 void loop() {
@@ -215,7 +222,7 @@ With this tune, perhaps you want it more [staccato](https://musicterms.artopium.
   noTone(speakerPin);
 ````
 
-If you don't like that level of separation, change the percentage in the code above. Note thst the ``tone()`` command will only play the note for whatever percentage of the note duration you give it.
+If you don't like that level of separation, change the percentage in the code above. The ``tone()`` command will only play the note for whatever percentage of the note duration you give it.
 
 Finally, increment the note counter, and make sure it stays within the melody length like you did before:
 
