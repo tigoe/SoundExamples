@@ -8,7 +8,15 @@
   Based on work by Don Coleman
 */
 #include <ArduinoBLE.h>
+
 byte midiData[] = {0x80, 0x80, 0x00, 0x00, 0x00};
+
+// set up the MIDI service and MIDI message characteristic:
+BLEService midiService("03B80E5A-EDE8-4B33-A751-6CE34EC4C700");
+BLECharacteristic midiCharacteristic("7772E5DB-3868-4112-A1A9-F2669D106BF3",
+                                     BLEWrite | BLEWriteWithoutResponse |
+                                     BLENotify | BLERead, sizeof(midiData));
+
 
 int bpm = 72;  // beats per minute
 // duration of a beat in ms
@@ -18,14 +26,6 @@ float beatDuration = 60.0 / bpm * 1000;
 int melody[] = {64, 66, 71, 73, 74, 66, 64, 73, 71, 66, 74, 73};
 // which note of the melody to play:
 int noteCounter = 0;
-
-// set up the MIDI service and MIDI message characteristic:
-BLEService midiService("03B80E5A-EDE8-4B33-A751-6CE34EC4C700");
-BLECharacteristic midiCharacteristic("7772E5DB-3868-4112-A1A9-F2669D106BF3",
-                                     BLEWrite | BLEWriteWithoutResponse |
-                                     BLENotify | BLERead, sizeof(midiData));
-
-
 void setup() {
   // initialize serial communication
   Serial.begin(9600);

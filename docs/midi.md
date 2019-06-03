@@ -81,6 +81,8 @@ The full MIDI protocol is detailed on the [MIDI Manufacturers' Association page]
 The [General MIDI specification](https://www.midi.org/specifications-old/item/general-midi) lists all a general synth should be able to do. 
 The [General MIDI instrument specification](https://www.midi.org/specifications-old/item/gm-level-1-sound-set) lists all the instruments that should be available on a general MIDI synth. 
 
+[The MIDI BLE specification](https://www.midi.org/specifications/item/bluetooth-le-midi)
+
 [MIDI Pitch Bending ](midi-pitch-bend.md) because why stay with just well-tempered notes?
 
 [MIDI Bit Shifting](midi-bit-shifting.md) because you often need to convert 8-bit values to 7-bit bytes in MIDI
@@ -88,6 +90,8 @@ The [General MIDI instrument specification](https://www.midi.org/specifications-
 ## MIDI Exercises
 
 * [MIDI USB Intro](midiusb.md)
+* [MIDI Serial Intro](midi-serial.md)
+* [MIDI BLE Intro](midi-ble.md)
 * [Making A MIDI Instrument](midi-instrument.md)
 
 ## MIDI Software Links
@@ -114,5 +118,9 @@ MIDI Programming IDEs:
 * [Pure Data](http://puredata.info/downloads/pure-data) (free)
 * [Pd manual](http://write.flossmanuals.net/pure-data/introduction2/)
 * [Max/MSP](https://cycling74.com/downloads) (not free)
+
+MIDI Connection and Diagnostic Tools:
+* [MIDI Monitor](https://www.snoize.com/MIDIMonitor/) (macOS)
+* [MIDI BLE Connect](https://play.google.com/store/apps/details?id=com.mobileer.example.midibtlepairing) (Android)
 
 
