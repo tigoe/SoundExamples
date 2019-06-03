@@ -169,4 +169,4 @@ Launch Sforzando. The first time you launch it, it should prompt you to set your
 
 Now you're ready to go on to [making a MIDI instrument](midi-instrument.md).
 
-Note: you can also connect Android software synths to your controller using the [MIDI BLE Connect app](https://play.google.com/store/apps/details?id=com.mobileer.example.midibtlepairing) which you can download from the Android app store. 
+**Note:** you can also connect Android software synths to your controller using the [MIDI BLE Connect app](https://play.google.com/store/apps/details?id=com.mobileer.example.midibtlepairing) which you can download from the Android app store. 
