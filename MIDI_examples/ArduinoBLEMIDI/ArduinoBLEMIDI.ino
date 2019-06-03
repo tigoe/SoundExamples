@@ -72,7 +72,6 @@ void loop() {
   }
   // when the central disconnects, turn off the LED:
   digitalWrite(LED_BUILTIN, LOW);
-
 }
 
 // send a 3-byte midi message
