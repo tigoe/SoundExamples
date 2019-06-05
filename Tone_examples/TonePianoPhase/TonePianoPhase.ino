@@ -45,7 +45,7 @@ void loop() {
   // keep it on for the appropriate duration:
   delay(noteDuration);
   // turn the note off:
-  noTone(speakerPins);
+  noTone(speakerPin);
 
   // increment the note number for next time through the loop:
   noteCounter++;

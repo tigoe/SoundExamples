@@ -12,7 +12,7 @@ I2S is a synchronous serial bus protocol, meaning that you can connect multiple 
 
 * Serial clock (SCK) or Bit Clock (BCLK): the line that carries the clock signal
 * Frame Select (FS), also called Word Select (WS), or Left-Right Clock (LRC): determines left and right channels
-* Data (SD), also called Digital Out (DOUT) or Digital In (DIN) depending on the application: the data signal itself.
+* Data, also called Digital Out (DOUT) or Digital In (DIN) depending on the application: the data signal itself.
 
 The controlling device sends the clock signal, just like in other synchronous serial protocols like I2C and SPI. For more on the technical details, see the [I2S specification](https://www.cypress.com/file/133906/download), as explained on Cypress' site. 
 
@@ -22,7 +22,7 @@ The typical connections are as follows:
 
 * BCLK connects to pin 2 of the MKR board
 * LRC connects to pin 3 of the MKR board
-* SD connects to pin A6 of the MKR board
+* DIN/DOUT connects to pin A6 of the MKR board
 
 This wiring is shown in Figure 1 with a MSX98357 I2S amplifier, and in Figure 2 with a UDA1334 Digital-to-Analog (DAC) module, and Figure 3 with an I2S microphone. You'll see this wiring repeated the examples that follow.
 
@@ -30,7 +30,7 @@ The first two modules take an I2S signal as input and output analog audio. The m
 
 ![Figure 1. MAX98357 I2S audio amplifier connected to a MKR Zero.](img/I2S_amp_circuit_MAX98357_simple_bb.png)
 
-*Figure 1. MAX98357 I2S audio amplifier connected to a MKR Zero. The amp is mounted on the breadboard below the MKR Zero, with the pins on the left side. The pins, numbered from top left, are: LRC; BCLK; DIN; GAIN; SD; GND; Vin.  The amp's pin 1 (LRC) is connected to the MKR Zero's digital pin 3 (physical pin 11). The amp's pin 2 (BCLK) is connected to the MKR Zero's digital pin 2 (physical pin 10). The amp's pin 3 (DIN) is connected to the MKR Zero's pin A6 (physical pin 8). The amp's pin 6 (GND) is connected to the ground bus and pin 7 (Vin) is connected to the 3.3V  bus.*
+*Figure 1. MAX98357 I2S audio amplifier connected to a MKR Zero. The amp is mounted on the breadboard below the MKR Zero, with the pins on the left side. The pins, numbered from top left, are: LRC; BCLK; DIN; GAIN; SD; GND; Vin.  The amp's pin 1 (LRC) is connected to the MKR Zero's digital pin 3 (physical pin 11). The amp's pin 2 (BCLK) is connected to the MKR Zero's digital pin 2 (physical pin 10). The amp's pin 3 (DIN) is connected to the MKR Zero's pin A6 (physical pin 8). The amp's pin 5 (SD, or shutdown) is connected to the 3.3V bus. The amp's pin 6 (GND) is connected to the ground bus and pin 7 (Vin) is connected to the 3.3V  bus.*
 
 ![Figure 2. UDA1334 I2S DAC connected to a MKR Zero.](img/I2S_amp_circuit_simple_bb.png)
 
@@ -38,7 +38,7 @@ The first two modules take an I2S signal as input and output analog audio. The m
 
 ![Figure 3. INMP1441 I2S Mic connected to a MKR Zero.](img/I2S_INMP1441_mic_circuit_simple_bb.png)
 
-*Figure 3. INMP1441 I2S Mic  connected to a MKR Zero. The Mic is mounted on the breadboard below the MKR Zero. The Mic's pins, numbered in a U pattern from top left, are: L/R select; WS; SCK; SD; 3V; GND.  Pin 2 (WS) is connected to digital pin 3 on the MKR Zero (physical pin 11). Pin 3 of the mic (SCK) is connected to digital pin 2 on the MKR Zero (physical pin 10). Pin 4 of the mic (SD) is connected to pin A6 of the MKR Zero (physical pin 8). Pin 5 of the mic (3V) is connected to the 3V bus. Pin 6 of the mic (GND) is connected to the ground bus.*
+*Figure 3. INMP1441 I2S Mic connected to a MKR Zero. The Mic is mounted on the breadboard below the MKR Zero. The Mic's pins, numbered in a U pattern from top left, are: L/R select; WS; SCK; SD; 3V; GND.  Pin 2 (WS) is connected to digital pin 3 on the MKR Zero (physical pin 11). Pin 3 of the mic (SCK) is connected to digital pin 2 on the MKR Zero (physical pin 10). Pin 4 of the mic (SD) is connected to pin A6 of the MKR Zero (physical pin 8). Pin 5 of the mic (3V) is connected to the 3V bus. Pin 6 of the mic (GND) is connected to the ground bus.*
 
 ## Examples
 

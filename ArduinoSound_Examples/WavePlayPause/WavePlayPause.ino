@@ -30,12 +30,13 @@
 
 // filename of wave file to play
 // file name must be 8chars . 3 chars
-const char filename[] = "SOUND.WAV";
+const char filename[] = "15_B-BOY.WAV";
 
 // variable representing the Wave File
 SDWaveFile waveFile;
 // previous state of the pushbutton:
 int lastButtonState = HIGH;
+
 
 void setup() {
   // Open serial communications:
