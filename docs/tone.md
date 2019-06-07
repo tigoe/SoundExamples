@@ -63,7 +63,7 @@ The 30 millisecond delay is there so that the tone is on long enough for you to 
 
 So far your sketch doesn't sound much like music. That's because it is playing many more frequencies than you might hear in a musical composition. It's playing 1024 different possible frequencies. 
 
-In musical compositon, different tuning systems determine the frequencies, or pitches, of the notes to be played. In European classical music tradition, the most common tuning system in the last few hundred years has been the 12-tone equal temperament system. This system divides an octave into twelve pitches, in which the frequency interval between every pair of adjacent notes has the same ratio.  The pitches are arranged on a logarithmic scale, and the ratio between pitches is equal to to the 12th root of 2, or 2<super>1/12</super>, or approximately 1.05946. The whole tuning system is based off a reference frequency. The 12-tone equal temperament system uses a middle A note (or A4, for A in the 4th octave), or 440 Hz, as its reference frequency. Each adjacent note differs from the one next to it by a factor of 2<sup>1/12</sup> or 1.05946. So the next note up from middle A, A-sharp 4, is 1.05946 * 440, or 466.16 Hz. The next note after that, B4, is 1.05946 * 466.16, or 493.88 Hz. The step between each adjacent note is called a **semitone**
+In musical compositon, different tuning systems determine the frequencies, or pitches, of the notes to be played. In European classical music tradition, the most common tuning system in the last few hundred years has been the 12-tone equal temperament system. This system divides an octave into twelve pitches, in which the frequency interval between every pair of adjacent notes has the same ratio.  The pitches are arranged on a logarithmic scale, and the ratio between pitches is equal to to the 12th root of 2, or 2<sup>1/12</sup>, or approximately 1.05946. The whole tuning system is based off a reference frequency. The 12-tone equal temperament system uses a middle A note (or A4, for A in the 4th octave), or 440 Hz, as its reference frequency. Each adjacent note differs from the one next to it by a factor of 2<sup>1/12</sup> or 1.05946. So the next note up from middle A, A-sharp 4, is 1.05946 * 440, or 466.16 Hz. The next note after that, B4, is 1.05946 * 466.16, or 493.88 Hz. The step between each adjacent note is called a **semitone**
 
 *[Wikipedia's page on equal temperament](https://en.wikipedia.org/wiki/Equal_temperament) gives a longer explanation if you want to know more.*
 
@@ -71,7 +71,7 @@ You can use this information to calculate the frequency of any note in the scale
 
 If the note value you want is called ``noteValue``, and reference freqency is called ``refFreq``, and the reference note is called ``refNote``, then 
 
-frequency = refFreq * 2<sup>((noteValue - refNote) / 12.0))</su>;
+frequency = refFreq * 2<sup>((noteValue - refNote) / 12.0))</sup>;
 
 The Arduino API includes a function called the [``pow()`` function](https://www.arduino.cc/reference/en/language/functions/math/pow/) that raises a number to a power. The reference frequency and reference note number can be set as constants, or as #``define`` statements, which are like aliases for the IDE. So that formula, expressed as a line of Arduino programming code, would look like this:
 
