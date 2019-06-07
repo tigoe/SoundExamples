@@ -52,9 +52,9 @@ void setup() {
 }
 ````
 
-<u style="color: green;">Syntax note:</u>: The [``pinMode()``](https://www.arduino.cc/reference/en/language/functions/digital-io/pinmode/) function configures a pin of the Arduino to be a digital input or an output. The parameters are the pin number (an int) and the state (INPUT or OUTPUT).
+<u style="color: green;">Syntax note:</u> The [``pinMode()``](https://www.arduino.cc/reference/en/language/functions/digital-io/pinmode/) function configures a pin of the Arduino to be a digital input or an output. The parameters are the pin number (an int) and the state (INPUT or OUTPUT).
 
-<u style="color: green;">Syntax note:</u>: Anything in ALL_CAPS is an alias in the program, usually a number that has been given a name. For example, INPUT is defined in the core of Arduino as 0, and OUTPUT is defined as 1.  You'll define a few of your own aliases in later exercises.
+<u style="color: green;">Syntax note:</u> Anything in ALL_CAPS is an alias in the program, usually a number that has been given a name. For example, INPUT is defined in the core of Arduino as 0, and OUTPUT is defined as 1.  You'll define a few of your own aliases in later exercises.
 
 In the loop, start with a floating point integer variable (a decimal number) called ``frequency``, and set equal to 440. Then make an integer variable called ``period``, and set it to (1/frequency ) * 1 million like so:
 
