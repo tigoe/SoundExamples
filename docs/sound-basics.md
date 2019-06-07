@@ -12,6 +12,9 @@ What vibrations are we talking about? A speaker can vibrate. The paper cone of t
 
 A computer makes sound by sending pulses of electrical energy through a wire that's connected to the paper cone of a speaker. That wire is wrapped in a coil, and mounted inside a magnet. The electrical energy generates a magnetic field, and that field is either attracted to the magnet or repelled by it, depending on which direction the electrical energy is flowing. The magnetic energy moves the coil, and since the coil is attached to the cone, the speaker moves.
 
+# Computers Making Sound
+Computers make sound using electrical signals. The central processor of a computer has input and output pins which can generate our read changes in electrical voltage. To learn about this, it's helpful to use a simple computer where you can connect wires to the processor directly. That's where Arduino modules come in.
+
 Arduino modules are simple computers called **microcontrollers**. They have input and output pins, and you can use one of those pins to vibrate a speaker.  To get started doing that, connect a speaker to your Arduino MKR Zero (or any of the MKR boards) as shown below.
 
 ## Connecting A Speaker or Headphone Jack to the Arduino
