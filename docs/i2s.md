@@ -6,7 +6,6 @@ I2S can be used to send pre-recorded audio files from a microcontroller to an am
 
 The MKR Zero and other Arduino modules in the MKR family can communicate using I2S. In the examples that follow, you'll see how to use an I2S amplifier to play WAV files from an SD card, and how to analyze audio coming from an I2S microphone.  
 
-
 ## Examples
 
 * [WAV file playback with volume control](https://github.com/tigoe/SoundExamples/tree/master/ArduinoSound_Examples/WaveVolumeControl)
@@ -18,7 +17,6 @@ The MKR Zero and other Arduino modules in the MKR family can communicate using I
 * [Pitch-to-MIDI detector](https://github.com/tigoe/SoundExamples/tree/master/ArduinoSound_Examples/PitchToMidi)
 
 * Microphone input with amplitude detection
-
 
 ## I2S Electrical Connections 
 
