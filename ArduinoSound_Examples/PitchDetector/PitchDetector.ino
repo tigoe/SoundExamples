@@ -1,8 +1,9 @@
 /*
   This example reads audio data from an I2S mic. It calculates the pitch range
   of an incoming sound. Peaks at about 4200 Hz, which is just above
-  note value C8.  Then it calculates the nearest MIDI note number
-  using the PitchToFrequency chart from the MIDIUSB library.
+  note value C8. 
+
+  This sketch is subject to the inaccuracies of Fast Fourier Transform.
 
   Circuit:
    Arduino/Genuino Zero, MKRZero or MKR1000 board
@@ -14,6 +15,7 @@
      SD connected to pin 9 (Zero) or pin A6 (MKR1000, MKRZero)
 
   created 7 April 2019
+  modified 7 June 2019
   by Tom Igoe
   based on Sandeep Mistry's ArduinoSound examples
 */
@@ -38,7 +40,7 @@ int spectrum[spectrumSize];
 FFTAnalyzer fftAnalyzer(fftSize);
 
 // arbitrary threshold for loudness. Range is 0 - 2^32 (4,294,967,296)
-int threshold = 100000;
+int threshold = 1000000;
 
 void setup() {
   // setup the serial
@@ -96,9 +98,9 @@ void loop() {
     // print the results
     if (loudestSample > threshold) {
       Serial.print(freqLow);
-      Serial.print(" ");
+      Serial.print("\t");
       Serial.print(freqHigh);
-      Serial.print("    ");
+      Serial.print("\t");
       // print out the amplititude to the serial monitor
       Serial.println(loudestSample);
     }

@@ -14,7 +14,6 @@ The MKR Zero and other Arduino modules in the MKR family can communicate using I
 * [Playback of multiple WAV files](https://github.com/tigoe/SoundExamples/tree/master/ArduinoSound_Examples/WavePlaybackMultipleFiles)
 * [Sampler-style playback of multiple files](https://github.com/tigoe/SoundExamples/tree/master/ArduinoSound_Examples/WaveSamplePlayer)
 * [Microphone input with pitch detection](https://github.com/tigoe/SoundExamples/tree/master/ArduinoSound_Examples/PitchDetector)
-* [Pitch-to-MIDI detector](https://github.com/tigoe/SoundExamples/tree/master/ArduinoSound_Examples/PitchToMidi)
 * Microphone input with amplitude detection
 
 ## I2S Electrical Connections 

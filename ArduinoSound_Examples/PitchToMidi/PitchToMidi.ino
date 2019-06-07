@@ -4,6 +4,10 @@
   note value C8.  Then it calculates the nearest MIDI note number
   using the PitchToFrequency chart from the MIDIUSB library.
 
+  This sketch is still in progress and may not work with currently
+  published versions of the library. I'm still tinkering with it.
+  -Tom
+
   Circuit:
    Arduino/Genuino Zero, MKRZero or MKR1000 board
    I2S mic:
@@ -26,15 +30,16 @@
 // to hear a max frequency, sample at 2 * the frequency.
 // Check your mic to see what the top of its dynamic range is
 const int sampleRate = 8400;
-
+const int bitsPerSample = 32;
 // size of the FFT to compute
-const int fftSize = 128;
+const int fftSize = 512;
 
 // size of the spectrum output, which is half of FFT size
 const int spectrumSize = fftSize / 2;
 
 // array to store spectrum output
 int spectrum[spectrumSize];
+
 
 // create an FFT analyzer to be used with the I2S input
 FFTAnalyzer fftAnalyzer(fftSize);
@@ -46,11 +51,17 @@ void setup() {
   // setup the serial
   Serial.begin(9600);
   while (!Serial);
+
+  // adjust the buffer size to be dependent on the FFT size and bits per sample
+  // for larger FFT sizes a bigger buffer size is needed
+  AudioInI2S.setBufferSize(bitsPerSample * fftSize / 8);
+
   // setup the I2S audio input for the sample rate with 32-bits per sample
-  if (!AudioInI2S.begin(sampleRate, 32)) {
+  if (!AudioInI2S.begin(sampleRate, bitsPerSample)) {
     Serial.println("Failed to initialize I2S input");
     while (true);
   }
+
 
   // configure the I2S input as the input for the FFT analyzer
   if (!fftAnalyzer.input(AudioInI2S)) {
@@ -58,13 +69,14 @@ void setup() {
     while (true);
   }
 
+
   // print the frequency bands:
   Serial.println("Frequency bands: ");
   for (int b = 0; b < spectrumSize; b++) {
     // if this sample is louder than your loudest so far:
     // get the low frequency for this band:
-    float freqLow = (b * float(sampleRate)) / fftSize;
-    float freqHigh = ((b + 1) * float(sampleRate)) / fftSize;
+    int freqLow = (b * sampleRate) / fftSize;
+    int freqHigh = ((b + 1) * sampleRate) / fftSize;
     Serial.print(freqLow);
     Serial.print(" - ");
     Serial.println(freqHigh);
@@ -80,8 +92,8 @@ void loop() {
 
     // analyze the bands of the FFT spectrum:
     int loudestSample = 0;  // the loudest sample in the FFT spectrum
-    float freqLow = 0;        // low frequency of the loudest band
-    float freqHigh = 0;       // high frequency of the loudest band
+    int freqLow = 0;        // low frequency of the loudest band
+    int freqHigh = 0;       // high frequency of the loudest band
     // iterate over the spectrum:
     for (int b = 0; b < spectrumSize; b++) {
       // if this sample is louder than your loudest so far:
@@ -89,8 +101,8 @@ void loop() {
         // then this is the current loudest:
         loudestSample = spectrum[b];
         // get the low frequency for this band:
-        freqLow = (b * float(sampleRate)) / fftSize;
-        freqHigh = ((b + 1) * float(sampleRate)) / fftSize;
+        freqLow = (b * sampleRate) / fftSize;
+        freqHigh = ((b + 1) * sampleRate) / fftSize;
       }
     }
 
@@ -105,7 +117,7 @@ void loop() {
       Serial.print(loudestSample);
       Serial.print("    ");
       // print out the closest MIDI note:
-      /  int closestNote = findMidiNoteFromPitches(freqLow, freqHigh);
+      int closestNote = findMidiNoteFromPitches(freqLow, freqHigh);
       Serial.println(closestNote);
     }
   }
@@ -123,7 +135,7 @@ int findMidiNoteFromPitches(int lowPitch, int highPitch) {
   // iterate over all the known frequencies of MIDI notes:
   for (int x = 0; x < 127; x++) {
     if (pitchFrequency[x] >= lowPitch && pitchFrequency[x] <= highPitch) {
-      Serial.println(pitchFrequency[x]);
+      //Serial.println(pitchFrequency[x]);
     }
     // find the absolute value of difference between this pitch and your pitch:
     int diff = abs(lowPitch - pitchFrequency[x]);
