@@ -14,7 +14,12 @@ The MKR Zero and other Arduino modules in the MKR family can communicate using I
 * [Playback of multiple WAV files](https://github.com/tigoe/SoundExamples/tree/master/ArduinoSound_Examples/WavePlaybackMultipleFiles)
 * [Sampler-style playback of multiple files](https://github.com/tigoe/SoundExamples/tree/master/ArduinoSound_Examples/WaveSamplePlayer)
 * [Microphone input with pitch detection](https://github.com/tigoe/SoundExamples/tree/master/ArduinoSound_Examples/PitchDetector)
-* Microphone input with amplitude detection
+
+There are [additional examples available](https://www.arduino.cc/en/Reference/ArduinoSound) on the ArduinoSound Library page. 
+
+## .WAV File Playback Considerations
+
+If you plan to play .wav files using the ArduinoSound library using the examples here, The .wav file must be formatted as follows:stereo, signed 16-bit, 44100Hz. There's a [good tutorial on the Arduino site](https://www.arduino.cc/en/Tutorial/ArduinoSoundWavePlayback) on how to do this using the free audio editing software [Audacity](https://www.audacityteam.org/).
 
 ## I2S Electrical Connections 
 
@@ -40,13 +45,23 @@ The first two modules take an I2S signal as input and output analog audio. The m
 
 ![Figure 1. MAX98357 I2S audio amplifier connected to a MKR Zero.](img/I2S_amp_circuit_MAX98357_simple_bb.png)
 
-*Figure 1. MAX98357 I2S audio amplifier connected to a MKR Zero. The amp is mounted on the breadboard below the MKR Zero, with the pins on the left side. The pins, numbered from top left, are: LRC; BCLK; DIN; GAIN; SD; GND; Vin.  The amp's pin 1 (LRC) is connected to the MKR Zero's digital pin 3 (physical pin 11). The amp's pin 2 (BCLK) is connected to the MKR Zero's digital pin 2 (physical pin 10). The amp's pin 3 (DIN) is connected to the MKR Zero's pin A6 (physical pin 8). The amp's pin 5 (SD, or shutdown) is connected to the 3.3V bus. The amp's pin 6 (GND) is connected to the ground bus and pin 7 (Vin) is connected to the 3.3V  bus.*
+*Figure 1. MAX98357 I2S audio amplifier connected to a MKR Zero. The amp is mounted on the breadboard below the MKR Zero, with the pins on the left side. The pins, numbered from top left, are: LRC; BCLK; DIN; GAIN; SD; GND; Vin.  The amp's pin 1 (LRC) is connected to the MKR Zero's digital pin 3 (physical pin 12). The amp's pin 2 (BCLK) is connected to the MKR Zero's digital pin 3 (physical pin 11). The amp's pin 3 (DIN) is connected to the MKR Zero's pin A6 (physical pin 8). The amp's pin 5 (SD, or shutdown) is connected to the 3.3.3V bus. The amp's pin 6 (GND) is connected to the ground bus and pin 7 (Vin) is connected to the 3.3V  bus.*
 
 ![Figure 2. UDA1334 I2S DAC connected to a MKR Zero.](img/I2S_amp_circuit_simple_bb.png)
 
-*Figure 2. UDA1334 I2S DAC connected to a MKR Zero. The DAC is mounted below the MKR Zero on the breadboard, with the audio jack pointed to the bottom of the breadboard, away from the MKR Zero. The DAC's pins, numbered in a U from top left, are: Vin; 3V out; GND; WSEL; DIN; BCLK; LOUT; AGND; ROUT; then on the right, from bottom right: DEEM; PLL; SF0; MUTE; SF1; SCLK. Pin 1 (Vin) is connected to  the 3.3V  bus. Pin 3 (GND) is connected to the ground bus. Pij 4 (WSEL) is connected to the MKR Zero's digital pin 3 (physical pin 11). Pin 5 (DIN) is connected to the MKR Zero's pin A6 (physical pin 8). The DAC's pin 6 (BCLK) is connected to the MKR Zero's digital pin 2 (physical pin 10). The rest of the pins remain unconnected.*
+*Figure 2. UDA1334 I2S DAC connected to a MKR Zero. The DAC is mounted below the MKR Zero on the breadboard, with the audio jack pointed to the bottom of the breadboard, away from the MKR Zero. The DAC's pins, numbered in a U from top left, are: Vin; 3V out; GND; WSEL; DIN; BCLK; LOUT; AGND; ROUT; then on the right, from bottom right: DEEM; PLL; SF0; MUTE; SF1; SCLK. Pin 1 (Vin) is connected to  the 3.3V  bus. Pin 3 (GND) is connected to the ground bus. Pij 4 (WSEL) is connected to the MKR Zero's digital pin 3 (physical pin 12). Pin 5 (DIN) is connected to the MKR Zero's pin A6 (physical pin 8). The DAC's pin 6 (BCLK) is connected to the MKR Zero's digital pin 3 (physical pin 11). The rest of the pins remain unconnected.*
 
-![Figure 3. INMP1441 I2S Mic connected to a MKR Zero.](img/I2S_INMP1441_mic_circuit_simple_bb.png)
+There are a few different I2S microphones on the market and they all appear to have slightly different sensitivities, though they all operate with the same code. Figure 3 shows the INMP441 mic, [available from various retailers on Amazon](https://www.amazon.com/gp/product/B07M9NFPFF/ref=ppx_yo_dt_b_asin_title_o07_s00?ie=UTF8&psc=1). Figure 4 shows the Invensense ICS43434, [available from Tindie](https://www.tindie.com/products/onehorse/ics43434-i2s-digital-microphone/). Figure 5 shows the SPH0645, [available from Adafruit](https://www.adafruit.com/product/3421).
 
-*Figure 3. INMP1441 I2S Mic connected to a MKR Zero. The Mic is mounted on the breadboard below the MKR Zero. The Mic's pins, numbered in a U pattern from top left, are: L/R select; WS; SCK; SD; 3V; GND.  Pin 2 (WS) is connected to digital pin 3 on the MKR Zero (physical pin 11). Pin 3 of the mic (SCK) is connected to digital pin 2 on the MKR Zero (physical pin 10). Pin 4 of the mic (SD) is connected to pin A6 of the MKR Zero (physical pin 8). Pin 5 of the mic (3V) is connected to the 3V bus. Pin 6 of the mic (GND) is connected to the ground bus.*
+![Figure 3. INMP441 I2S Mic connected to a MKR Zero.](img/I2S_INMP441_mic_circuit_simple_bb.png)
 
+*Figure 3. INMP441 I2S Mic connected to a MKR Zero. The Mic is mounted on the breadboard below the MKR Zero. The Mic's pins, numbered in a U pattern from top left, are: L/R select; WS; SCK; SD; 3V; GND.  Pin 2 (WS) is connected to digital pin 3 on the MKR Zero (physical pin 11). Pin 3 of the mic (SCK) is connected to digital pin 2 on the MKR Zero (physical pin 10). Pin 4 of the mic (SD) is connected to pin A6 of the MKR Zero (physical pin 8). Pin 5 of the mic (3V) is connected to the 3.3V bus. Pin 6 of the mic (GND) is connected to the ground bus.*
+
+![Figure 4. ICS43434 I2S Mic connected to a MKR Zero.](img/I2S_ICS43434_mic_circuit_simple_bb.png)
+
+*Figure 4. ICS43434 I2S Mic connected to a MKR Zero. The Mic is mounted on the breadboard below the MKR Zero. The Mic's pins, numbered in a U pattern from top left, are: 3V; SCK; GND; L/R select; WS; SD.  Pin 1 (3V) is connected to the 3.3V bus. Pin 2 of the mic (SCK) is connected to digital pin 2 on the MKR Zero (physical pin 11). Pin 3 of the mic (GND) is connected to the ground bus. Pin 5 of the mic (WS) is connected to pin 3 of the MKR Zero (physical pin 12). Pin 6 of the mic (SD) is connected to pin A6 of the Arduino (physical pin 8).*
+
+
+![Figure 5. SPH0645 I2S Mic connected to a MKR Zero.](img/I2S_SPH0645_mic_circuit_simple_bb.png)
+
+*Figure 4. SPH0645 I2S Mic connected to a MKR Zero. The Mic is mounted on the breadboard below the MKR Zero with the pins facing to the left. The Mic's pins, numbered from top to bottom, are: SEL; LRCL; DOUT; BCLK; GND; 3V.  Pin 2 of the mic (LRCL) is connected to pin 3 of the MKR Zero (physical pin 12). Pin 3 of the mic (DOUT) is connected to pin A6 of the Arduino (physical pin 8). Pin 4 of the mic (BCLK) is connected to digital pin 2 on the MKR Zero (physical pin 11). Pin 5 of the mic (GND) is connected to the ground bus. Pin 6 (3V) is connected to the 3.3V bus.*
