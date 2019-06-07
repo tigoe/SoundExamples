@@ -30,7 +30,7 @@
 
 // filename of wave file to play
 // file name must be 8chars . 3 chars
-const char filename[] = "15_B-BOY.WAV";
+const char filename[] = "SOUND.WAV";
 
 // variable representing the Wave File
 SDWaveFile waveFile;
