@@ -1,6 +1,6 @@
-# Playback of a .WAV file using ArduinoSound Library
+# Potentiometer-Controlled Volume Control of a .WAV file using ArduinoSound Library
 
-This sketch reads a .wav file from an SD card and plays it using the I2S interface to an I2S Amp Breakout board. It's been tested with the UDA1334A and the MAX98357 amps.
+This sketch reads a .wav file from an SD card and plays it using the I2S interface to an I2S Amp Breakout board. It's been tested with the UDA1334A and the MAX98357 amps. A potentiometer on pin A0 controls the volume.
 
 The circuit below shows the wiring for the MAX98357 amp and a MKR Zero board. It can be used with other MKR boards and MKR-compatible boards if you attach an external SD card module or shield, and change the SD card SS pin accordingly.
 

@@ -8,14 +8,13 @@ The MKR Zero and other Arduino modules in the MKR family can communicate using I
 
 ## Examples
 
-* [WAV file playback with volume control](https://github.com/tigoe/SoundExamples/tree/master/ArduinoSound_Examples/WaveVolumeControl)
+* [WAV file playback with potentiometer volume control](https://github.com/tigoe/SoundExamples/tree/master/ArduinoSound_Examples/WaveVolumeControl)
+* [WAV file playback with encoder volume control](https://github.com/tigoe/SoundExamples/tree/master/ArduinoSound_Examples/WavePlaybackWithEncoder)
 * [WAV file playback with pause/play control](https://github.com/tigoe/SoundExamples/tree/master/ArduinoSound_Examples/WavePlayPause)
 * [Playback of multiple WAV files](https://github.com/tigoe/SoundExamples/tree/master/ArduinoSound_Examples/WavePlaybackMultipleFiles)
 * [Sampler-style playback of multiple files](https://github.com/tigoe/SoundExamples/tree/master/ArduinoSound_Examples/WaveSamplePlayer)
-* Audio tone generator using I2S
 * [Microphone input with pitch detection](https://github.com/tigoe/SoundExamples/tree/master/ArduinoSound_Examples/PitchDetector)
 * [Pitch-to-MIDI detector](https://github.com/tigoe/SoundExamples/tree/master/ArduinoSound_Examples/PitchToMidi)
-
 * Microphone input with amplitude detection
 
 ## I2S Electrical Connections 
