@@ -6,6 +6,20 @@ I2S can be used to send pre-recorded audio files from a microcontroller to an am
 
 The MKR Zero and other Arduino modules in the MKR family can communicate using I2S. In the examples that follow, you'll see how to use an I2S amplifier to play WAV files from an SD card, and how to analyze audio coming from an I2S microphone.  
 
+
+## Examples
+
+* [WAV file playback with volume control](https://github.com/tigoe/SoundExamples/tree/master/ArduinoSound_Examples/WaveVolumeControl)
+* [WAV file playback with pause/play control](https://github.com/tigoe/SoundExamples/tree/master/ArduinoSound_Examples/WavePlayPause)
+* [Playback of multiple WAV files](https://github.com/tigoe/SoundExamples/tree/master/ArduinoSound_Examples/WavePlaybackMultipleFiles)
+* [Sampler-style playback of multiple files](https://github.com/tigoe/SoundExamples/tree/master/ArduinoSound_Examples/WaveSamplePlayer)
+* Audio tone generator using I2S
+* [Microphone input with pitch detection](https://github.com/tigoe/SoundExamples/tree/master/ArduinoSound_Examples/PitchDetector)
+* [Pitch-to-MIDI detector](https://github.com/tigoe/SoundExamples/tree/master/ArduinoSound_Examples/PitchToMidi)
+
+* Microphone input with amplitude detection
+
+
 ## I2S Electrical Connections 
 
 I2S is a synchronous serial bus protocol, meaning that you can connect multiple devices on the same common wires. The connections for an I2S bus are:
@@ -39,16 +53,4 @@ The first two modules take an I2S signal as input and output analog audio. The m
 ![Figure 3. INMP1441 I2S Mic connected to a MKR Zero.](img/I2S_INMP1441_mic_circuit_simple_bb.png)
 
 *Figure 3. INMP1441 I2S Mic connected to a MKR Zero. The Mic is mounted on the breadboard below the MKR Zero. The Mic's pins, numbered in a U pattern from top left, are: L/R select; WS; SCK; SD; 3V; GND.  Pin 2 (WS) is connected to digital pin 3 on the MKR Zero (physical pin 11). Pin 3 of the mic (SCK) is connected to digital pin 2 on the MKR Zero (physical pin 10). Pin 4 of the mic (SD) is connected to pin A6 of the MKR Zero (physical pin 8). Pin 5 of the mic (3V) is connected to the 3V bus. Pin 6 of the mic (GND) is connected to the ground bus.*
-
-## Examples
-
-* [WAV file playback with volume control](https://github.com/tigoe/SoundExamples/tree/master/ArduinoSound_Examples/WaveVolumeControl)
-* [WAV file playback with pause/play control](https://github.com/tigoe/SoundExamples/tree/master/ArduinoSound_Examples/WavePlayPause)
-* [Playback of multiple WAV files](https://github.com/tigoe/SoundExamples/tree/master/ArduinoSound_Examples/WavePlaybackMultipleFiles)
-* [Sampler-style playback of multiple files](https://github.com/tigoe/SoundExamples/tree/master/ArduinoSound_Examples/WaveSamplePlayer)
-* Audio tone generator using I2S
-* [Microphone input with pitch detection](https://github.com/tigoe/SoundExamples/tree/master/ArduinoSound_Examples/PitchDetector)
-* [Pitch-to-MIDI detector](https://github.com/tigoe/SoundExamples/tree/master/ArduinoSound_Examples/PitchToMidi)
-
-* Microphone input with amplitude detection
 
