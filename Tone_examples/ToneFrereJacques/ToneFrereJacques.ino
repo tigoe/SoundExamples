@@ -65,6 +65,6 @@ void loop() {
   noTone(speakerPin);
   // increment the note number for next time through the loop:
   noteCounter++;
-  // keep the note in the range from 0 - 11 using modulo:
+  // keep the note in the range from 0 - 32 using modulo:
   noteCounter = noteCounter % 32;
 }
