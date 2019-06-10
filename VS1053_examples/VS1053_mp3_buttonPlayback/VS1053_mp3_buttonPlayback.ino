@@ -86,7 +86,7 @@ void loop() {
   // map to a range from 100 to 0:
   int loudness = map(analogRead(A0), 0, 1023, 100, 0);
   // set the volume:
-  //mp3Player.setVolume(loudness, loudness);
+  mp3Player.setVolume(loudness, loudness);
 
   // loop the player:
   if (mp3Player.stopped()) {
