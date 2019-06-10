@@ -97,7 +97,7 @@ When you connect your MIDI output to the MIDI in of a MIDI sound module, and the
 
 And here's the complete sketch for [SoftwareSerial](https://github.com/tigoe/SoundExamples/blob/master/MIDI_examples/SoftwareSerial_MIDI_simple/SoftwareSerial_MIDI_simple.ino). 
 
-Now you're ready to go on to [making a MIDI instrument](midi-instrument.md).
+Now you're ready to go on to [making a MIDI instrument](midi-instrument.md). You may also want to check out [MIDI Serial to the VS1053 module](midi-vs1053.md). 
 
 ## Things to Remember
 
