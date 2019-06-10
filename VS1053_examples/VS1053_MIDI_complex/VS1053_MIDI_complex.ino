@@ -10,6 +10,8 @@
   Uses Serial1 for MIDI, and the Scheduler library
   so it will work only on the MKR boards
 
+  Warning: it's not as good as real musicians.  
+
   Circuit:
     connect TX of Serial1 to RX of the VS1053
     connect pin 6 to VS1053 reset pin

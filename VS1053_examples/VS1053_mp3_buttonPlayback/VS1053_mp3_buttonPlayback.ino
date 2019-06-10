@@ -42,7 +42,7 @@ Adafruit_VS1053_FilePlayer mp3Player =
   Adafruit_VS1053_FilePlayer(VS1053_RESET, VS1053_CS, VS1053_DCS, VS1053_DREQ, CARDCS);
 
 // sound file name must be 8 chars .3 chars:
-const char soundFile[] = "SOUND001.MP3";
+const char soundFile[] = "SOUND002.MP3";
 
 void setup() {
   Serial.begin(9600);
@@ -86,7 +86,7 @@ void loop() {
   // map to a range from 100 to 0:
   int loudness = map(analogRead(A0), 0, 1023, 100, 0);
   // set the volume:
-  mp3Player.setVolume(loudness, loudness);
+  //mp3Player.setVolume(loudness, loudness);
 
   // loop the player:
   if (mp3Player.stopped()) {
