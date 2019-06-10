@@ -16,7 +16,7 @@ Figure 1 shows the circuit for connecting to Adafruit's VS1053 Codec & MicroSD c
 * VS1053 GPIO0 (physical pin 6) to ground bus
 * VS1053 GPIO1 (physical pin 7) to voltage bus
 
-![Figure 1. MKR board connected to an Adafruit VS1053 module.](img/midi-circuit-VS1053_bb.png)
+![Figure 1. MKR board connected to an Adafruit VS1053 module.](img/midi-serial-VS1053_bb.png)
 
 *Figure 1. MKR board connected to an Adafruit VS1053 module in MIDI mode*
 
