@@ -42,7 +42,7 @@ Adafruit_VS1053_FilePlayer mp3Player =
   Adafruit_VS1053_FilePlayer(VS1053_RESET, VS1053_CS, VS1053_DCS, VS1053_DREQ, CARDCS);
 
 // sound file name must be 8 chars .3 chars:
-const char soundFile[] = "SOUND002.MP3";
+const char soundFile[] = "SOUND001.MP3";
 
 void setup() {
   Serial.begin(9600);

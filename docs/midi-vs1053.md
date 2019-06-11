@@ -1,9 +1,8 @@
 # MIDI On The VS1053 Module
 
+There are synthesizer modules available that connect directly to a microcontroller on a breadboard. [VSLI's VS1053 MP3 decoder and MIDI synthesizer](http://www.vlsi.fi/en/products/vs1053.html) is a good example.  Sparkfun and Adafruit both make breakout boards or Arduino shields for this component, such as Sparkfun's MP3 Player shield or Musical Instrument shield, or Adafruit's VS1053 Codec & MicroSD card module or Music Maker shield or VS1053 Headphone Featherwing. 
 
-There are some synthesizer modules available that connect directly to a microcontroller on a breadboard. [VSLI's VS1053 MP3 decoder and MIDI synthesizer](http://www.vlsi.fi/en/products/vs1053.html) is a good example.  Sparkfun and Adafruit both make breakout boards or Arduino shields for this component, such as Sparkfun's MP3 Player shield or Musical Instrument shield, or Adafruit's VS1053 Codec & MicroSD card module or Music Maker shield or VS1053 Headphone Featherwing. 
-
-Controlling a MIDI synth module like this one is essentially the same as the other MIDI serial examples. The only difference is that you'll need to control the synth module's reset pin as well.  
+The VS1053 has an asynchronous serial interface, so controlling it is essentially the same as the other [MIDI serial examples](midi-serial.md). The only difference is that you'll need to control the synth module's reset pin as well.  
 
 Figure 1 shows the circuit for connecting to Adafruit's VS1053 Codec & MicroSD card module in MIDI mode. For this circuit you'll need a 3.5mm stereo mini headphone hack as well. The VS1053's SD card points to the bottom of the module. The pins are numbered in a U-shape from top left to bottom left (1-16), then from bottom right to top right (17-32). The connections are as follows:
 * MKR TX pin (physical pin 15) to VS1053 RX pin (physical pin 15)
