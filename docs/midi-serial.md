@@ -1,5 +1,4 @@
 # MIDI Serial
-
 MIDI is an asynchronous serial data protocol, and most MIDI controllers and synthesizers do not have USB ports. The standard MIDI connector is a 5-pin connector that looks like the one shown in Figure 1 below. The controller sends data using asynchronous serial communication over this connector, and the receiving sound module (e.g. synthesizer, sampler or other output device) reads that data and interprets the commands to make sound. 
 
 ## MIDI Sound Modules
@@ -8,11 +7,9 @@ To make this exercise work, you'll need a sound module that has MIDI input and a
 There are several good guides to buying sound modules. [HearTheMusicPlay.com](https://hearthemusicplay.com/best-keyboard-and-midi-sound-modules/) has a good one, linked here. [MusicRadar](https://www.musicradar.com/news/the-best-hardware-synthesizers-2018-keyboards-modules-and-portable-synths) has another good guide for higher-end modules. 
 
 ## Serial Output
-
 <u style="color: green;">Hardware note:</u> These MIDI serial examples will work on any Arduino, with some modification. Boards that have two hardware serial ports, like the MKR boards, Mega, Leonardo, Micro, and Yún, can use Serial1 to send serial data to a MIDI playback device like a synthesizer or sampler. Serial1 is connected to a second asynchronous serial UART on these boards. (see the [setup page](setup.md) for more on asynchronous serial) Boards that don't have two hardware serial ports, like the Uno, can use the SoftwareSerial library to communicate with MIDI playback devices.
 
 ### Hardware Serial Output
-
 The circuit you'll use for this approach is shown in Figure 1 below. Follow the [breadboard setup instructions](setup.md#breadboard-setup) in the setup exercise.  Then connect the MIDI jack as shown here. The MIDI jack has 5 connectors arranged in a semi-circle. They are numbered, from left to right, 3,5,2,4,1 (don't ask why). The center pin (pin 3) of the MIDI connector is connected to ground. With the connector facing you the second pin from the left  (pin 5) is connected to the Arduno's serial transmit pin, labeled TX, through a 220-ohm resistor. On the MKR boards, this is the sixth pin from the top on the right side of the board. On a Leonardo or Yún, it's digital pin 1, the second from the bottom on the right. The MIDI jack's fourth pin from the left (pin 4) is connected to voltage through a 220-ohm resistor. The MIDI jack's center pin is connected to ground.
 
 ![Figure 1. MIDI serial output connection to a 5-pin MIDI connector.](img/midi_serial_out_bb.png)
@@ -20,14 +17,12 @@ The circuit you'll use for this approach is shown in Figure 1 below. Follow the 
 *Figure 1. MIDI serial output connection to a 5-pin MIDI connector*
 
 ### For the Uno: MIDI SoftwareSerial
-
 The Uno does not have a second UART serial port, so you'll need to use the SoftwareSerial library to send MIDI from it. Connect the MIDI jack as described in Figure 1, but connect the serial pin to pin 3 on the Uno.
 
 
 Once you've connected the MIDI output connector,  use a MIDI connector to connect to the MIDI in connector on your sound module.  
 
 ## Simple MIDI Player
-
 Let's start with a simple MIDI melody player. We'll use the Steve Reich *Piano Phase* melody that you used in the [melody exercise](melody.md) and in the [MIDIUSB exercise](midiusb.md). 
 
 The song will be at 72bpm, and the melody will be the same as it was in the melody exercise, so your global variables will look like this:
@@ -100,11 +95,9 @@ And here's the complete sketch for [SoftwareSerial](https://github.com/tigoe/Sou
 Now you're ready to go on to [making a MIDI instrument](midi-instrument.md). You may also want to check out [MIDI Serial to the VS1053 module](midi-vs1053.md). 
 
 ## Things to Remember
-
 If you're using the MIDIUSB library, there are just a few things you'll want to remember as you build other examples:
 
 ### Open the Serial Connection
-
 Every Serial MIDI sketch will initialize MIDI serial communication. If you're using one of the boards with two hardware Serial ports, you'll do the following in your ``setup()`` function:
 
 ````
@@ -129,7 +122,6 @@ Then you'll initialize it in your ``setup()`` function like so:
 ````
 
 ### Make Notes with a MIDI Command Function
-
 Most MIDI commands are three bytes, a command byte followed by two data bytes. So the `MidiCommand()` function you wrote here should work for most MIDI note-playing applications:
 
 For Serial1 it will look like this:
@@ -153,7 +145,6 @@ void midiCommand(byte cmd, byte data1, byte  data2) {
 ````
 
 ## Serial Input
-
 Serial input is not as common a project, because the Arduino boards are better as controllers than as sound modules. But you can read MIDI into an Arduino if you need to. Figure 2 shows the MIDI input circuit. The MIDI jack is connected to the microcontroller through an optoisolator. An **optoisolatator** has an LED on the input side and a phototransistor on the output side, so that the two sides of the circuit are electrically isolated from each other, for extra safety.
 
 The parts for this are:
