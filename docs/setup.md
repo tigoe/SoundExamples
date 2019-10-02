@@ -44,21 +44,22 @@ The MKR Zero and MKR WiFi 1010 both have the same layout of input and output pin
 <th>Right side pins</th>
 </tr>
 <tr>
-<td style="vertical-align: top;">A0/DAC0<br />
-A1<br />
-A2<br />
-A3<br />
-A4<br />
+<td style="vertical-align: top;">AREF<br />
+A0/DAC0<br />
+A1 (INT)<br />
+A2 (INT)<br />
+A3 (PWM)<br />
+A4 (PWM)<br />
 A5<br />
 A6<br />
-D0<br />
-D1<br />
+D0 (INT)<br />
+D1 (INT)<br />
 D2 (PWM)<br />
 D3 (PWM)<br />
-D4 (PWM)<br />
-D5 (PWM)<br /></td>
+D4 (PWM) (INT)<br />
+D5 (PWM) (INT)<br /></td>
 <td style="vertical-align: top;"><img src="img/MKRZero.png" alt="Figure 3. The MKR pin layout, with the USB connector facing up"><br />
-<em>Figure 3. MKR Zero</em>
+<em>Figure 3. MKR pin layout</em>
 </td>
 <td style="vertical-align: top;">
 5V<br />
@@ -70,13 +71,15 @@ D14 and Serial1 TX<br />
 D13 and Serial1 RX<br />
 D12 and I2C SCL<br />
 D11 and I2C SDA<br />
-D10 and SPI MISO<br />
+D10 and SPI MISO (PWM)<br />
 D9 and SPI SCK<br />
-D8 and SPI MOSI<br />
-D7<br />
-D6 and built-in LED<br /></td>
+D8 and SPI MOSI (PWM) (INT)<br />
+D7 (PWM) (INT)<br />
+D6 and built-in LED (PWM) (INT)<br /></td>
 </tr>
 </table>
+
+_Note: Most pins have multiple functions. (PWM) indicates that a pin can be used with the `analogWrite` function. (INT) indicates that a pin can be used as an [external interrupt](https://www.arduino.cc/reference/en/language/functions/interrupts/interrupts/)._
 
 This physical layout is sometimes referred to as a *DIP*, or *Dual Inline Package*. In a DIP package, physical pins are typically numbered from top left to bottom left, then from bottom right to top right. So physical pin 1 has the function Analog in 0, or A0; physical pin 14 has the function D5, or digital I/O 5; physical pin 15 has the function D6, or digital I/O 6; and pin 28 has the function 5V, or 5 volts supplied from the USB input.
 
