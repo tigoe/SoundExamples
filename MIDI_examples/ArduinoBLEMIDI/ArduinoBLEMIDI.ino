@@ -37,7 +37,7 @@ void setup() {
     while (true);
   }
   // set local name and advertised service for BLE:
-  BLE.setLocalName("MIDI_1010");
+  BLE.setLocalName("MIDI_BLE");
   BLE.setAdvertisedService(midiService);
 
   // add the characteristic and service:

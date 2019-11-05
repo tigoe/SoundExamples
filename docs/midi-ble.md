@@ -1,9 +1,11 @@
 #  MIDI over Bluetooth LE
 
-Some newer MIDI devices, and most personal computers, can send and receive MIDI over Bluetooth LE. MIDI over Bluetooth is included in MacOS and Android, and has recently been included in [Windows 10](https://blogs.windows.com/buildingapps/2016/09/21/midi-enhancements-in-windows-10/#ggWxAYzWRQ4WCEVg.97) as well. The MKR 1010 and the Nano 33 IoT boards can communicate using Bluetooth LE. Presumably you can do it with some of the Arduino derivatives which communicate using Bluetooth LE as well, but these examples have only been tested with the [ArduinoBLE library](https://github.com/arduino-libraries/ArduinoBLE) on the MKR 1010 and Nano 33 IoT.
+Some newer MIDI devices, and most personal computers, can send and receive MIDI over Bluetooth LE. MIDI over Bluetooth is included as a standard Bluetooth profile in MacOS and Android, and has recently been included in [Windows 10](https://blogs.windows.com/buildingapps/2016/09/21/midi-enhancements-in-windows-10/#ggWxAYzWRQ4WCEVg.97) as well. The [Bluetooth MIDI specification](https://www.midi.org/specifications/item/bluetooth-le-midi) can be found on the MIDI Association's site, and [signs are encouraging for its longevity](https://www.midi.org/articles-old/bluetooth-is-here-to-stay).
+
+The MKR 1010, the Nano 33 IoT, and the Nano 33 BLE boards can communicate using Bluetooth LE. You can do it with some of the Arduino derivatives which communicate using Bluetooth LE as well, but these examples have only been tested with the [ArduinoBLE library](https://github.com/arduino-libraries/ArduinoBLE) on the MKR 1010, Nano 33 IoT and Nano 33 BLE. SParkfun has a [MIDI BLE tutorial](https://learn.sparkfun.com/tutorials/midi-ble-tutorial/create-a-basic-ble-peripheral) that works with the BLEPeripheral library for some of the derivative boards like their nRF52832 board. 
 
 ## ArduinoBLE Library
-In order to use these examples you'll need to include the ArduinoBLE library for use on the MKR 1010 and Nano 33 BLE. In the Arduino IDE, click on the Sketch Menu, then choose Include Library... then Manage Libraries. This will open the Library Manager. Filter for ArduinBLE, and you should see a library called "ArduinoBLE by Arduino". Install it. Then you're ready to start.
+In order to use these examples you'll need to include the ArduinoBLE library for use on the MKR 1010, Nano 33 BLE, and Nano 33 BLE. In the Arduino IDE, click on the Sketch Menu, then choose Include Library... then Manage Libraries. This will open the Library Manager. Filter for ArduinBLE, and you should see a library called "ArduinoBLE by Arduino". Install it. Then you're ready to start.
 
 ## Brief Introduction to Bluetooth LE Concepts
 
@@ -23,7 +25,7 @@ Every device, service, and characteristic in Bluetooth LE gets assigned a Univer
 
 ## Bluetooth LE MIDI Setup
 
-To set up Bluetooth LE MIDI on a MKR 1010 or Nano 33 IoT using the ArduinoBLE library, there are a few steps you need to do. First, include the ArduinBLE library at the beginning of your code. Next, make an array of MIDI data and make variables for the BLE MIDI service and message characteristic:
+To set up Bluetooth LE MIDI on a MKR 1010, Nano 33 IoT, or Nano 33 BLE using the ArduinoBLE library, there are a few steps you need to do. First, include the ArduinBLE library at the beginning of your code. Next, make an array of MIDI data and make variables for the BLE MIDI service and message characteristic:
 
 ````
 #include <ArduinoBLE.h>
@@ -53,7 +55,7 @@ void setup() {
     while (true);
   }
   // set local name and advertised service for BLE:
-  BLE.setLocalName("MIDI_1010");
+  BLE.setLocalName("MIDI_BLE");
   BLE.setAdvertisedService(midiService);
 
   // add the characteristic and service:
@@ -170,3 +172,12 @@ Launch Sforzando. The first time you launch it, it should prompt you to set your
 Now you're ready to go on to [making a MIDI instrument](midi-instrument.md).
 
 **Note:** you can also connect Android software synths to your controller using the [MIDI BLE Connect app](https://play.google.com/store/apps/details?id=com.mobileer.example.midibtlepairing) which you can download from the Android app store. 
+
+## MIDI Control Messages
+
+If you want to use BLE MIDI to send data other than noteon and noteoff messages, check out the [ArduinBLE MIDI Control Change](https://github.com/tigoe/SoundExamples/blob/master/MIDI_examples/ArduinoBLEMIDI/ArduinoBLEMIDIControlChange/ArduinoBLEMIDIControlChange.ino) message example. This example uses MIDI controllers 14 and 15, which are undefined in the MIDI spec, so using them is unlikely to conflict with other controllers like pitch bend. This example shows how to send two analog inputs, but could be adjusted for any sensor inputs.
+
+### Continuous Sending Limits.
+If you're sending continuous control messages like this, you should be careful not to send too frequently. Bluetooth LE MIDI, at least as implemented on MacOS, does apppear to have some buffer limits, and sending control messages as fast as possible can cause problems. The example above limits sending to two control messages every 20 milliseconds, which runs reasonably well. You could tweak the interval time to suit your needs and your system's limits.
+
+For more on MIDI control change messages, see the [MIDI Association page on control changes](https://www.midi.org/specifications-old/item/table-3-control-change-messages-data-bytes-2). 

@@ -7,6 +7,7 @@
   when you are using MIDI only, and want to send, say, X and Y values in controllers.
 
   created 18 April 2019
+  updated 5 Nov 2019
   by Tom Igoe
   Based on work by Don Coleman
 */
@@ -23,6 +24,11 @@ BLECharacteristic midiCharacteristic("7772E5DB-3868-4112-A1A9-F2669D106BF3",
 int lastController14Val = 0;
 int lastController15Val = 0;
 
+// timestamp for BLE sending, and interval for sending:
+long lastSendTime = 0;
+int interval = 20;    // only send every 20 ms
+    
+  }
 void setup() {
   // initialize serial communication
   Serial.begin(9600);
@@ -34,7 +40,7 @@ void setup() {
     while (true);
   }
   // set local name and advertised service for BLE:
-  BLE.setLocalName("MIDI_1010");
+  BLE.setLocalName("MIDI_BLE");
   BLE.setAdvertisedService(midiService);
 
   // add the characteristic and service:
@@ -55,23 +61,26 @@ void loop() {
     Serial.println(central.address());
     digitalWrite(LED_BUILTIN, HIGH);
     while (central.connected()) {
-      // read analog in A0, A1, and convert to 7-bit range
-      // by dividing by 8:
-      int controller14Val = analogRead(A0) / 8;
-      // delay to stabilize ADC:
-      delay(1);
-      int controller15Val = analogRead(A1) / 8;
+      // don't send too frequently, or you could overflow receive buffers:
+      if (millis() - lastSendTime > interval) {
+        // read analog in A0, A1, and convert to 7-bit range
+        // by dividing by 8:
+        int controller14Val = analogRead(A0) / 8;
+        // delay to stabilize ADC:
+        delay(1);
+        int controller15Val = analogRead(A1) / 8;
 
-      // send only if the values have changed:
-      if (controller14Val != lastController14Val) {
-        // send control change channel 1 (0xB0),controller 14 (0x0E), value:
-        midiCommand(0xB0, 0x0E, controller14Val);
-        lastController14Val = controller14Val;
-      }
-      if (controller15Val != lastController15Val) {
-        // send control change channel 1 (0xB0),controller 15 (0x0F), value:
-        midiCommand(0xB0, 0x0F, controller15Val);
-        lastController15Val = controller15Val;
+        // send only if the values have changed:
+        if (controller14Val != lastController14Val) {
+          // send control change channel 1 (0xB0),controller 14 (0x0E), value:
+          midiCommand(0xB0, 0x0E, controller14Val);
+          lastController14Val = controller14Val;
+        }
+        if (controller15Val != lastController15Val) {
+          // send control change channel 1 (0xB0),controller 15 (0x0F), value:
+          midiCommand(0xB0, 0x0F, controller15Val);
+          lastController15Val = controller15Val;
+        }
       }
     }
   }
