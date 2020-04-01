@@ -85,14 +85,10 @@ void loop() {
 
       // play it:
       midiCommand(0x90, noteValue, 0x7F);
-      midiCommand(0x91, noteValue, 0x7F);
-//      midiCommand(0x9A, noteValue, 0x7F);
       // if it's not pressed:
     } else {
       // turn the note off:
       midiCommand(0x80, noteValue, 0);
-      midiCommand(0x81, noteValue, 0x0);
-//      midiCommand(0x8A, noteValue, 0x7F);
     }
   }
 }
