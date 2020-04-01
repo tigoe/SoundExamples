@@ -16,11 +16,11 @@
 */
 #include <MIDIUSB.h>
 #include <pitchToNote.h>
+const int buttonPin = 4;
 
 // the intervals in a major and natural minor scale:
 int major[] = {2, 2, 1, 2, 2, 2, 1};
 int naturalMinor[] = {2, 1, 2, 2, 1, 2, 2};
-
 // an array to hold the final notes of the scale:
 int scale[8];
 
@@ -33,7 +33,7 @@ int noteValue = tonic;
 int lastButtonState = LOW;
 
 void setup() {
-  pinMode(5, INPUT);
+  pinMode(buttonPin, INPUT_PULLUP);
   // fill the scale array with the scale you want:
   // start with the initial note:
   scale[0] = tonic;
@@ -42,20 +42,20 @@ void setup() {
   // in the scale. You can change major to naturalMinor
   // if you want that kind of scale instead:
   for (int n = 0; n < 7; n++) {
-    note = note + major[n];
+    note = note + naturalMinor[n];
     scale[n + 1] = note;
   }
 }
 
 void loop() {
   // read the pushbutton:
-  int buttonState = digitalRead(5);
+  int buttonState = digitalRead(buttonPin);
   // compare its state to the previous state:
   if (buttonState != lastButtonState) {
     // debounce delay:
     delay(5);
     // if the button's changed and it's pressed:
-    if (buttonState == HIGH) {
+    if (buttonState == LOW) {
       // pick a random note in the scale:
       noteValue = scale[random(8)];
       // play it:
