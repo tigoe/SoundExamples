@@ -63,7 +63,7 @@ void loop() {
   // keep it on for the appropriate duration:
   delay(noteDuration * 0.85);
   // turn the note off:
-  midiCommand(0x90, currentNote, 0);
+  midiCommand(0x80, currentNote, 0);
 delay(noteDuration * 0.15);
   // increment the note number for next time through the loop:
   noteCounter++;
