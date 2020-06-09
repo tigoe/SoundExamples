@@ -9,6 +9,8 @@ Inventory:
 * 1 [VS1053 MP3 Decoder/Synth module](https://www.adafruit.com/product/1381) (also works with other VS1053 boards)
 * 1 [MKR Zero](https://store.arduino.cc/usa/arduino-mkrzero)
 * 1 [MKR1010 WiFi/Bluetooth LE](https://store.arduino.cc/usa/arduino-mkr-wifi-1010)
+* 1 [Nano 33 IoT](https://store.arduino.cc/usa/arduino-nano-33-iot)
+* 1 [Level Shifting MicroSd Breakout board](https://www.sparkfun.com/products/13743)
 * 4 Arcade pushbuttons
 * 4 Arcade pushbutton cables
 * 4 breadboard pushbuttons
