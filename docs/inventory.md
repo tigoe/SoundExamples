@@ -5,7 +5,7 @@ Here is a list of all the parts used in these examples. They can be obtained fro
 Inventory:
 
 * 1 [UDA1334 I2S Amp & Decoder](https://www.adafruit.com/product/3678) (also works with the MAX98357 I2S amp, available from [SparkFun](https://www.sparkfun.com/products/14809) or [Adafruit](https://www.adafruit.com/product/3006))
-* 1 [SPH0645 I2S Mic](https://www.adafruit.com/product/3421)
+* 1 [SPH0645 I2S Mic](https://www.adafruit.com/product/3421) (also works with the INMP I2S mic, available from [Amazon](https://smile.amazon.com/s?k=INMP441), or the Invensense ICS43434, [available from Tindie](https://www.tindie.com/products/onehorse/ics43434-i2s-digital-microphone/) )
 * 1 [VS1053 MP3 Decoder/Synth module](https://www.adafruit.com/product/1381) (also works with other VS1053 boards)
 * 1 [MKR Zero](https://store.arduino.cc/usa/arduino-mkrzero)
 * 1 [MKR1010 WiFi/Bluetooth LE](https://store.arduino.cc/usa/arduino-mkr-wifi-1010)
