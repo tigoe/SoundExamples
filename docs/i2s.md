@@ -148,6 +148,7 @@ Pin 1 (3V) is connected to the 3.3V bus. Pin 2 of the mic (SCK) is connected to 
  Pin 2 of the mic (LRCL) is connected to pin 3 of the MKR Zero (physical pin 12). Pin 3 of the mic (DOUT) is connected to pin A6 of the Arduino (physical pin 8). Pin 4 of the mic (BCLK) is connected to digital pin 2 on the MKR Zero (physical pin 11). Pin 5 of the mic (GND) is connected to the ground bus. Pin 6 (3V) is connected to the 3.3V bus.*
 
 ### Table 7. MKR Zero to SPH0645 I2S Mic Connections
+
 | Mic Pin No. | Mic Pin function|  MKR Zero Pin No. | MKR Zero Pin Function |
 |---|---|---|---|
 | 1 | L/R SEL | - | - |
