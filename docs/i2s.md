@@ -107,6 +107,7 @@ The MAX98357 takes an I2S signal as input and outputs analog audio. The UDA1334 
 | 4 | WSEL | 11 | D3 | 
 | 5 | DIN | 8 | A6 | 
 | 6 | BCLK | 10 | D2 |
+
 The remainder of the DAC's pins are unconnected.
 
 An I2C microphone generates an I2C signal from acoustic input. There are a few different I2S microphones on the market and they all appear to have slightly different sensitivities, though they all operate with the same code. Figure 4 shows the INMP441 mic, [available from various retailers on Amazon](https://www.amazon.com/gp/product/B07M9NFPFF/ref=ppx_yo_dt_b_asin_title_o07_s00?ie=UTF8&psc=1). Figure 5 shows the Invensense ICS43434, [available from Tindie](https://www.tindie.com/products/onehorse/ics43434-i2s-digital-microphone/). Figure 6 shows the SPH0645, [available from Adafruit](https://www.adafruit.com/product/3421).
