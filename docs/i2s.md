@@ -78,6 +78,7 @@ This wiring is shown in Figure 1 with a MSX98357 I2S audio amplifier. You can at
 | 7 | Vin | Voltage bus | Voltage |
 
 ### Table 3. Nano 33 IoT to Sparkfun Level Shifting MicroSD Card Connections
+
 | MicroSD Pin No. | MicroSD Pin function|  Nano 33 IoT Pin No. | Nano 33 IoT  Pin Function |
 |---|---|---|---|
 | 1 | VCC | Voltage bus | Voltage | 
@@ -97,6 +98,7 @@ The MAX98357 takes an I2S signal as input and outputs analog audio. The UDA1334 
 *Figure 3. UDA1334 I2S DAC connected to a MKR Zero. The DAC is mounted below the MKR Zero on the breadboard, with the audio jack pointed to the bottom of the breadboard, away from the MKR Zero. The DAC's pins, numbered in a U from top left, are: Vin; 3V out; GND; WSEL; DIN; BCLK; LOUT; AGND; ROUT; then on the right, from bottom right: DEEM; PLL; SF0; MUTE; SF1; SCLK. Table 4 details the pin connections between the DAC and the MKR Zero.*
 
 ### Table 4. MKR Zero to UDA1334 I2S DAC Connections
+
 | DAC Pin No. | DAC Pin function|  MKR Zero Pin No. | MKR Zero Pin Function |
 |---|---|---|---|
 | 1 | Vin | Voltage Bus | Voltage |
@@ -115,6 +117,7 @@ An I2C microphone generates an I2C signal from acoustic input. There are a few d
 *Figure 4. INMP441 I2S Mic connected to a MKR Zero. The Mic is mounted on the breadboard below the MKR Zero. The Mic's pins, numbered in a U pattern from top left, are: L/R select; WS; SCK; SD; 3V; GND. Table 5 details the pin connections.*
 
 ### Table 5. MKR Zero to INMP441 I2S Mic Connections
+
 | Mic Pin No. | Mic Pin function|  MKR Zero Pin No. | MKR Zero Pin Function |
 |---|---|---|---|
 | 1 | L/R SEL | - | - |
@@ -131,6 +134,7 @@ An I2C microphone generates an I2C signal from acoustic input. There are a few d
 Pin 1 (3V) is connected to the 3.3V bus. Pin 2 of the mic (SCK) is connected to digital pin 2 on the MKR Zero (physical pin 11). Pin 3 of the mic (GND) is connected to the ground bus. Pin 5 of the mic (WS) is connected to pin 3 of the MKR Zero (physical pin 12). Pin 6 of the mic (SD) is connected to pin A6 of the Arduino (physical pin 8).*
 
 ### Table 6. MKR Zero to ICS43434 I2S Mic Connections
+
 | Mic Pin No. | Mic Pin function|  MKR Zero Pin No. | MKR Zero Pin Function |
 |---|---|---|---|
 | 1 | 3V | Voltage Bus | Voltage |
