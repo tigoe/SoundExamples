@@ -71,9 +71,9 @@ D14 and Serial1 TX<br />
 D13 and Serial1 RX<br />
 D12 and I2C SCL<br />
 D11 and I2C SDA<br />
-D10 and SPI MISO (PWM)<br />
+D10 and SPI SDI (PWM)<br />
 D9 and SPI SCK<br />
-D8 and SPI MOSI (PWM) (INT)<br />
+D8 and SPI SDO (PWM) (INT)<br />
 D7 (PWM) (INT)<br />
 D6 and built-in LED (PWM) (INT)<br /></td>
 </tr>
