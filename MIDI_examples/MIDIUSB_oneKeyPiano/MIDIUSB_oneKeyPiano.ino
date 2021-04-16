@@ -18,18 +18,19 @@
 int lastButtonState = HIGH;
 
 void setup() {
-  pinMode(5, INPUT);
+  pinMode(5, INPUT_PULLUP);
 }
 
 void loop() {
   int buttonState = digitalRead(5);
+  int pitch = analogRead(A0) /8;
   if (buttonState != lastButtonState) {
     delay(5);
-    if (buttonState == HIGH) {
-      midiCommand(0x90, 0x45, 0x7F);
+    if (buttonState == LOW) {
+      midiCommand(0x90, pitch, 0x7F);
     } else {
       // turn the note off:
-      midiCommand(0x80, 0x45, 0);
+      midiCommand(0x80, pitch, 0);
     }
     // save the current state as the previous state
     // for the next comparison:
