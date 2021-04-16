@@ -5,7 +5,7 @@
   Randomizes the note within a scale each time
 
   Uses MIDIUSB for MIDI, so will work on any
-  32U4-based board (e.g. Uno, Leonardo, Micro, Yún)
+  32U4- or SAMD-based board (e.g. Nano 33 IoT, MKR Leonardo, Micro, Yún)
 
   Circuit:
       pushbutton attached to +Vcc from pin 5.
@@ -16,7 +16,7 @@
 */
 #include <MIDIUSB.h>
 #include <pitchToNote.h>
-const int buttonPin = 4;
+const int buttonPin = 5;
 
 // the intervals in a major and natural minor scale:
 int major[] = {2, 2, 1, 2, 2, 2, 1};
@@ -25,7 +25,7 @@ int naturalMinor[] = {2, 1, 2, 2, 1, 2, 2};
 int scale[8];
 
 // start with middle C:
-int tonic = pitchC4;
+int tonic = pitchC3;
 // note to play:
 int noteValue = tonic;
 
@@ -42,7 +42,7 @@ void setup() {
   // in the scale. You can change major to naturalMinor
   // if you want that kind of scale instead:
   for (int n = 0; n < 7; n++) {
-    note = note + naturalMinor[n];
+    note = note + major[n];
     scale[n + 1] = note;
   }
 }
