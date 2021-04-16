@@ -29,19 +29,18 @@ void loop() {
   }
 
   int sensor = analogRead(A0);
+ 
   // pitch bend range is 0 - 16383, and
   // the middle of the range, 8192, is zero pitch bend:
-
   int pitchBend = map(sensor, 0, 1023, 0, 16383);
   Serial.print(pitchBend);
-  
-  // convert 8-bit bytes to 7-bit bytes:
-  pitchBend = pitchBend << 1;          // shift low byte's msb to high byte
-  byte msb = highByte(pitchBend);      // get the high bits
-  byte lsb = lowByte(pitchBend) >> 1;  // get the low 8 bits
 
-// print the values, for reference:
+   // convert 8-bit bytes to 7-bit bytes:
+  int shiftedValue = pitchBend << 1;        // shift so top bit of lsb is in msb
+  byte msb = highByte(shiftedValue);        // get the high bits
+  byte lsb = lowByte(shiftedValue) >> 1;    // get the low 7 bits and shift right
 
+  // print the values, for reference:
   Serial.print(" ");
   Serial.print(msb);
   Serial.print(" ");
