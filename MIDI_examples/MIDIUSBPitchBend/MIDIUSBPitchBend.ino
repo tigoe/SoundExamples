@@ -5,7 +5,7 @@
   to bend the pitch
 
   Uses MIDIUSB for MIDI, so will work on any
-  32U4-based board (e.g. Uno, Leonardo, Micro, Yún)
+  32U4- or SAMD-based board (e.g. Nano 33 IoT, MKR Leonardo, Micro, Yún)
 
   Circuit:
       potentiometer connected to pin A0
@@ -29,13 +29,13 @@ void loop() {
   }
 
   int sensor = analogRead(A0);
- 
+
   // pitch bend range is 0 - 16383, and
   // the middle of the range, 8192, is zero pitch bend:
   int pitchBend = map(sensor, 0, 1023, 0, 16383);
   Serial.print(pitchBend);
 
-   // convert 8-bit bytes to 7-bit bytes:
+  // convert 8-bit bytes to 7-bit bytes:
   int shiftedValue = pitchBend << 1;        // shift so top bit of lsb is in msb
   byte msb = highByte(shiftedValue);        // get the high bits
   byte lsb = lowByte(shiftedValue) >> 1;    // get the low 7 bits and shift right
