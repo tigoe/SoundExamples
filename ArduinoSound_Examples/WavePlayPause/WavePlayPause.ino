@@ -15,13 +15,22 @@
    * Amp wiring:
      GND connected GND
      VIN connected Vdd
-     LRCLK (aka WSEL) connected to pin 3 (MKR1000, MKRZero) or pin 0 (Zero)
-     BCLK connected to pin 2 (MKR1000, MKRZero) or pin 1 (Zero)
-     DIN connected to pin A6 (MKR1000, MKRZero) or pin 9 (Zero)
+     LRCLK (aka WSEL) connected to:
+        - pin 3 (MKR1000, MKRZero)
+        - pin 0 (Zero)
+        - pin A2 (Nano 33 IoT)
+     BCLK connected to:
+        - pin 2 (MKR1000, MKRZero)
+        - pin 1 (Zero)
+        - pin A3 (Nano 33 IoT)
+     DIN connected to:
+        - pin A6 (MKR1000, MKRZero)
+        - pin 9 (Zero)
+        - pin 4 (Nano 33 IoT)
 
   created 15 November 2016
   by Sandeep Mistry
-  modified 29 Oct 2018
+  modified and updated 23 Sep 2021
   by Tom Igoe
 */
 
@@ -76,7 +85,7 @@ void setup() {
   }
 
   // set the playback volume:
-  AudioOutI2S.volume(20);
+  AudioOutI2S.volume(80);
   // start playback
   Serial.println("looping file");
   AudioOutI2S.loop(waveFile);
