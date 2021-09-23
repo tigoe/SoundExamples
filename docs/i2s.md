@@ -4,7 +4,14 @@ The *Inter-IC Sound protocol*, or *I2S*, is a protocol for tramsmitting digital 
 
 I2S can be used to send pre-recorded audio files from a microcontroller to an amplifier or Digital-to-Analog converter (DAC). It can also be used to digitize audio from a microphone. There is no compression protocol in I2S itself, so you can't play MP3 or OGG files or other audio formats that compress the audio, but you can play WAV files. 
 
-The MKR Zero, the Nano 33 IoT, and the other Arduino modules in the MKR family can communicate using I2S. In the examples that follow, you'll see how to use an I2S amplifier to play WAV files from an SD card, and how to analyze audio coming from an I2S microphone.  
+The MKR Zero, the Nano 33 IoT, and the other Arduino modules in the MKR family can communicate using I2S. In the examples that follow, you'll see how to use an I2S amplifier to play WAV files from an SD card, and how to analyze audio coming from an I2S microphone.
+
+Note that on the Nano 33 IoT, you will need to activate the I2S bus by adding the following line after the library includes:
+
+````arduino
+#define I2S_DEVICE 1
+`````
+
 
 ## Examples
 
