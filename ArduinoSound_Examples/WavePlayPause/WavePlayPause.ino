@@ -36,6 +36,7 @@
 
 #include <SD.h>
 #include <ArduinoSound.h>
+#define I2S_DEVICE 1
 
 // filename of wave file to play
 // file name must be 8chars . 3 chars
