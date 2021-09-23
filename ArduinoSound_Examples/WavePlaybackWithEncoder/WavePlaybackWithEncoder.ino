@@ -11,20 +11,31 @@
      An encoder is attached to pins 4 and 5. The encoder controls
   the volume of the sound.
    * MAX08357:
+ * Amp wiring:
      GND connected GND
-     VIN connected 5V
-     LRC connected to pin 0 (Zero) or pin 3 (MKR1000, MKRZero)
-     BCLK connected to pin 1 (Zero) or pin 2 (MKR1000, MKRZero)
-     DIN connected to pin 9 (Zero) or pin A6 (MKR1000, MKRZero)
+     VIN connected Vdd
+     LRCLK (aka WSEL) connected to:
+        - pin 3 (MKR1000, MKRZero)
+        - pin 0 (Zero)
+        - pin A2 (Nano 33 IoT)
+     BCLK connected to:
+        - pin 2 (MKR1000, MKRZero)
+        - pin 1 (Zero)
+        - pin A3 (Nano 33 IoT)
+     DIN connected to:
+        - pin A6 (MKR1000, MKRZero)
+        - pin 9 (Zero)
+        - pin 4 (Nano 33 IoT)
 
   created 15 November 2016
   by Sandeep Mistry
-  modified 29 Oct 2018
+  modified 23 Sep 2021
   by Tom Igoe
 */
 
 #include <SD.h>
 #include <ArduinoSound.h>
+#define I2S_DEVICE 1    // Nano 33 IoT needs I2S activated
 #include <Encoder.h>
 Encoder volumeKnob(4, 5);
 

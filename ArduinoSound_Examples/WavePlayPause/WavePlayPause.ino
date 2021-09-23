@@ -36,7 +36,7 @@
 
 #include <SD.h>
 #include <ArduinoSound.h>
-#define I2S_DEVICE 1
+#define I2S_DEVICE 1    // Nano 33 IoT needs I2S activated
 
 // filename of wave file to play
 // file name must be 8chars . 3 chars

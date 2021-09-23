@@ -15,10 +15,19 @@
    SD breakout or shield connected
    I2S amp:
      GND connected GND
-     VIN connected Vcc
-     LRC connected to pin 0 (Zero) or pin 3 (MKR1000, MKRZero)
-     BCLK connected to pin 1 (Zero) or pin 2 (MKR1000, MKRZero)
-     DIN connected to pin 9 (Zero) or pin A6 (MKR1000, MKRZero)
+     VIN connected Vdd
+     LRCLK (aka WSEL) connected to:
+        - pin 3 (MKR1000, MKRZero)
+        - pin 0 (Zero)
+        - pin A2 (Nano 33 IoT)
+     BCLK connected to:
+        - pin 2 (MKR1000, MKRZero)
+        - pin 1 (Zero)
+        - pin A3 (Nano 33 IoT)
+     DIN connected to:
+        - pin A6 (MKR1000, MKRZero)
+        - pin 9 (Zero)
+        - pin 4 (Nano 33 IoT)
    potentiometer:
      wiper to pin A0
      ends to Vcc and GND
@@ -27,14 +36,16 @@
      the other connected to GND
 
   created 31 Mar 2019
+  updated 23 Sep 2021
   by Tom Igoe
 */
 
 #include <SD.h>
 #include <ArduinoSound.h>
+#define I2S_DEVICE 1    // Nano 33 IoT needs I2S activated
 
 // filename of wave file to play
-//String fileName;
+String fileName;
 
 // variable representing the Wave File
 SDWaveFile waveFile;
