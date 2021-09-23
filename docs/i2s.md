@@ -12,6 +12,8 @@ Note that on the Nano 33 IoT, you will need to activate the I2S bus by adding th
 #define I2S_DEVICE 1
 `````
 
+You'll see that in the Wave Playback examples below.
+
 
 ## Examples
 
