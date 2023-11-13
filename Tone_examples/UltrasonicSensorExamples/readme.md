@@ -16,7 +16,7 @@ Concepts covered:
   
 
 ## [How to Convert Distance to Frequency](2_HC_SR04_ultrasonic_sensor_to_tone/2_HC_SR04_ultrasonic_sensor_to_tone.ino)
-* based on these notes
+* based on [these notes](https://tigoe.github.io/SoundExamples/tone.html)
 * assume that the distance range that matters is 0 - 100cm
 * Assume that the range of frequencies you want is 110Hz to  1046.5 Hz (A2 to C6 in equal tempered musical note pitches)
 * Map the distance range to the frequency range
@@ -31,5 +31,6 @@ Now you've got a theremin
 * If they're the same, don't play anything.
 
 ## [To Make The Device Convert To Specific Notes (Not All Frequencies In Between)](4_HC_SR04_ultrasonic_sensor_to_note_norepeat/4_HC_SR04_ultrasonic_sensor_to_note_norepeat.ino) (optional)
+* also based on [these notes](https://tigoe.github.io/SoundExamples/tone.html)
 * Convert the distance to a MIDI note value
  * Convert the MIDI note value to a frequency
