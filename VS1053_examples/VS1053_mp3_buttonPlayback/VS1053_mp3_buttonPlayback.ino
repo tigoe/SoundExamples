@@ -16,7 +16,7 @@
    one on the sound player module. To do this, set CARDCS to SDCARD_SS_PIN
    
   created 30 Nov 2018
-  modified 14 Dec 2018
+  modified 17 Dec 2024
   by Tom Igoe
 
 */
@@ -28,6 +28,9 @@
 // the VS1053 chip and SD card are both SPI devices.
 // Set their respective pins:
 
+#define CLK 13          // SPI Clock, shared with SD card
+#define MISO 12         // Input data, from VS1053/SD card
+#define MOSI 11         // Output data, to VS1053/SD card
 #define VS1053_RESET    6     // VS1053 reset pin
 #define VS1053_CS       7     // VS1053 chip select pin 
 #define VS1053_DCS      4     // VS1053 Data/command select pin 
@@ -42,7 +45,7 @@ Adafruit_VS1053_FilePlayer mp3Player =
   Adafruit_VS1053_FilePlayer(VS1053_RESET, VS1053_CS, VS1053_DCS, VS1053_DREQ, CARDCS);
 
 // sound file name must be 8 chars .3 chars:
-const char soundFile[] = "SOUND001.MP3";
+const char soundFile[] = "/track001.mp3";
 
 void setup() {
   Serial.begin(9600);
@@ -77,6 +80,7 @@ void setup() {
   mp3Player.useInterrupt(VS1053_FILEPLAYER_PIN_INT);
 
   // play file:
+  mp3Player.playFullFile(soundFile);
   mp3Player.startPlayingFile(soundFile);
   Serial.println("playing");
 }
@@ -86,7 +90,7 @@ void loop() {
   // map to a range from 100 to 0:
   int loudness = map(analogRead(A0), 0, 1023, 100, 0);
   // set the volume:
-  mp3Player.setVolume(loudness, loudness);
+//  mp3Player.setVolume(loudness, loudness);
 
   // loop the player:
   if (mp3Player.stopped()) {
