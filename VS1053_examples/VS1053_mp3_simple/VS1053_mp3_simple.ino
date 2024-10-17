@@ -24,10 +24,6 @@
 
 // the VS1053 chip and SD card are both SPI devices.
 // Set their respective pins:
-
-#define CLK 13          // SPI Clock, shared with SD card
-#define MISO 12         // Input data, from VS1053/SD card
-#define MOSI 11         // Output data, to VS1053/SD card
 #define VS1053_RESET 6  // VS1053 reset pin
 #define VS1053_CS 7     // VS1053 chip select pin
 #define VS1053_DCS 4    // VS1053 Data/command select pin
